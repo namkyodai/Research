@@ -1,0 +1,104 @@
+%=============================================================================
+% Thesis Template in LaTex
+%
+% File:  00-01-a-Titlepage.tex -- Titlepage for Projects
+% Author(s): Juergen Hackl <hackl@ibi.baug.ethz.ch>
+%            Clemens Kielhauser <kielhauser@ibi.baug.ethz.ch>
+%
+% Creation:  27 Jan 2014
+% Time-stamp: <Tue 2013-08-13 20:14 juergen>
+%
+% Copyright (c) 2014 Infrastructure Management Group (IMG)
+%               http://www.ibi.ethz.ch
+%
+% More information on LaTeX: http://www.latex-project.org/
+%=============================================================================
+
+
+\begin{titlepage}
+
+\vspace*{-2cm}
+  \begin{figure}[htbp]
+    \begin{minipage}{0.4\textwidth}
+      \begin{tikzpicture}[y=.80pt, x=.80pt,yscale=-1, inner sep=0pt, outer sep=0pt]
+        \begin{scope}[cm={{1.25,0.0,0.0,-1.25,(0.0,56.687)}}]% g3012
+          \begin{scope}[shift={(46.2141,45.0657)}]% g3014
+            \path[fill=black,nonzero rule] (0.0000,0.0000) -- (-1.4770,-6.1240) --
+            (-5.4400,-6.1240) -- (-4.1060,0.0000) -- (-41.7030,0.0000) --
+            (-45.4820,-16.9610) -- (-30.4040,-16.9610) -- (-29.4190,-12.5520) --
+            (-38.2440,-12.5520) -- (-37.7560,-10.4240) -- (-29.2500,-10.4240) --
+            (-28.3620,-6.4280) -- (-36.7960,-6.4280) -- (-36.3390,-4.3970) --
+            (-22.6580,-4.3970) -- (-25.4520,-16.9610) -- (-19.2100,-16.9640) --
+            (-16.4110,-4.3970) -- (-11.1610,-4.4010) -- (-13.9640,-16.9570) --
+            (-7.8940,-16.9610) -- (-6.3200,-10.4450) -- (-2.4650,-10.4450) --
+            (-3.8280,-16.9610) -- (2.0630,-16.9640) -- (5.8420,0.0000) -- (0.0000,0.0000)
+            -- cycle;
+          \end{scope}
+          \node (ger) at (0,16) [anchor=west,font=\scriptsize] {\sf {\textbf{Eidgenössische Technische Hochschule Zürich}}};
+          \node (eng) at (0,4.5) [anchor=west,font=\scriptsize] {\sf {\textbf{Swiss Federal Institute of Technology Zurich}}};
+        \end{scope}
+      \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}{0.4\textwidth}
+      \hfill
+      \begin{tikzpicture}[y=0.80pt, x=0.8pt,yscale=-1, inner sep=0pt, outer sep=0pt]
+        \begin{scope}[yshift=-2.5mm]
+          \node (a1) at (0,0) [anchor=west,font=\scriptsize] {\sf {\textbf{Institut für Bau- und}}};
+          \node (a2) at (0,12) [anchor=west,font=\scriptsize] {\sf {\textbf{Infrastrukturmanagement}}};
+          \node (a3) at (0,24) [anchor=west,font=\scriptsize] {\sf {{Professur für}}};
+          \node (a4) at (0,36) [anchor=west,font=\scriptsize] {\sf {{Infrastrukturmanagement}}};
+          \node (a5) at (0,48) [anchor=west,font=\scriptsize] {\sf {{Prof. Dr. Bryan T. Adey}}};
+        \end{scope}
+        \begin{scope}[xshift=4cm,yscale=3,xscale=3]
+          \foreach \x in {0,5,10}
+          \foreach \y in {0,5,10}
+          \fill[ibiBlue] (\x,\y) rectangle ++ (4,4);
+          \fill[white] (-0.1,-0.1) rectangle ++ (4.5,4.5);
+          \begin{scope}[rotate=-20]
+            \fill[ibiBlue] (0,0) rectangle ++ (4,-4);
+          \end{scope}
+        \end{scope}
+      \end{tikzpicture}
+    \end{minipage}
+  \end{figure}
+\vspace{-7mm}
+\hrulefill\\
+
+
+{\textbf{PROJECT WORK (Projektarbeit Master) FS 2014}}\\
+
+\vspace{40mm}
+\begin{center}
+  {\Huge \textbf{Title of the Work}}
+\end{center}
+
+\vspace{40mm}
+\begin{tabbing}
+Author(s): \hspace{20mm} \= Max Mustermann \hspace{20mm} \= ETH-Nr. XX-XXX-XXX \\[2mm]
+\> Max Mustermann \> ETH-Nr. XX-XXX-XXX\\\\
+Supervisor: \> Prof. Dr. Bryan T. Adey\\[2mm]
+\>  Max Mustermann
+\end{tabbing}
+
+\vspace{20mm}
+
+Zurich, \today
+
+\vfill
+
+ETH Zürich\\
+Institut für Bau- und Infrastrukturmanagement\\
+Professur für Infrastrukturmanagement\\
+Professor Dr. Bryan T. Adey
+
+\end{titlepage}
+
+
+% ===========================================================================
+% EOF
+%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End:

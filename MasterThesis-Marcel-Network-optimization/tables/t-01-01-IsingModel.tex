@@ -1,0 +1,51 @@
+%=============================================================================
+% Thesis Template in LaTex
+%
+% File:  t-05-01-IsingModel.tex -- Table for the Ising
+% Author(s): Juergen Hackl <hackl@ibi.baug.ethz.ch>
+%            Clemens Kielhauser <kielhauser@ibi.baug.ethz.ch>
+%
+% Creation:  27 Jan 2014
+% Time-stamp: <Tue 2013-08-13 20:14 juergen>
+%
+% Copyright (c) 2014 Infrastructure Management Group (IMG)
+%               http://ibi.ethz.ch
+%
+% More information on LaTeX: http://www.latex-project.org/
+%=============================================================================
+
+\begin{table}[ht]
+\centering
+\small\renewcommand{\arraystretch}{1.2}  
+%
+\captionabove[Mean-field predictions for the critical temperature of the Ising model]{Comparison of the mean-field predictions for the critical temperature of the Ising model with exact results and the best known estimates for different spatial dimensions $d$ and lattice symmetries.}
+\label{tab:t-03-01-IsingModel}
+%
+\begin{tabularx}{0.5\textwidth}{lXXX}
+\toprule
+\textbf{lattice} & $d$ & $q$ & $T_\text{mf}/T_c$ \\
+\hline
+square  & 2 & 4 & 1.763 \\
+%
+triangular & 2 & 6 & 1.648 \\
+%
+diamond & 3 & 4 & 1.479 \\
+%
+simple cubic & 3 & 6 & 1.330 \\
+%
+bcc & 3 & 8 & 1.260 \\
+%
+fcc & 3 & 12 & 1.225 \\
+\hline
+\end{tabularx}
+\end{table}
+
+%=============================================================================
+% EOF
+%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../guidelines"
+%%% End:
+

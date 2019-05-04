@@ -1,0 +1,1521 @@
+#LyX file created by tex2lyx 2.1
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass scrreprt
+\options paper=a4,fontsize=11pt,DIV=12,BCOR=10mm,twoside=true,parskip=half
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding utf8
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks 0
+\pdf_bookmarksnumbered 0
+\pdf_bookmarksopen 0
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks 0
+\pdf_pdfborder 0
+\pdf_colorlinks 1
+\pdf_backref section
+\pdf_pdfusetitle 0
+\pdf_pagemode None
+\pdf_quoted_options "pdftex=true,backref,pagebackref=false,bookmarksopen=false,plainpages=false,pdfdisplaydoctitle=true"
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle scrheadings
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%=============================================================================
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% Thesis Template in LaTex
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% File:  1-Introduction.tex -- Introduction to the topic
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% Author(s): Jürgen Hackl <hackl@ibi.baug.ethz.ch>
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%            Clemens Kielhauser <kielhauser@ibi.baug.ethz.ch>
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% Creation:  27 Jan 2014
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% Time-stamp: <Tue 2013-08-13 20:14 juergen>
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% Copyright (c) 2014 Infrastructure Management Group (IMG)
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%               http://ibi.ethz.ch
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% More information on LaTeX: http://www.latex-project.org/
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%=============================================================================
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:introdction"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Some formal aspects
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:formalaspects"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Strong demands can only be met with the help of a very stringent and clear structure laid out at the beginning of the writing process. One of the most clear structuring is given by a rigorous "legal numbering" (1, 1.1, 1.1.1 etc.). It is good to know that LaTeXdoes all this formatting business without any need to renumber things yourself at each iteration and so on. Thus we strongly recommend using LaTeXfor the project. Anything else (e.g. Word) is a mess when writing an elaborate scientific text with many graphics and formulas.
+\end_layout
+
+\begin_layout Standard
+Even a particular elusive reader should be able to quickly glean the most important thoughts, experiments and results from just looking at illustrative schematics, diagrams, and pictures with self explaining, extensive figure captions.
+\end_layout
+
+\begin_layout Standard
+There are always parts/chapters/sections of text which are complex and important for a full description and documentation of the work, but not absolutely necessary for following the main lines of thought. It is very helpful for the somewhat more interested, but temporally limited reader if such passages of text are correspondingly marked, e.g. by a brief introductory remark to such sections, or even by moving them into appendices.
+\end_layout
+
+\begin_layout Standard
+Definitively each chapter and ideally also each section should begin with a short guide: what is communicated in the following text, which sources (quote clearly) have been used, what are the basic concepts used and which goals are to be reached. Similarly, at the end of larger elaborations a short synopsis of the communicated content should be offered.
+\end_layout
+
+\begin_layout Subsection
+Plain text
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:plaintext"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A single font must be used throughout the thesis or report, the only exceptions being in tables, graphs, and appendices. Headings may be bolded and no more than 2 points larger than the rest of the text.
+\end_layout
+
+\begin_layout Standard
+The page format should be single column with one and a single spacing used between the lines. Spacing of words on a line should be such that the line can be easily read. Crowding words together or leaving excessive spaces is not permitted.
+\end_layout
+
+\begin_layout Subsection
+Footnotes
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:footnotes"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For those who are using footnotes
+\begin_inset Foot
+status collapsed
+
+
+\begin_layout Standard
+Some example footnote.
+\end_layout
+
+\end_inset
+
+, Arabic numerals are used consecutively throughout a chapter, and should normally appear at the bottom of the relevant page, keyed to the same number following the word or phrase in the text to which it refers. If a footnote is too long for the relevant page, it may be continued on the following page preceding the footnotes for that page. If the number of footnotes is very large, numbers may be restarted with each chapter.
+\end_layout
+
+\begin_layout Subsection
+Lists
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:lists"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are three types of lists with the environment names 
+\emph on
+itemize
+\emph default
+, 
+\emph on
+enumerate
+\emph default
+ and 
+\emph on
+description
+\emph default
+. All lists have a separation between each item, to improve the reading of item texts spanning several lines. This item text can contain multiple paragraphs. These paragraphs are appropriately spaced and indented according to their position in the list.
+\end_layout
+
+\begin_layout Itemize
+The 
+\emph on
+itemize
+\emph default
+ sets off list items with 
+\emph on
+bullets
+\emph default
+, like this. 
+\end_layout
+
+\begin_layout Itemize
+Of course, lists can be nested, each type up to at least four levels. One type of list can be nested within another type. 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nested lists of the same type will change style of numbering or 
+\emph on
+bullets
+\emph default
+ as needed. 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The 
+\emph on
+enumerate
+\emph default
+ environment numbers the list elements.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This is a new paragraph in the item text, which is not intended as in the normal text but separated from the previous paragraph. 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The enumeration scheme changes with each nesting level 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+as shown in this nested enumerated list item. 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+Some description
+\end_layout
+
+\end_inset
+
+ The 
+\emph on
+description
+\emph default
+ environment allows to describe some content. 
+\end_layout
+
+\begin_layout Subsection
+Mathematical symbols and equations
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:math"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Each formula, except for generally accepted and well-known formulas, either has to be mathematically derived, to be explained, or a literature source has to be provided. This applies especially to complex models, where each constraint should be described and explained.
+\end_layout
+
+\begin_layout Standard
+There are three types of mathematical equations: (a) in-line equations, (b) displayed butunnumbered equations, and (c) displayed and numbered equations.
+\end_layout
+
+\begin_layout Subsubsection
+In-line equations
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:inlineeq"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An in-line equation is used for particularly simple relationships which (i) do not need vertical space for integrals, fractions, etc., (ii) can be expressed without breaking the flow of the sentence, and (iii) will not be referenced again in the document.
+\end_layout
+
+\begin_layout Standard
+For example:
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+ If volume 
+\begin_inset Formula $V$
+\end_inset
+
+ and temperature 
+\begin_inset Formula $T$
+\end_inset
+
+ are known, the ideal gas law can be used to get a reasonable approximation for the pressure of a gas as 
+\begin_inset Formula $P=nRT/V$
+\end_inset
+
+, where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the number of moles of gas and 
+\begin_inset Formula $R$
+\end_inset
+
+ is the gas constant. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Unless all the variables have been defined earlier in the document, the physical significance of all the quantitie s appearing in an equation must be stated at the point of their first appearance in the document.
+\end_layout
+
+\begin_layout Subsubsection
+Displayed, but unnumbered, equations
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:diuneq"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equations that are too complex to be written as in-line equations should be "displayed", which usually means, that the equation is centered between the left and right margins or aligned at a tab stop with some indent from the left margin and some vertical space is provided above and below the equation to set it apart from the text.
+\end_layout
+
+\begin_layout Standard
+For example:
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+ The van der Waals equation is used to provide a more accurate expression for the pressure 
+\begin_inset Formula $P$
+\end_inset
+
+ as a function of the molar volume 
+\begin_inset Formula $V_m$
+\end_inset
+
+ and the temperature 
+\begin_inset Formula $T$
+\end_inset
+
+ as 
+\begin_inset Formula \begin{equation*}
+P = \frac{RT}{V_m-b}-\frac{a}{V_m^2}~,
+\end{equation*}
+\end_inset
+
+where 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ are van der Waals parameters for the gas.
+\end_layout
+
+\begin_layout Standard
+or
+\end_layout
+
+\begin_layout Standard
+The electric field 
+\begin_inset Formula $\mathbf{E}$
+\end_inset
+
+ at the origin due to a point charge 
+\begin_inset Formula $q$
+\end_inset
+
+ at a distance 
+\begin_inset Formula $r$
+\end_inset
+
+ is given by 
+\begin_inset Formula \begin{equation*}
+\mathbf{E} = \frac{|q|}{4\pi\varepsilon_0 r^2}\mathbf{\hat{r}}
+\end{equation*}
+\end_inset
+
+where 
+\begin_inset Formula $\mathbf{\hat{r}}$
+\end_inset
+
+ is the position vector of the point charge. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that in the examples presented above, the displayed equation is part of the text, i.e, it is punctuated, and incorporated in to the structure of the sentence.
+\end_layout
+
+\begin_layout Standard
+All the scalar variables are italicized whereas the vector quantities in the second example are Roman boldfaced.
+\end_layout
+
+\begin_layout Subsubsection
+Displayed and numbered equations
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:dineq"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One often has to refer back to the important equations. The standard way to do this is by referring to the equation number. Of course, in order to refer to an equation number, one must first number the equations. A consiste nt system of numberi ng equations must be adopted. Various options are: 
+\end_layout
+
+\begin_layout Itemize
+Number equations as (1), (2), etc., starting in Chapter 1 (or at the first numbered equation) and continuing until the end of the last numbered equation in the document. 
+\end_layout
+
+\begin_layout Itemize
+Incorporate the chapter number into the equation, as in (1.1), (2.3), (4.6), etc., which means the equation numbering goes back to 1 at the beginning of each chapter. 
+\end_layout
+
+\begin_layout Itemize
+Use Roman numerals for chapter numbers, as in (I.1), (II.3), (IV.6) etc. 
+\end_layout
+
+\begin_layout Standard
+For example:
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+ The non-relativistic Schrödinger equation for a particle of mass m subject to a potential energy function V(x) in a one-dimensional universe is 
+\begin_inset Formula \begin{equation}
+  \label{eq:1}
+  E \psi(x) = \frac{-\hbar^2}{2m} \frac{d^2\psi}{d x^2} + V(x)\psi(x)
+\end{equation}
+\end_inset
+
+where 
+\begin_inset Formula $\hbar = h/(2\pi)$
+\end_inset
+
+, 
+\begin_inset Formula $h$
+\end_inset
+
+ is Plack’s constant, and 
+\begin_inset Formula $E$
+\end_inset
+
+ is the total energy of the system. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The equation in the example is approximately centered on the page, and the equation number is aligned by a right-tab at the right margin.
+\end_layout
+
+\begin_layout Standard
+To cite an equation in text, use an abbreviation if it is not the first word of the sentence. Suitable singular and plural ab breviations include eq. and eqs., Eq. and Eqs. Spell out “Equation” when it is the first word of a sentence and when it is not accompanied by a number.
+\end_layout
+
+\begin_layout Standard
+The used numbering of the equation may change according to the context of the work. E.g. number them as subequations 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{subequations}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula \begin{align}
+  \dot{q}_i & = \frac{\partial H}{\partial p_i} \\
+  \dot{p}_i & = -\frac{\partial H}{\partial q_i} 
+\end{align}
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{subequations}
+\end_layout
+
+\end_inset
+
+ or with only a single number 
+\begin_inset Formula \begin{equation}
+\begin{aligned}
+  \dot{q}_i & = \frac{\partial H}{\partial p_i} \\
+  \dot{p}_i & = -\frac{\partial H}{\partial q_i} 
+\end{aligned}
+\end{equation}
+\end_inset
+
+Many further possibilities of displaying equations exist.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\backslash
+subsection{Theorems}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\backslash
+label{sec:theorems}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Tables
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:tables"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tables should only be used to present three (3) or more items; otherwise, the data should be described in the narrative. Tables should be arranged so like material appears in columns, not rows. Information presented in tables should be sufficiently understandable so frequent reference to the narrative is unnecessary. Each table should have a title, generally appearing above the table itself. The table title and other items may be footnoted, although extensive explanations appearing in footnotes should be avoided. All abbreviations and symbols should be defined.
+\end_layout
+
+\begin_layout Standard
+Tables are generally no more than what can be printed on one page, but occasionally multi-paged tables are necessary and are acceptable. Tables may appear on pages which contain narrative text or tables may appear singularly on a page (i.e. one table per page and only the table on the page).
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset include
+LatexCommand input
+preview false
+filename "tex/tables/t-01-01-IsingModel.lyx"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Figures
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:figures"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figures present charts, graphs, or images to the reader. Figure legends should be sufficiently detailed to allow the reader to understand without frequent reference to the narrative. However, overly detailed descriptions should be avoided. All abbreviations and symbols should be defined. Figure legends should appear on the same page and in the same orientation as the figure. For example, if the figure appears in landscape mode then the legend should also appear in landscape mode. If the figure legend is too lengthy to appear on the same page as the figure, then the legend, in its entirety, must appear on the next page.
+\end_layout
+
+\begin_layout Standard
+Similar to tables, figures are usually constructed to be no more than what can appear on one page, but occasionally multi-paged figures are necessary. Figures may also appear singularly on pages or on pages containing narrative text.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Float figure
+placement h!
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset include
+LatexCommand input
+preview false
+filename "tex/figures/f-01-01-a-SafetyMargin.lyx"
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Standard
+
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Standard
+Safety Margin an Reliability Index
+\end_layout
+
+\end_inset
+
+Safety Margin an Reliability Index. Are the random variables 
+\begin_inset Formula $R$
+\end_inset
+
+ and 
+\begin_inset Formula $S$
+\end_inset
+
+ normally distributed also the safety margin 
+\begin_inset Formula $M$
+\end_inset
+
+ is a normal random variable. In standardised domain the reliability index 
+\begin_inset Formula $\beta$
+\end_inset
+
+ provides the information how often 
+\begin_inset Formula $\sigma_{{M}}$
+\end_inset
+
+ has space between the origin and 
+\begin_inset Formula $\mu_{{M}}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:f-01-01-a-SafetyMargin"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All possibilities of grouping pictures side by side, on top or in matrices can be realized. Each subfigure is created in the same way as a graphic inside a figure, just enclosed by a figure environment, as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:f-01-02-FORM"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Float figure
+placement h!
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+
+\begin_layout Standard
+[
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+]
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:f-01-02-a"
+
+\end_inset
+
+
+\begin_inset Graphics 
+	filename tex/figures/f-01-02-a-FORM.pdf
+	width 32text%
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+
+\begin_layout Standard
+[
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+]
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:f-01-02-b"
+
+\end_inset
+
+
+\begin_inset Graphics 
+	filename tex/figures/f-01-02-b-FORM.pdf
+	width 32text%
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+
+\begin_layout Standard
+[
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+]
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:f-01-02-c"
+
+\end_inset
+
+
+\begin_inset Graphics 
+	filename tex/figures/f-01-02-c-FORM.pdf
+	width 32text%
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Standard
+
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Standard
+First Order Reliability Method
+\end_layout
+
+\end_inset
+
+First Order Reliability Method. (a) Representation of a physical space with a set 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ of any two random variables. The shaded area denotes the failure domain and 
+\begin_inset Formula $g(\mathbf{X})=0$
+\end_inset
+
+ the failure surface. (b) After transformation in the normalized space, the random variables 
+\begin_inset Formula $\mathbf{Z}$
+\end_inset
+
+ are now uncorrelated and standardized normally distributed, also the failure surface is transformed into 
+\begin_inset Formula $g(\mathbf{X})=0$
+\end_inset
+
+. (c) FORM corresponds to a linearization of the failure surface 
+\begin_inset Formula $g(\mathbf{X})=0$
+\end_inset
+
+. Performing this method, the design point 
+\begin_inset Formula $\mathbf{z}^*$
+\end_inset
+
+ and the reliability index 
+\begin_inset Formula $\beta$
+\end_inset
+
+ can be computed.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:f-05-01-FORM"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Citations
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:citations"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Academic work almost always builds upon the work of others, and it is appropriate, indeed essential, that you discuss the related and previous work of others in your thesis. However, this must be done according to the rules of acceptable use.
+\end_layout
+
+\begin_layout Standard
+Much of the advice in the section on books will pertain to other sources as well. Their long history as a formal publication ensures, in particular, that the variations in author names and titles will serve as a model for constructing documentary notes and bibliography entries for many other types of sources.
+\end_layout
+
+\begin_layout Standard
+The Chicago Manual of Style
+\begin_inset Foot
+status collapsed
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+parencite
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+chicago2010
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, implemented here in its 16th edition, has long, been one of the most influential style guides for writers and publishers. While one’s choices are now perhaps more extensive than ever, the Manual at least still provides a widely-recognized, and widely-utilized, standard.
+\end_layout
+
+\begin_layout Standard
+A full reference must include enough information to enable an interested reader to locate the book. Most references contain at least some information not strictly needed for that purpose but potentially helpful nonetheless. The elements listed below are included, where applicable, in full documentary notes and bibliography entries.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{refsection}
+\end_layout
+
+\end_inset
+
+ The author appears as part of the narrative: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+textcite
+\end_layout
+
+\end_inset
+
+[p.100]
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Nowak2000
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ show how to calculate the reliability index 
+\begin_inset Formula $\beta$
+\end_inset
+
+, by using geometric properties. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Otherwise, in parentheses: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+ A near linear relationship can be obtained between ultimate flexural and shear capacity of a RC section, if pitting corrosion occurs 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+parencite
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Stewart2009
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{IMleftrightskip}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+printbibliography
+\end_layout
+
+\end_inset
+
+[heading=none] 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{refsection}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% ===========================================================================
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% EOF
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%%% Local Variables:
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%%% mode: latex
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%%% TeX-master: "../main"
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%%% End:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

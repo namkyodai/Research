@@ -1,0 +1,178 @@
+%=============================================================================
+% Thesis Template in LaTex
+%
+% File:  main.tex -- Main file of the template
+% Author(s): Juergen Hackl <hackl@ibi.baug.ethz.ch>
+%            Clemens Kielhauser <kielhauser@ibi.baug.ethz.ch>
+%
+% Creation:  27 Jan 2014
+% Time-stamp: <Tue 2013-08-13 20:14 juergen>
+%
+% Copyright (c) 2014 Infrastructure Management Group (IMG)
+%               http://ibi.ethz.ch
+%
+% More information on LaTeX: http://www.latex-project.org/
+%=============================================================================
+
+% ********
+% Preamble
+% ********
+
+% Documentclass using KOMA-script
+% ===============================
+
+\documentclass[
+  paper=a4,                         % Paper format
+  fontsize=11pt,                    % Fontsize
+  DIV=12,                           % Divided page horizontally and vertically
+  BCOR=10mm,                        % Binding correction
+  \mylaterality,                    % Double or one-sided typesetting
+  parskip=half,                     % Parskip
+]{scrreprt}                         % KOMA - class
+
+
+% Usepackages
+% ===========
+
+\usepackage[utf8]{inputenc}         % Input caracters
+% \usepackage[T1]{fontenc}            % Font encodings
+\usepackage[\mylanguage]{babel}     % Language
+\usepackage{scrpage2}               % Headers and footers
+\pagestyle{scrheadings}             % Headers and footers
+\usepackage{graphicx}               % Enhanced support for graphics
+\usepackage[export]{adjustbox}
+\usepackage{xcolor}                 % Color extensions
+\usepackage{enumitem}               % Layout of itemize, enumerate, ...
+\usepackage{multicol}               % Multiple columns
+\usepackage{subfig}                 % Figures broken into subfigures
+\usepackage{rotating}               % Rotation tools
+\usepackage{longtable}              % Long tables
+\usepackage{tabularx}               % Adjustable Tabulars
+\usepackage{booktabs}               % Tabular rules
+\usepackage{float}                  % Float environment
+\usepackage{amsmath}                % AMS mathematical facilities
+\usepackage{amssymb}                % AMS symbol fonts
+\usepackage{makeidx}                % Index
+\usepackage[intoc]{nomencl}         % Nomenclature
+\usepackage{acronym}                % Acronyms
+\usepackage{tikz}                   % TikZ
+\usepackage{pgfplots}               % PGF plots
+\usepackage{units}                  % Typeset units
+\usepackage{csquotes}               % quotes
+\usepackage{wasysym}                % Additional Symbols
+\usepackage{listings}
+\usepackage{pgfgantt}               % Gantt Chart
+\usepackage{pdfpages}               % Includes PDF files
+\usepackage{blindtext}              % Some random text
+\usepackage{ifthen}                 % If commands
+
+% BibLaTeX using biber as backend (recommended)
+% ---------------------------------------------
+
+\usepackage[authordate,backend=biber]{biblatex-chicago}
+\bibliography{literature}
+\setlength\bibitemsep{1.5\itemsep}
+
+
+% BibTeX
+% ------
+
+% \usepackage{cite}                   % Citations
+% \usepackage{natbib}                 % Citation Style
+% \usepackage{apacite}                % APA cite Style
+% \renewcommand{\bibsection}{}        % No auto headings
+
+
+% Line spacing
+% ------------
+\ifthenelse{\equal{\myspacing}{true}}
+{
+\usepackage[doublespacing]{setspace} % Set line space to 2
+}{}
+% \usepackage[onehalfspacing]{setspace} % Set line space to 1.5
+
+
+% Line numbering
+% --------------
+
+\usepackage{lineno}    % numbering the lines
+\ifthenelse{\equal{\mylinenumbering}{true}}{\linenumbers}{}
+
+
+% Font settings
+% -------------
+
+% \usepackage[scaled]{helvet}
+% \renewcommand*\familydefault{\sfdefault}
+
+
+% PDF settings
+% ------------
+
+\usepackage[
+  pdftitle={\mytitle},
+  pdfauthor={\myauthor},
+  pdfsubject={\mysubject},
+  pdfcreator={Accomplished with: pdfLaTeX, biber, tikz and hyperref-package},
+  pdfproducer={\myauthor},
+  pdfkeywords={\mykeywords},
+  a4paper=true,
+  pdftex=true,
+  backref,
+  pagebackref=false,                % creates backward references too
+  bookmarks=false,                  %
+  bookmarksopen=false,              % Bookmarkcolumn is opened
+  pdfpagemode=None,                 % None, UseOutlines, UseThumbs, FullScreen
+  plainpages=false,                 %
+  pdfdisplaydoctitle=true,          % show documenttitle
+  colorlinks=\mycolorlinks,                  % turn on/off colored links
+]{hyperref}
+
+% Header
+% ======
+
+\automark[section]{chapter}
+
+
+% Table rule
+% ----------
+
+\renewcommand{\arraystretch}{2}
+\setlength{\arrayrulewidth}{1pt}
+\lightrulewidth=1pt
+\heavyrulewidth=.5pt
+
+
+% Colors
+% ======
+
+\definecolor{ibiBlue}{RGB}{0,106,175}
+\definecolor{ethBlue}{RGB}{31,64,122}
+\definecolor{ethLightBlue}{RGB}{18,105,176}
+\definecolor{ethGreen}{RGB}{72,90,44}
+\definecolor{ethLightGreen}{RGB}{154,197,15}
+\definecolor{ethGray}{RGB}{111,111,100}
+\definecolor{ethRed}{RGB}{168,50,45}
+\definecolor{ethLogo}{RGB}{0,0,0}%{255, 255, 255}
+\definecolor{DBaugGreen}{RGB}{169,200,61}
+\definecolor{DBaugBlue}{RGB}{42,105,182}
+
+% Hyphenations
+% =============
+
+\hyphenation{ex-am-ple hy-phen-ate}
+
+
+% MISC
+% ====
+\raggedbottom
+\makeindex
+
+\newenvironment{IMleftskip}{\par\begingroup\leftskip=2em}{\par\endgroup}
+\newenvironment{IMleftrightskip}{\par\begingroup\leftskip=2em\rightskip=2em}{\par\endgroup}
+
+%=============================================================================
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

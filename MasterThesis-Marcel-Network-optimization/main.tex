@@ -1,0 +1,167 @@
+%=============================================================================
+% Thesis Template in LaTex
+%
+% File:  main.tex -- Main file of the template
+% Author(s): Juergen Hackl <hackl@ibi.baug.ethz.ch>
+%            Clemens Kielhauser <kielhauser@ibi.baug.ethz.ch>
+%
+% Creation:  27 Jan 2014
+% Time-stamp: <Tue 2013-08-13 20:14 juergen>
+%
+% Copyright (c) 2014 Infrastructure Management Group (IMG)
+%               http://ibi.ethz.ch
+%
+% More information on LaTeX: http://www.latex-project.org/
+%=============================================================================
+
+% **************
+% Basic settings
+% **************
+
+\newcommand{\mylaterality}{twoside}
+% "oneside" or "twoside"
+% Either you are creating a document which is printed on both, left pages
+% and right pages (twoside) or you create a document which is printed
+% on right pages only (oneside).
+
+\newcommand{\mylanguage}{english}
+% "english,ngerman", "ngerman,english", ...
+% NOTE: The *last* language is the active one!
+% See babel documentation for further details.
+
+\newcommand{\mycolorlinks}{true}  %% "true" or "false"
+% Enables or disables colored links (hyperref package).
+
+\newcommand{\mylinenumbering}{false}  %% "true" or "false"
+% Enables or disables linenumbers (lineno package).
+
+\newcommand{\myspacing}{false}  %% "true" or "false"
+% Enables or disables doublespacing (setspace package).
+
+% General metadata for the PDF
+\newcommand{\myauthor}{AUTHOR}  %% also used for PDF metadata (hyperref)
+\newcommand{\mytitle}{TITLE}  %% also used for PDF metadata (hyperref)
+\newcommand{\mysubject}{SUBJECT}  %% also used for PDF metadata (hyperref)
+\newcommand{\mykeywords}{KEYWORDS}  %% also used for PDF metadata (hyperref)
+
+% ********
+% Preamble
+% ********
+
+% Load main settings for document preamble
+% ========================================
+\input{IBI-Preamble} %% DO NOT REMOVE THIS LINE!
+
+%=============================================================================
+
+% *************
+% Main Document
+% *************
+
+% Document
+% ========
+
+\begin{document}
+
+% roman page numbers
+% ------------------
+%\frontmatter
+\pagenumbering{roman}
+
+% Titlepage
+% ---------
+\input{content/00-01-a-Titlepage}
+
+% Declaration
+% -----------
+\cleardoublepage
+%\input{content/00-02-c-Declaration}
+\includepdf[pagecommand={\thispagestyle{empty}},fitpaper=true,pages=-]{content/00-02-a-Declaration}
+
+
+% Abstract
+% --------
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Abstract}
+\input{content/00-03-Abstract}
+
+% Acknowledgment
+% --------------
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Acknowledgment}
+\input{content/00-04-Acknowledgment}
+
+% Table of Contents
+% -----------------
+\cleardoublepage
+\tableofcontents
+
+% List of Figures
+% ---------------
+\cleardoublepage
+\listoffigures
+
+% List of Tables
+% --------------
+\cleardoublepage
+\listoftables
+
+% Nomeclature
+% -----------
+%\addcontentsline{toc}{chapter}{Nomeclature}
+
+% Glossary
+% --------
+%\addcontentsline{toc}{chapter}{Glossary}
+
+% arabic page numbers
+% ------------------
+% \mainmatter
+\cleardoublepage
+\pagenumbering{arabic}% \setcounter{page}{0}
+
+% Chapter 1
+% ---------
+\input{content/01-Introduction}
+
+% Chapter 2
+% ---------
+%\input{content/02-Theory}
+
+% Chapter 3
+% ---------
+% \input{content/03-...}
+
+% Chapter 4
+% ---------
+% \input{content/04-...}
+
+% Chapter 5
+% ---------
+% \input{content/05-...}
+
+% Reference
+% ---------
+% \bibliographystyle{unsrt}
+% \bibliographystyle{plainnat}
+% \bibliographystyle{apacite}
+% \bibliography{literature}
+
+\printbibliography
+
+
+% Appendix
+% --------
+\appendix
+
+% Index
+% -----
+\printindex
+
+\end{document}
+
+%=============================================================================
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

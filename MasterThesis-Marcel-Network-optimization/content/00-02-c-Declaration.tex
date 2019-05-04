@@ -1,0 +1,49 @@
+%=============================================================================
+% Thesis Template in LaTex
+%
+% File:  declaration.tex -- Statutory Declaration
+% Author(s): Jürgen Hackl <hackl@ibi.baug.ethz.ch>
+%            Clemens Kielhauser <kielhauser@ibi.baug.ethz.ch>
+%
+% Creation:  27 Jan 2014
+% Time-stamp: <Tue 2013-08-13 20:14 juergen>
+%
+% Copyright (c) 2014 Infrastructure Management Group (IMG)
+%               http://ibi.ethz.ch
+%
+% More information on LaTeX: http://www.latex-project.org/
+%=============================================================================
+
+% Definition of the block tat contains date and signature
+\newcommand{\mysignature}[2]{
+\tikz[baseline,dotted]\draw(0,0)--++( #2 \linewidth- \pgflinewidth,0) node [below,pos=.5]{\footnotesize #1};
+}
+
+
+\chapter*{Statutory Declaration}
+
+\blindtext
+
+\blindtext
+
+\vfill
+
+
+Zurich, \qquad \mysignature{Date}{.3} \hfill \mysignature{Signature}{.4}
+
+
+\vfill
+\vfill
+\vfill
+
+
+\cleardoublepage
+
+% ===========================================================================
+% EOF
+%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End:
