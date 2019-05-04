@@ -1,0 +1,157 @@
+\begin{table}
+\begin{center}
+\caption{Definition of inspection values.}
+\label{table1}
+\begin{tabular}{c|l}\hline
+\textbf{I values} & \textbf{Description}\\\hline
+I0 & is used to describe the surface damage without consideration of rut index\\
+I1 & is used to describe the surface damage with consideration of rut index\\
+I2 & is used to describe the longitudinal unevenness\\
+I3 & is used to describe the transversal unevenness\\
+I4 & is used to describe the surface friction\\
+I5 & is used to describe the load bearing capacity\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}
+\begin{center}
+\caption{Correlation across index types, common inspection year.}
+\label{table2}
+\begin{tabular}{c|cccc}\hline
+\textbf{×} & I2-2004 & I2-2009 & I3-2004 & I3-2009\\\hline
+I0-2004 & 0.29 & × & 0.28 & ×\\
+I0-2009 & × & 0.18 & × & 0.09\\
+I3-2004 & × & × & 0.17 & ×\\
+I3-2009 & × & × & × & 0.35\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[htbp]
+\begin{center}
+\caption{Structure of the database}
+\begin{tabular}{l|l|l|l|l|l|l|l|l|l|l|l}
+\hline
+\multicolumn{1}{c|}{Road} & \multicolumn{1}{c|}{Section} & \multicolumn{2}{c|}{Coordinates} & \multicolumn{4}{c|}{Inspection 1} & \multicolumn{4}{c}{Inspection 2} \\
+\cline{3-12}
+\multicolumn{1}{c|}{ID} & \multicolumn{1}{c|}{ID } & \multicolumn{1}{c|}{ X } & \multicolumn{1}{c|}{ Y } & \multicolumn{1}{c|}{Year } & \multicolumn{1}{c|}{ Ind. 1 } & \multicolumn{1}{c|}{ Ind. 2 } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{Year} & \multicolumn{1}{c|}{ Ind. 1 } & \multicolumn{1}{c|}{ Ind. 2 } & \multicolumn{1}{c}{ ... } \\
+\hline
+\multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{$x_1$} & \multicolumn{1}{c|}{$y_1$} & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{$v_1^1$} & \multicolumn{1}{c|}{$v_1^2$} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{$x_2$} & \multicolumn{1}{c|}{$y_2$} & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{$v_2^1$} & \multicolumn{1}{c|}{$v_2^2$} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{$x_3$} & \multicolumn{1}{c|}{$y_3$} & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{$v_3^1$} & \multicolumn{1}{c|}{$v_3^2$} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\multicolumn{1}{c|}{...} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\multicolumn{1}{c|}{...} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\multicolumn{1}{c|}{R} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2008} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c|}{ ... } & \multicolumn{1}{c}{ ... } \\
+\hline
+\end{tabular}
+\label{table3}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[htbp]
+\begin{center}
+\caption{Data overview}
+\begin{tabular}{l|p{6cm}|l|l|l}
+\hline
+\multicolumn{1}{c|}{I-values} &  Description  & \multicolumn{3}{c}{Numbers of data points} \\
+\cline{3-5}
+\multicolumn{1}{c|}{} &  & \multicolumn{1}{c|}{2000} & \multicolumn{1}{c|}{2004} & \multicolumn{1}{c}{2009} \\
+\hline
+\multicolumn{1}{c|}{I0} & Surface damage without consideration of rut index  & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{28'983} & \multicolumn{1}{c}{35'022} \\
+\multicolumn{1}{c|}{I2} & Longitudinal unevenness  & \multicolumn{1}{c|}{27'747} & \multicolumn{1}{c|}{29'046} & \multicolumn{1}{c}{35'330} \\
+\multicolumn{1}{c|}{I3} & Transversal unevenness  & \multicolumn{1}{c|}{27'765} & \multicolumn{1}{c|}{29'131} & \multicolumn{1}{c}{35'339} \\
+\hline
+\end{tabular}
+\label{table4}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[htbp]
+\begin{center}
+\caption{Standard deviations of residuals, Scenario 1.}
+\begin{tabular}{l|l|l|l|l|l|l|l|l}
+\hline
+\multicolumn{1}{c|}{Cluster} & \multicolumn{8}{c}{I values} \\
+\cline{2-9}
+\multicolumn{1}{c|}{boundary} & \multicolumn{2}{c|}{I0} & \multicolumn{3}{c|}{I2} & \multicolumn{3}{c}{I3} \\
+\cline{2-9}
+\multicolumn{1}{c|}{$h^*$} & \multicolumn{1}{c|}{2004} & \multicolumn{1}{c|}{2009} & \multicolumn{1}{c|}{2000} & \multicolumn{1}{c|}{2004} & \multicolumn{1}{c|}{2009} & \multicolumn{1}{c|}{2000} & \multicolumn{1}{c|}{2004} & \multicolumn{1}{c}{2009} \\
+\hline
+\multicolumn{1}{c|}{100} & \multicolumn{1}{c|}{0.07795} & \multicolumn{1}{c|}{0.14068} & \multicolumn{1}{c|}{0.29075} & \multicolumn{1}{c|}{0.21718} & \multicolumn{1}{c|}{0.54079} & \multicolumn{1}{c|}{0.21453} & \multicolumn{1}{c|}{\textbf{0.22456}} & \multicolumn{1}{c}{0.30764} \\
+\multicolumn{1}{c|}{200} & \multicolumn{1}{c|}{0.07726} & \multicolumn{1}{c|}{0.13887} & \multicolumn{1}{c|}{0.28355} & \multicolumn{1}{c|}{0.21276} & \multicolumn{1}{c|}{0.52899} & \multicolumn{1}{c|}{0.21336} & \multicolumn{1}{c|}{0.22777} & \multicolumn{1}{c}{0.31044} \\
+\multicolumn{1}{c|}{300} & \multicolumn{1}{c|}{0.07711} & \multicolumn{1}{c|}{0.13847} & \multicolumn{1}{c|}{0.2789} & \multicolumn{1}{c|}{0.21147} & \multicolumn{1}{c|}{0.51555} & \multicolumn{1}{c|}{0.21248} & \multicolumn{1}{c|}{0.22743} & \multicolumn{1}{c}{0.30682} \\
+\multicolumn{1}{c|}{400} & \multicolumn{1}{c|}{0.07706} & \multicolumn{1}{c|}{0.13838} & \multicolumn{1}{c|}{0.27686} & \multicolumn{1}{c|}{0.21138} & \multicolumn{1}{c|}{0.5159} & \multicolumn{1}{c|}{0.21195} & \multicolumn{1}{c|}{0.22698} & \multicolumn{1}{c}{\textbf{0.30431}} \\
+\multicolumn{1}{c|}{500} & \multicolumn{1}{c|}{\textbf{0.07705}} & \multicolumn{1}{c|}{\textbf{0.13837}} & \multicolumn{1}{c|}{0.27628} & \multicolumn{1}{c|}{0.21047} & \multicolumn{1}{c|}{0.5168} & \multicolumn{1}{c|}{0.21156} & \multicolumn{1}{c|}{0.22675} & \multicolumn{1}{c}{0.30557} \\
+\multicolumn{1}{c|}{600} & \multicolumn{1}{c|}{0.07709} & \multicolumn{1}{c|}{0.1384} & \multicolumn{1}{c|}{\textbf{0.27542}} & \multicolumn{1}{c|}{0.20982} & \multicolumn{1}{c|}{0.51407} & \multicolumn{1}{c|}{\textbf{0.21146}} & \multicolumn{1}{c|}{0.22651} & \multicolumn{1}{c}{0.30469} \\
+\multicolumn{1}{c|}{700} & \multicolumn{1}{c|}{0.07713} & \multicolumn{1}{c|}{0.13842} & \multicolumn{1}{c|}{0.27543} & \multicolumn{1}{c|}{0.21031} & \multicolumn{1}{c|}{0.51183} & \multicolumn{1}{c|}{0.2117} & \multicolumn{1}{c|}{0.22667} & \multicolumn{1}{c}{0.30612} \\
+\multicolumn{1}{c|}{800} & \multicolumn{1}{c|}{0.07711} & \multicolumn{1}{c|}{0.13819} & \multicolumn{1}{c|}{0.27552} & \multicolumn{1}{c|}{0.20997} & \multicolumn{1}{c|}{0.51427} & \multicolumn{1}{c|}{0.21167} & \multicolumn{1}{c|}{0.22668} & \multicolumn{1}{c}{0.30704} \\
+\multicolumn{1}{c|}{900} & \multicolumn{1}{c|}{0.07715} & \multicolumn{1}{c|}{0.13824} & \multicolumn{1}{c|}{0.27544} & \multicolumn{1}{c|}{\textbf{0.2096}} & \multicolumn{1}{c|}{0.51282} & \multicolumn{1}{c|}{0.21151} & \multicolumn{1}{c|}{0.22645} & \multicolumn{1}{c}{0.30671} \\
+\multicolumn{1}{c|}{1000} & \multicolumn{1}{c|}{0.07716} & \multicolumn{1}{c|}{\textbf{0.13817}} & \multicolumn{1}{c|}{\textbf{0.27537}} & \multicolumn{1}{c|}{0.20997} & \multicolumn{1}{c|}{\textbf{0.51103}} & \multicolumn{1}{c|}{0.21146} & \multicolumn{1}{c|}{0.22656} & \multicolumn{1}{c}{0.30739} \\
+\hline
+\end{tabular}
+\label{table5}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[htbp]
+\begin{center}
+\caption{Standard deviations of residuals, Scenario 2.}
+\begin{tabular}{l|l|l|l|l|l|l|l|l}
+\hline
+\multicolumn{1}{c|}{Cluster} & \multicolumn{8}{c}{I values} \\
+\cline{2-9}
+\multicolumn{1}{c|}{boundary} & \multicolumn{2}{c|}{I0} & \multicolumn{3}{c|}{I2} & \multicolumn{3}{c}{I3} \\
+\cline{2-9}
+\multicolumn{1}{c|}{$h^*$} & \multicolumn{1}{c|}{2004} & \multicolumn{1}{c|}{2009} & \multicolumn{1}{c|}{2000} & \multicolumn{1}{c|}{2004} & \multicolumn{1}{c|}{2009} & \multicolumn{1}{c|}{2000} & \multicolumn{1}{c|}{2004} & \multicolumn{1}{c}{2009} \\
+\hline
+\multicolumn{1}{c|}{100} & \multicolumn{1}{c|}{\textbf{0.07795}} & \multicolumn{1}{c|}{\textbf{0.14068}} & \multicolumn{1}{c|}{\textbf{0.29075}} & \multicolumn{1}{c|}{\textbf{0.21718}} & \multicolumn{1}{c|}{\textbf{0.54079}} & \multicolumn{1}{c|}{\textbf{0.21453}} & \multicolumn{1}{c|}{\textbf{0.22456}} & \multicolumn{1}{c}{\textbf{0.30764}} \\
+\multicolumn{1}{c|}{200} & \multicolumn{1}{c|}{0.09842} & \multicolumn{1}{c|}{0.19934} & \multicolumn{1}{c|}{0.33684} & \multicolumn{1}{c|}{0.26729} & \multicolumn{1}{c|}{0.58848} & \multicolumn{1}{c|}{0.26542} & \multicolumn{1}{c|}{0.29054} & \multicolumn{1}{c}{0.41459} \\
+\multicolumn{1}{c|}{300} & \multicolumn{1}{c|}{0.10739} & \multicolumn{1}{c|}{0.22484} & \multicolumn{1}{c|}{0.34586} & \multicolumn{1}{c|}{0.29056} & \multicolumn{1}{c|}{0.57950} & \multicolumn{1}{c|}{0.28863} & \multicolumn{1}{c|}{0.32660} & \multicolumn{1}{c}{0.44583} \\
+\multicolumn{1}{c|}{400} & \multicolumn{1}{c|}{0.11649} & \multicolumn{1}{c|}{0.23846} & \multicolumn{1}{c|}{0.34815} & \multicolumn{1}{c|}{0.29966} & \multicolumn{1}{c|}{0.64494} & \multicolumn{1}{c|}{0.30091} & \multicolumn{1}{c|}{0.34765} & \multicolumn{1}{c}{0.48296} \\
+\multicolumn{1}{c|}{500} & \multicolumn{1}{c|}{0.12422} & \multicolumn{1}{c|}{0.25308} & \multicolumn{1}{c|}{0.35496} & \multicolumn{1}{c|}{0.29840} & \multicolumn{1}{c|}{0.66850} & \multicolumn{1}{c|}{0.31587} & \multicolumn{1}{c|}{0.37111} & \multicolumn{1}{c}{0.51858} \\
+\multicolumn{1}{c|}{600} & \multicolumn{1}{c|}{0.13485} & \multicolumn{1}{c|}{0.26470} & \multicolumn{1}{c|}{0.35504} & \multicolumn{1}{c|}{0.30538} & \multicolumn{1}{c|}{0.66808} & \multicolumn{1}{c|}{0.33309} & \multicolumn{1}{c|}{0.39533} & \multicolumn{1}{c}{0.52315} \\
+\multicolumn{1}{c|}{700} & \multicolumn{1}{c|}{0.14333} & \multicolumn{1}{c|}{0.27523} & \multicolumn{1}{c|}{0.36930} & \multicolumn{1}{c|}{0.31993} & \multicolumn{1}{c|}{0.67440} & \multicolumn{1}{c|}{0.35515} & \multicolumn{1}{c|}{0.42239} & \multicolumn{1}{c}{0.54351} \\
+\multicolumn{1}{c|}{800} & \multicolumn{1}{c|}{0.15000} & \multicolumn{1}{c|}{0.28557} & \multicolumn{1}{c|}{0.38290} & \multicolumn{1}{c|}{0.32074} & \multicolumn{1}{c|}{0.68903} & \multicolumn{1}{c|}{0.36391} & \multicolumn{1}{c|}{0.43648} & \multicolumn{1}{c}{0.56676} \\
+\multicolumn{1}{c|}{900} & \multicolumn{1}{c|}{0.16131} & \multicolumn{1}{c|}{0.29585} & \multicolumn{1}{c|}{0.38907} & \multicolumn{1}{c|}{0.32448} & \multicolumn{1}{c|}{0.67490} & \multicolumn{1}{c|}{0.36272} & \multicolumn{1}{c|}{0.43648} & \multicolumn{1}{c}{0.58576} \\
+\multicolumn{1}{c|}{1000} & \multicolumn{1}{c|}{0.16908} & \multicolumn{1}{c|}{0.30255} & \multicolumn{1}{c|}{0.39459} & \multicolumn{1}{c|}{0.33652} & \multicolumn{1}{c|}{0.64653} & \multicolumn{1}{c|}{0.36843} & \multicolumn{1}{c|}{0.45262} & \multicolumn{1}{c}{0.60407} \\
+\hline
+\end{tabular}
+\label{table6}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[htbp]
+\begin{center}
+\caption{Variance ratio (scenario 1).}
+\begin{tabular}{l|l|l|l|l}
+\hline
+\multicolumn{1}{c|}{Indicators} & \multicolumn{1}{c|}{Population variance  of Indices} & \multicolumn{1}{c|}{Min residual variance} & \multicolumn{1}{c|}{$r2$} & \multicolumn{1}{c}{Cluster} \\
+\cline{2-4}
+\multicolumn{1}{c|}{(in year)} & \multicolumn{1}{c|}{(a)} & \multicolumn{1}{c|}{(b)} & \multicolumn{1}{c|}{1-(b/a)} & \multicolumn{1}{c}{boundary $h^*$} \\
+\hline
+\multicolumn{1}{c|}{I0-2004} & \multicolumn{1}{c|}{0.073} & \multicolumn{1}{c|}{0.006} & \multicolumn{1}{c|}{0.919} & \multicolumn{1}{c}{500} \\
+\multicolumn{1}{c|}{I0-2009} & \multicolumn{1}{c|}{0.184} & \multicolumn{1}{c|}{0.019} & \multicolumn{1}{c|}{0.896} & \multicolumn{1}{c}{1000} \\
+\multicolumn{1}{c|}{I2-2000} & \multicolumn{1}{c|}{0.413} & \multicolumn{1}{c|}{0.176} & \multicolumn{1}{c|}{0.575} & \multicolumn{1}{c}{800} \\
+\multicolumn{1}{c|}{I2-2004} & \multicolumn{1}{c|}{0.201} & \multicolumn{1}{c|}{0.068} & \multicolumn{1}{c|}{0.663} & \multicolumn{1}{c}{600} \\
+\multicolumn{1}{c|}{I2-2009} & \multicolumn{1}{c|}{0.419} & \multicolumn{1}{c|}{0.255} & \multicolumn{1}{c|}{0.391} & \multicolumn{1}{c}{900} \\
+\multicolumn{1}{c|}{I3-2000} & \multicolumn{1}{c|}{0.242} & \multicolumn{1}{c|}{0.045} & \multicolumn{1}{c|}{0.815} & \multicolumn{1}{c}{600} \\
+\multicolumn{1}{c|}{I3-2004} & \multicolumn{1}{c|}{0.316} & \multicolumn{1}{c|}{0.050} & \multicolumn{1}{c|}{0.841} & \multicolumn{1}{c}{100} \\
+\multicolumn{1}{c|}{I3-2009} & \multicolumn{1}{c|}{0.412} & \multicolumn{1}{c|}{0.093} & \multicolumn{1}{c|}{0.775} & \multicolumn{1}{c}{400} \\
+\hline
+\end{tabular}
+\label{table7}
+\end{center}
+\end{table}
+\efloatseparator
+ 
