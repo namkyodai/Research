@@ -1,0 +1,308 @@
+\begin{thebibliography}{39}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Agerer and Rudolf-Miklau(2007)]{Agerer2007}
+H.~Agerer and F.~Rudolf-Miklau.
+\newblock Lebenszyklus-basiertes managemenent von wildbach-und
+  lawinenverbauung: Strategische und dimension.
+\newblock \emph{Journal for Torrent, Avalanche and Erosion Control (in
+  German)}, 155:\penalty0 30--42, 2007.
+
+\bibitem[ASTRA(2010)]{ASTRA2010}
+ASTRA.
+\newblock \emph{KUBA-MS-Ticino-User's manual (Release 4.0)}.
+\newblock Federal Roads Authority (FEDRO), Bern, Switzerland, 4.0 edition,
+  2010.
+
+\bibitem[Baruffini(2010)]{Barufﬁni2010}
+Mirko Baruffini.
+\newblock Systematic analysis of natural hazards along infrastructure networks
+  using a gis-tool for risk assessment.
+\newblock In \emph{Geophysical Research Abstracts}, volume~12. EGU General
+  Assembly, 2010.
+
+\bibitem[Bellman and Dreyfus(1962)]{Bellman1962}
+R.E. Bellman and S.E. Dreyfus.
+\newblock \emph{Applied Dynamic Programing}.
+\newblock Princeton University Press, New Jersey, 1962.
+
+\bibitem[Berg and Epstein(1978)]{Berg1978}
+Menachem Berg and Benjamin Epstein.
+\newblock Comparison of age, block, and failure replacement policies.
+\newblock \emph{IEEE Transactions on Reliability}, R-27\penalty0 (1):\penalty0
+  25--29, 1978.
+\newblock ISSN 0018-9529.
+\newblock \doi{10.1109/TR.1978.5220230}.
+
+\bibitem[Chen and Savits(1992)]{Chen1992}
+C.~S. Chen and Thomas~H. Savits.
+\newblock Optimal age and block replacement for a general maintenance model.
+\newblock \emph{Probability in the Engineering and Informational Sciences},
+  6:\penalty0 81--98, 1 1992.
+\newblock ISSN 1469-8951.
+\newblock \doi{10.1017/S0269964800002333}.
+\newblock URL \url{http://journals.cambridge.org/article_S0269964800002333}.
+
+\bibitem[Choi et~al.(2004)Choi, DesRoches, and Nielson]{Choi2004}
+E.~Choi, R.~DesRoches, and B.~Nielson.
+\newblock Seisemic fragality of typical bridges in moderate seismic zones.
+  engineering structures.
+\newblock \emph{Engineering Structures}, 26:\penalty0 187--199, 2004.
+
+\bibitem[Cox(1959)]{Cox1959}
+D.~R. Cox.
+\newblock The analysis of exponentially distributed life-times with two types
+  of failure.
+\newblock \emph{Journal of the Royal Statistical Society. Series B
+  (Methodological)}, 21\penalty0 (2):\penalty0 pp. 411--421, 1959.
+\newblock ISSN 00359246.
+\newblock URL \url{http://www.jstor.org/stable/2983812}.
+
+\bibitem[Cruz and Krausmann(2008)]{Cruz2008}
+A.M. Cruz and E.~Krausmann.
+\newblock Damage to offshore oil and gas facilities following hurricanes
+  katrina and rita: An overview.
+\newblock \emph{Journal of Loss Prevention in the Process Industries},
+  21\penalty0 (6):\penalty0 620 -- 626, 2008.
+\newblock ISSN 0950-4230.
+\newblock \doi{http://dx.doi.org/10.1016/j.jlp.2008.04.008}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0950423008000314}.
+
+\bibitem[Davis(1952)]{Davis1952}
+D.~J. Davis.
+\newblock An analysis of some failure data.
+\newblock \emph{Journal of the American Statistical Association}, 47\penalty0
+  (258):\penalty0 113--150, 1952.
+\newblock \doi{10.1080/01621459.1952.10501160}.
+\newblock URL
+  \url{http://amstat.tandfonline.com/doi/abs/10.1080/01621459.1952.10501160}.
+
+\bibitem[Fernando et~al.(2015)Fernando, Adey, and Lethanh]{Fernando2015}
+Dilum Fernando, Bryan~T. Adey, and Nam Lethanh.
+\newblock A model for the evaluation of intervention strategies for bridges
+  affected by manifest and latent deterioration processes.
+\newblock \emph{Structure and Infrastructure Engineering}, (Accepted
+  2014)\penalty0 (0):\penalty0 1--18, 2015.
+\newblock \doi{10.1080/15732479.2014.976576}.
+\newblock URL \url{http://dx.doi.org/10.1080/15732479.2014.976576}.
+
+\bibitem[Fruguglietti et~al.(2012)Fruguglietti, Pasqualato, and
+  Spallarossa]{Fruguglietti2012}
+E.~Fruguglietti, G.~Pasqualato, and E~Spallarossa.
+\newblock Bridge management system implementation in italy: Pontis® and other
+  bms application in italy.
+\newblock In F.~Biondini and D.M. Frangopol, editors, \emph{IABMAS 2012: 6th
+  International Conference on Bridge Maintenance, Safety and Management},
+  Stresa, Italy, July 8-12 2012. International Association for Bridge
+  Maintenance and Safety, Taylor \& Francis.
+
+\bibitem[Gertsbakh(1997)]{gertsbakh97}
+I.~B. Gertsbakh.
+\newblock \emph{Models of Preventive Maintenance}.
+\newblock North-Holland Publishing Company, 1997.
+
+\bibitem[Gertsbakh(2000)]{Gertsbakh2000}
+Ilya Gertsbakh.
+\newblock \emph{Reliability Theory With Applications to Preventive
+  Maintenance}.
+\newblock Springer, 2000.
+
+\bibitem[Golabi and Shepard(1997)]{pontis}
+K.~Golabi and R.~Shepard.
+\newblock Pontis: A system for maintenance optimization and improvement of us
+  bridge networks.
+\newblock \emph{Interfaces}, 27\penalty0 (1):\penalty0 71--88, Febuary 1997.
+
+\bibitem[Graf et~al.(2009)Graf, Nishijima, and Faber]{Graf2009}
+M.~Graf, K.~Nishijima, and M.~H. Faber.
+\newblock Bayesian updating in natural hazard risk assessment.
+\newblock \emph{Australian Journal of Structural Engineering}, 9\penalty0
+  (1):\penalty0 35--44, 2009.
+
+\bibitem[Hajdin(2003)]{Hajdin2003}
+R.~Hajdin.
+\newblock Bridge management strategies and structural reliability.
+\newblock In D.M. Frangopol, E.B. Brühwiler, M.H. Faber, and B.~Adey, editors,
+  \emph{Life-Cycle Cost Analysis and Design and Management: 3rd International
+  Workshop on Life-Cycle Cost Analysis and Design of Civil Infrastructure
+  Systems}, pages 319--327, Lausanne, Switzerland, March 24-26 2003.
+
+\bibitem[Kaio and Osaki(1984)]{Kaio1984}
+Naoko Kaio and Shunji Osaki.
+\newblock Extended block replacement models.
+\newblock \emph{Operations Research}, 18\penalty0 (1):\penalty0 59--70,
+  February 1984.
+
+\bibitem[Karim and Yamazaki(2001)]{Karim2001}
+K.R. Karim and F.~Yamazaki.
+\newblock Effect of earthquake ground motions on fragility curves of highway
+  bridge piers based on numerical simulation.
+\newblock \emph{Earthquake Engineering and Structural Dynamics}, 30:\penalty0
+  1839--1856, 2001.
+
+\bibitem[Kates et~al.(2006)Kates, Colten, Laska, and Leatherman]{Kates2006}
+R.~W. Kates, C.~E. Colten, S.~Laska, and S.~P. Leatherman.
+\newblock Reconstruction of new orleans after hurricane katrina: A research
+  perspective.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 103\penalty0
+  (40):\penalty0 14653--14660, 2006.
+\newblock \doi{10.1073/pnas.0605726103}.
+\newblock URL \url{http://www.pnas.org/content/103/40/14653.abstract}.
+
+\bibitem[Kobayashi et~al.(2012)Kobayashi, Kaito, and Lethanh]{Kobayashi2012}
+Kiyoshi Kobayashi, Kiyoyuki Kaito, and Nam Lethanh.
+\newblock A bayesian estimation method to improve deterioration prediction for
+  infrastructure system with markov chain model.
+\newblock \emph{International Journal of Architecture, Engineering and
+  Construction}, 1\penalty0 (1):\penalty0 1--13, April 2012.
+
+\bibitem[Korup and Clague(2009)]{Korup2009}
+Oliver Korup and John~J. Clague.
+\newblock Natural hazards, extreme events, and mountain topography.
+\newblock \emph{Quaternary Science Reviews}, 28:\penalty0 977--990, 2009.
+
+\bibitem[Lethanh et~al.(2012)Lethanh, Kaito, Kobayashi, and
+  Okizuka]{Lethanh2012b}
+Nam Lethanh, Kiyoyuki Kaito, Kiyoshi Kobayashi, and Okizuka.
+\newblock Modelling pavement deterioration process by poisson hidden markov
+  model.
+\newblock \emph{Journal of Japan Society of Civil Engineers, Ser. F4
+  (Construction and Management)}, 68\penalty0 (2):\penalty0 62--79, 2012.
+
+\bibitem[Lethanh et~al.(2013)Lethanh, Adey, and Fernando]{Lethanh2013}
+Nam Lethanh, Bryan~T. Adey, and Dilum~N. Fernando.
+\newblock A markov model to determine optimal intervention strategies for
+  multiple objects affected by uncorrelated manifest and latent processes.
+\newblock In \emph{IABSE Conference: Assessment, Upgrading and Refurbishment of
+  Infrastructures}. International Association for Bridge and Structural
+  Engineering, IABSE, May, 6th-8th 2013.
+
+\bibitem[Lethanh et~al.(2015)Lethanh, Adey, and Fernando]{Lethanh2015}
+Nam Lethanh, Bryan~T. Adey, and Dilum~N. Fernando.
+\newblock Optimal intervention strategies for multiple objects affected by
+  manifest and latent deterioration processes.
+\newblock \emph{Structure and Infrastructure Engineering}, 11\penalty0
+  (3):\penalty0 389--401, 2015.
+\newblock \doi{10.1080/15732479.2014.889178}.
+\newblock URL \url{http://dx.doi.org/10.1080/15732479.2014.889178}.
+
+\bibitem[Litman(2006)]{Litman2006}
+T.~Litman.
+\newblock Lessons from katrina and rita: What major disasters can teach
+  transportation planners.
+\newblock \emph{Journal of Transportation Engineering}, 132\penalty0
+  (1):\penalty0 11--18, 2006.
+\newblock \doi{10.1061/(ASCE)0733-947X(2006)132:1(11)}.
+\newblock URL
+  \url{http://ascelibrary.org/doi/abs/10.1061/%28ASCE%290733-947X%282006%29132%3A1%2811%29}.
+
+\bibitem[Madanat and Ibrahim(1995)]{Madanat1995}
+Samer. Madanat and W.H.W Ibrahim.
+\newblock Poisson regression models of infrastructure transition probabilities.
+\newblock \emph{Journal of Transportation Engineering, ASCE}, 121:\penalty0
+  267--272, 1995.
+
+\bibitem[Margreth(2007)]{Margreth2007}
+Stefan Margreth.
+\newblock Defense structures in avalanche starting zones: Technical guideline
+  as an aid to enforcement.
+\newblock In \emph{The environment in practice}. Federal Office for the
+  Environment FOEN/WSL Swiss Federal Institute for Snow and Avalanche Research
+  SLF, Bern, 04 2007.
+
+\bibitem[Mayet and Madanat(2002)]{Mayet2002}
+Jerome Mayet and Samer Madanat.
+\newblock Incorporation of seismic considerations in bridge management systems.
+\newblock \emph{Computer-Aided Civil and Infrastructure Engineering},
+  17\penalty0 (3):\penalty0 185--193, 2002.
+\newblock ISSN 1467-8667.
+\newblock \doi{10.1111/1467-8667.00266}.
+\newblock URL \url{http://dx.doi.org/10.1111/1467-8667.00266}.
+
+\bibitem[Nishiyama et~al.(2012)Nishiyama, Okawa, Fukuyama, and
+  Okuda]{Nishiyama2012}
+I.~Nishiyama, I.~Okawa, H.~Fukuyama, and Y.~Okuda.
+\newblock Building damage by the 2011 tohoku japan earthquake and coping
+  activities by nilim and bri collaborated with the administration.
+\newblock In \emph{Proceedings of the International Symposium on Engineering
+  Lessons Learned from the 2011 Great East Japan Earthquake}, Tokyo, Japan,
+  March 1-4 2012. Japan Association for Earthquake Engineering, Japan
+  Association for Earthquake Engineering.
+\newblock URL
+  \url{http://nisee.berkeley.edu/documents/elib/www/documents/201204/PISELL/unjoh-emergency-road.pdf}.
+
+\bibitem[Noetzli et~al.(2003)Noetzli, Hoelzle, and Haeberli]{Noetzli2003}
+J.~Noetzli, M.~Hoelzle, and W.~Haeberli.
+\newblock Mountain permafrost and recent alpine rock-fall events: a gis-based
+  approach to determine critical factors.
+\newblock In \emph{Conference on Permafrost}, pages 827--832, 2003.
+
+\bibitem[Norem(1994)]{Norem1994}
+Harald Norem.
+\newblock \emph{Snow Engineering for Roads: About anow avalanches and drifting
+  snow}.
+\newblock 174. Norwegian Public Roads Administration (NPRA), 1994.
+
+\bibitem[ONR(2010)]{ONR2010}
+ONR.
+\newblock Permanenter technischer lawinenschutz - uberwachung und
+  instandhaltung, 01-June 2010.
+
+\bibitem[Perret et~al.(2006)Perret, Stoffel, and Kienholz]{Perret2006}
+Simone Perret, Markus Stoffel, and Hans Kienholz.
+\newblock Spatial and temporal rockfall activity in a forest stand in the swiss
+  prealpsâ€”a dendrogeomorphological case study.
+\newblock \emph{Geomorphology}, 74\penalty0 (1â€“4):\penalty0 219 -- 231,
+  2006.
+\newblock ISSN 0169-555X.
+\newblock \doi{http://dx.doi.org/10.1016/j.geomorph.2005.08.009}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0169555X05002710}.
+
+\bibitem[Rudolf-Miklau et~al.(2008)Rudolf-Miklau, Schilcher, Kessler, and
+  Suda]{Rudolf-Miklau2008}
+Florian Rudolf-Miklau, Wolfgang Schilcher, Johann Kessler, and Juergen Suda.
+\newblock Life cycle management for technical avalanche protection systems.
+\newblock In \emph{International Symposium on Mitigative Measures against Snow
+  Avalanche}, Egilsstadir, Iceland, 11-14 March 2008.
+
+\bibitem[Rudolf-Miklau et~al.(2011)Rudolf-Miklau, Schilcher, Margreth, Walter,
+  and Suda]{Rudolf-Miklau2011}
+Florian Rudolf-Miklau, Wolfgang Schilcher, Stefan Margreth, Gebhard Walter, and
+  Juergen Suda.
+\newblock \emph{The Technical Avalanche Protection Handbook}, volume~1, chapter
+  Construction Work and Maintenance of Structural Avalanche Control, pages
+  255--309.
+\newblock Ernst \& Sohn, Wiley, 2011.
+
+\bibitem[Sauermoser et~al.(2011)Sauermoser, Rudolf-Miklau, and
+  Margreth]{Sauermoser2011}
+Siegfried Sauermoser, Florian Rudolf-Miklau, and Stefand Margreth.
+\newblock \emph{The Technical Avalanche Protection Handbook}, volume~1, chapter
+  Introduction, pages 1--16.
+\newblock Ernst \& Sohn, Wiley, 2011.
+
+\bibitem[Stoffel et~al.(2005)Stoffel, Lievre, Monbaron, and
+  Perret]{Stoffel2005}
+Markus Stoffel, Igor Lievre, Michel Monbaron, and Simone Perret.
+\newblock Seasonal timing of rockfall activity on a forested slope at
+  täschgufer (swiss alps) – a dendrochronological approach.
+\newblock \emph{Z. Geomorph. N. F}, 49\penalty0 (1):\penalty0 89--106, March
+  2005.
+
+\bibitem[Thompson et~al.(1998)Thompson, Small, Johnson, and
+  Marshall]{Thompson1998}
+Paul~D. Thompson, Edgar~P. Small, Michael Johnson, and Allen~R. Marshall.
+\newblock The pontis bridge management system.
+\newblock \emph{Structural Engineering International}, 8\penalty0 (4):\penalty0
+  303--308, 1998.
+\newblock \doi{doi:10.2749/101686698780488758}.
+\newblock URL
+  \url{http://www.ingentaconnect.com/content/iabse/sei/1998/00000008/00000004/art00018}.
+
+\end{thebibliography}

@@ -1,0 +1,163 @@
+\documentclass[fleqn]{article}
+\usepackage{lipsum} 
+\usepackage{manyeqns}
+\usepackage{amsmath}
+\setlength{\mathindent}{0.5cm}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{eurosym}
+\usepackage{natbib}
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+
+
+\usepackage{abstract} 
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape}
+%\citestyle{nSIE}
+
+\usepackage{titlesec} % Allows customization of titles
+\renewcommand\thesection{\Roman{section}}
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{Paper for review} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+\begin{document}
+
+\title{\vspace{-5mm}\fontsize{14pt}{10pt}\selectfont\textbf{A Block Replacement Model for Determination of Optimal Intervention Strategies for Civil Structures in Hazard Regions}} % Article title
+\author{
+\large
+\textrm{Nam Lethanh$^{a}$}\thanks{Corresponding author: mailto:lethanh@ibi.baug.ethz.ch or namkyodai@gmail.com} \hspace{2mm} and \textrm{Bryan T. Adey$^{b}$} % Your name
+}
+\date{}
+\maketitle
+\textrm{$^{a,b}$ Institute of Construction and Infrastructure Management, Swiss Federal Institute of Technology (ETHZ), Zurich, Switzerland} \\ % Your institution
+
+\thispagestyle{fancy}
+
+\begin{abstract}
+Management of infrastructures in hazard regions requires carefully assessment of frequencies and magnitudes of hazard occurences as well as their consequences on civil structures beside preodic and preventive intervention works. Once a hazard occurs, the structure might not be in the state that could provide edaquate level of service and corrective intervention should be executed immediately. Hazards can occur in different way and thus corrective intervention actions toward each of hazard should be determined in order to promply responde to the event. In this paper, a block replacement model is proposed to be used to determine optimal intervention strategy for civil structures in hazard regions. The model is tested with an empirical study on a concrete bridge located in a mountainous areas where avalanche, floods, and earthquate are phenomena.
+\bigskip
+
+{\bf Keywords:} Infrastructure management, Optimal intervention strategy, Hazard risk.\bigskip
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction} \label{sec1}
+Once the civil structure is in operation. Its physical condition and level of service will gradually degrade over time due to manifest deterioration process, e.g. cracking appears on road surface due to axes loads and ambient temperature or corrosion of steel bars of a bridge due to its exposure to cloride \citep{}. With this process, it is considered as observable and its evolution over time can be predicted either with deterministic models or probabilistic models. Current state-of-the-art infrastructure systems are generally built upon the manifest process, and therefore the intervention strategies (ISs) for the structures in general are only valid under manifest process. The interventions determined for manifest process are often regarded as preventive interventions (PIs). However, in hazard regions, occurences of natural hazard risks such as earthquake, avalanches, and floods are phenomena and their affects on civil structures cannot be ignored. 
+
+Once hazards occurs, they directly affect the performances of the structures and might cause the structures to be infunctionality and incapabilities of providing adequate levels of services, e.g. an attack of a rockfall on bridge deck could cause the collapses of bridge deck and the bridge is not able to carry traffics. The degration, deterioration, or failure process inheriated from those hazards are referred as latent process. Under these circumstances, corrective interventions (CIs) shall be executed as soon as possible to at least enable the functionality and serviability of the structures.
+
+It is due to the fact that there are many uncertainties in both manifest and latent processes that affect the time-in-service (t.i.s) of a structure, the t.i.s is thus often described as a random variable. And because of that, probabilistic models are nowadays accepted in the course of determining optimal intervention strategies (OISs) in infrastructure management systems. 
+
+This paper presents a block replacement model, which takes into consideration both PIs and CIs in the course of determinating the OIS for a single civil structure. In the model, it is assumed that the age of the structure is a random variable. Once it reachs a predefined age, a PI shall be executed. After the execution of a PI, the structure enters a new state of performance with different failure rate in comparison with that before the PI. Also, the PI can be a renewal or parial repairs of the structure. The different modes of failures are considered in the model. The model is formulated for infinite time horizon, which is especially relevant to structures built in public infrastructure system. An empirical example on a concrete bridge located in mountainous area, where hazards are phenomena, was conducted using the proposed model. 
+%
+\section{The model} \label{sec2}
+It is assumed that a PI is executed after a pre-defined time $n\cdot T$ ($n=0,1,2,\cdots,N$). Once PI is executed, the functionality and serviability of the structure could be the same or different from that of the structure before the execution of the PI. In between the time $\Delta t$ ($[0\le \Delta t \le T]$), hazards could occur and cause the structure in damage states (hereafter denoted as $i$ ($i=1,\cdots,I$)), in which the structure is no longer providing adequate level of services (l.o.s). In both cases, when the PI or CI is executed, there are impacts incurred by stakeholders $s$ (e.g. the owner, the users, the public).
+
+Following notations are used to describe the formulation of the model.
+
+
+\begin{tabular}{lp{12.5cm}}
+$\theta_i(\Delta t|t)$ & Conditional damage rate for damage state $i$ $(i=1,\cdots,I)$ when the structure has been in service in an interval $t$ after the PI \\ 
+$\Psi(\cdot|t)$ & Any conditional function $\Psi$ on the condition that a PI is executed by a unit of age $t$, where $t$ is a random variable \\ 
+$F(t)$ & Cummulative distribution function (cdf) of age $t$ of a unit for a PI at execution time\\ 
+$w_{p}^s(t)$ & Impacts incurred by stakeholder $s$ due to the execution of PI\\ 
+$w_{c,i}^s(t)$ & Impacts incurred by stakeholder $s$ due to the execution of CI on damage state $i$\\ 
+$w_o^s(\Delta t|t)$ & Conditional impacts incurred by stakeholder $s$ when the structure is still in operation (still providing adequate level of service) during time interval $\Delta t$ after a PI has been carried out and the structure has not enterred any damage state $i$\\ 
+$\rho$ & discount factor\\
+$T$ & interval between the PIs\\ 
+$T^{\star}$ & Optimal interval time between PIs, which is the variable of the model\\
+$\Omega_{p}(T,t)$ & minimum expected total discounted impact for an infinite time span when the structure has been in service during an interval $t$ after the execution of the PI and the structure has not enterred any damage state $i$\\
+$\Omega_{c}(T,t)$ & minimum expected total discounted impact for an infinite time span when a CI has been executed, of the structure that has been in service during a time interval $t$ after the execution of the PI and the structure has entered damage state $i$\\
+\end{tabular}
+It is assumed in the model that at each damage level $i$, there exists a well defined CI. Within an increment of time $\Delta t$, after the structure has been under the PI after time $t$, the total expected impacts due to the execution of CIs are:
+\begin{eqnarray}
+&& v_c (\Delta t|t) =\sum_{i=1}^{I}\sum_{s=1}^{S}w_{c,i}^s (\Delta t) \cdot \theta_i (\Delta t|t) .\label{totalCIs}
+\end{eqnarray}
+According to the principle of optimality, which is described in \citet{Bellman1962} (page 15), the minimum expected total discounted impact $\Omega_{c}(T,t)$ for infinite time is formulated in following equation.
+\begin{eqnarray}
+&& \Omega_{c}(T,t) = \int_0^{\infty} \left[ {v_c(\Delta t|t)} + \Omega_{p}(T,\Delta t|t)  \right] dF(t).\label{omegaCI1}
+\end{eqnarray}
+The minimum expected total discounted impact $ \Omega_{p}(T,\Delta t|t) $, which appears inside Eq. (\ref{totalCIs}), is obtained as follows
+\begin{eqnarray}
+&& \Omega_{p}(T,\Delta t) = min \Gamma (\Delta t) .\label{omegaPI1}
+\end{eqnarray}
+where $\Gamma (\Delta t)$ is defined as
+\begin{eqnarray}
+&& \Gamma (\Delta t) = \int_0^{\infty} \left[ \sum_{s=1}^S w_o^s \int_0^{dt} exp(-\rho \tau)d\tau  + \left\{ {1-\theta_i(\Delta t|t)dt} \right\}\cdot \Omega_p(T,\Delta t+dt|t) exp(-\rho dt) \right. \nonumber \\
+&&  \hspace{20mm} +  \theta_i(\Delta t|t)dt \cdot \Omega_c(T,\Delta t+dt|t)exp(-\rho dt) \left.\vphantom{\int_t} \right] dF(t).\label{gamma1}
+\end{eqnarray}
+According to \citet{Kaio1984}, Eq. (\ref{gamma1}) is rewritten in following form
+\begin{eqnarray}
+&& \Gamma (\Delta t) = \Omega_{p}(T,\Delta t) + \left[ -\rho \Omega_{p}(T,\Delta t) +d\Omega_{p}(T,\Delta t)/dt \right]dt \nonumber \\
+&& \hspace{30mm} + \int_0^{\infty} \left[ \sum_{s=1}^S w_o^s + v_c(\Delta t|t) \right]dF(t)dt.\label{gamma2}
+\end{eqnarray}
+Thus, from $\Omega_p(T,\Delta t)=\Gamma(\Delta t)$ (Eq. (\ref{omegaPI1})), following equation can be derived
+\begin{eqnarray}
+&& \Omega_p(T,\Delta t) = exp(\rho\Delta t) \left[\Omega_p(T,0)-\int_0^{\infty}\int_0^t exp(-\rho\tau) \left\{ \sum_{s=1}^S(\tau|t)+v_c(\tau|t)\right\} \right]d\tau dF(t)
+.\label{omegaPI2}
+\end{eqnarray}
+where,
+\begin{eqnarray}
+&& \Omega_p(T,0) = \left\{1-exp(-\rho T)\right\}^{-1} \int_0^{\infty} \left[ exp(-\rho T) \left\{ \sum_{s=1}^S w_p^s(T,t) \right\} \right. \nonumber \\
+&& \hspace{45mm}+ \int_0^T exp(-\rho \Delta t) \left\{ \sum_{s=1}^S w_o^s(\Delta t|t) + v_c(\Delta t|t) \right\} dt \left.\vphantom{\int_t} \right] dF(t).\label{omegaPI3}
+\end{eqnarray}
+when $T \to \infty $, Eq. (\ref{omegaPI3}) becomes
+\begin{eqnarray}
+&& \Omega_p(\infty,0) = \left\{1-exp(-\rho T)\right\}^{-1} \int_0^{\infty} \left[ exp(-\rho T) \left\{ \sum_{s=1}^S w_p^s(T,t) \right\} \right. \nonumber \\
+&& \hspace{45mm}+ \int_0^T exp(-\rho \Delta t) \left\{ \sum_{s=1}^S w_o^s(\Delta t|t) + v_c(\Delta t|t) \right\} dt \left.\vphantom{\int_t} \right] dF(t).\label{omegaPI4}
+\end{eqnarray}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Numerial solution} \label{sec3}
+
+
+\section{Empirical example} \label{sec4}
+
+
+\section{Conclusion} \label{sec5}
+
+\bibliographystyle{plainnat} 
+\bibliography{reference}
+
+
+%%%
+\end{document}
+
+
+
+

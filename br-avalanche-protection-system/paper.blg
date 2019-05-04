@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper.aux
+The style file: plainnat.bst
+Database file #1: reference.bib
+Warning--entry type for "ONR2010" isn't style-file defined
+--line 7422 of file reference.bib
+Warning--can't use both volume and number fields in Barufﬁni2010
+Warning--can't use both author and editor fields in Rudolf-Miklau2011
+Warning--can't use both author and editor fields in Sauermoser2011
+You've used 39 entries,
+            2773 wiz_defined-function locations,
+            925 strings with 14080 characters,
+and the built_in function-call counts, 18066 in all, are:
+= -- 1629
+> -- 945
+< -- 31
++ -- 321
+- -- 282
+* -- 1498
+:= -- 2787
+add.period$ -- 151
+call.type$ -- 39
+change.case$ -- 203
+chr.to.int$ -- 39
+cite$ -- 81
+duplicate$ -- 850
+empty$ -- 1543
+format.name$ -- 343
+if$ -- 3852
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 43
+newline$ -- 231
+num.names$ -- 160
+pop$ -- 393
+preamble$ -- 1
+purify$ -- 170
+quote$ -- 0
+skip$ -- 595
+stack$ -- 0
+substring$ -- 641
+swap$ -- 95
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 399
+warning$ -- 3
+while$ -- 152
+width$ -- 0
+write$ -- 578
+(There were 4 warnings)

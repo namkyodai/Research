@@ -1,0 +1,7835 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{lipsum}
+\usepackage{manyeqns}
+\setlength{\mathindent}{0.5cm}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{eurosym}
+% Use the Palatino font
+% Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype}% Slightly tweak font spacing for aesthetics
+\usepackage{rotating}
+% Document margins
+\usepackage{multicol}% Used for the two-column layout of the document
+\usepackage{multirow}
+% For hyperlinks in the PDF
+
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption}% Custom captions under/above floats in tables or figures
+\usepackage{booktabs}% Horizontal rules in tables
+% Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+
+\usepackage{lettrine}% The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist}% Used for the compactitem environment which makes bullet points with less space between them
+
+\usepackage[FIGBOTCAP]{subfigure}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+
+\usepackage{abstract}
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape}
+%\citestyle{nSIE}
+
+\usepackage{titlesec}% Allows customization of titles
+\renewcommand{\thesection}{\Roman{section}}
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+
+
+\usepackage{fancyhdr}% Headers and footers
+ % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{Paper for review} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+\end_preamble
+\options fleqn
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding auto
+\fontencoding T1
+\font_roman palatino
+\font_sans default
+\font_typewriter mathpazo
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks false
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref section
+\pdf_pdfusetitle false
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\columnsep 20pt
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\tracking_changes true
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\author 87135909 "Nam Lethanh" 
+\author 252894346 "adeyb" 
+\author 372052361 "Nam Lethanh,,," 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset VSpace -5mm
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fontsize{14pt}{10pt}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+selectfont
+\end_layout
+
+\end_inset
+
+
+\series bold
+Optimal replacement strategies for deteriorating avalanche protection structures
+ using a two state model
+\change_inserted 252894346 1443094088
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443094110
+
+\series bold
+Sorry, that I keep changing my mind here but we should switch it back in
+ the IMP class as well.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449582723
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449582739
+sure, we can change the title to be like this
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Article title
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+
+\family roman
+\size large
+Nam Lethanh
+\begin_inset Formula $^{a}$
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\size large
+Corresponding author: lethanh@ibi.baug.ethz.ch or namkyodai@gmail.com
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset space \hspace{}
+\length 2mm
+\end_inset
+
+ and 
+\family roman
+Bryan T.
+ Adey
+\begin_inset Formula $^{b}$
+\end_inset
+
+
+\family default
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Your name
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\begin_inset Formula $^{a}$
+\end_inset
+
+ Research Associate, Dr.
+ Institute of Construction and Infrastructure Management, Swiss Federal
+ Institute of Technology (ETHZ), Zurich, Switzerland
+\family default
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Your institution
+\end_layout
+
+\end_inset
+
+
+\family roman
+
+\begin_inset Formula $^{b}$
+\end_inset
+
+ Professor, Institute of Construction and Infrastructure Management, Swiss
+ Federal Institute of Technology (ETHZ), Zurich, Switzerland
+\family default
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Your institution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{fancy}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+Management of avalanche protection structures requires consideration of
+ the probability of occurrence of their failure and the consequences of
+ this failure.
+ These consequences are often large, as avalanches can hit critical infrastructu
+res and cause reductions in the levels of service provided, until the infrastruc
+tures is restored.
+ The risk related to such hazards depends on the probability of occurrence
+ and what happens between the moment an adequate level of service is not
+ provided and it is restored.
+ To minimize the risk related to avalanche protection structures, managers
+ can execute preventive interventions.
+ For example, an avalanche protection structure can be replaced on regular
+ intervals to reduce the probability of it failing due to heavy snow loads
+ next winter.
+ Such interventions are required as an avalanche protection structure, like
+ all other infrastructures, deteriorate over time, and, therefore, its ability
+ to restrain snow loads, decreases over time.
+ Obviously, the shorter the renewal period the lower the mean number of
+ failures, and the lower the mean number of corrective interventions.
+ As preventive interventions are, however, not free, there is an optimal
+ renewal period, i.e.
+ a renewal period that results in the lowest overall costs.
+ In this paper, the use of a block replacement model to determine optimal
+ replacement strategies for avalanche protection structures is investigated.
+ The use of the model is illustrated by determining the optimal replacement
+ strategy for an avalanche protection structure where a concrete-steel hybrid
+ bridge may be hit by an avalanche if the avalanche protection structure
+ fails.
+ 
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+
+\series bold
+Keywords:
+\series default
+ Infrastructure management, Optimal time/dependent replacement strategies,
+ Natural hazard risk, Avalanche protection structures.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec1"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Management of avalanche protection structures - an overview
+\end_layout
+
+\begin_layout Standard
+An avalanche is a commom type of natural hazard in cold mountainous regions.
+ The occurrence of avalanches can result in significant consequences, particular
+ly in regions where critical infrastructures (CRIs) are located and there
+ are large numbers of people.
+ The consequences of avalanches can be particularly high due to loss of
+ life, and due to the closure of roads for long periods of time.
+ The latter of which can even mean the isolation of entire communities 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Norem1994"
+
+\end_inset
+
+.
+ To minimize the risk related to avalanches, an avalanche protection structure
+ or a system of them (hereinafter refer as the APS) is installed on or off
+ the starting zones of avalanches 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Sauermoser2011"
+
+\end_inset
+
+.
+ APSs, however deteriorate over time, and as they deteriorate the probability
+ of failure, assuming a constant hazard rate, increases.
+ As neither the risks of an APS failing due to heavy snow loads or the costs
+ of replaceing a deteriorated APS with a new APS, are non-zero nor, it is
+ important for managers to determine the optimal time to replace the APS.
+\end_layout
+
+\begin_layout Standard
+Interventions on an APS can be of classified as corrective interventions
+ (CIs) or preventive interventions (PIs).
+ CIs are ones that are executed after an APS has failed PIs are ones that
+ are executed, to reduce the probability that an inadequate level of service
+ will be provided in the future, i.e.
+ to minimise risk.
+ To date, research literature on the methods to determine the optimal interventi
+on strategies that include PIs and CIs for APSs is limited.
+ Most of the work has been focused mainly on the aspects concerning the
+ design and construction of the APS but rarely on maintainance 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Agerer2007,Rudolf-Miklau2008,Rudolf-Miklau2011,Margreth2007,ONR2010"
+
+\end_inset
+
+.
+ Pioneer works on determining intervention strategies that include PIs were
+ that done by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Rudolf-Miklau2008"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Rudolf-Miklau2011"
+
+\end_inset
+
+.
+ These authors discussed the importance of having a life cycle approach
+ in order to determine optimal intervention strategies.
+ Their work, however, did not specify or recommend a suitable model to be
+ used to determine the optimal intervention strategies.
+\end_layout
+
+\begin_layout Subsection
+Research on management of structures affecting by natural hazards
+\end_layout
+
+\begin_layout Standard
+Research on the management of structures affected by natural hazards has
+ mainly been focused on improving probabilistic modelling of the occurence
+ of natural hazards and the occurence of failure if the hazard occurs.
+ This is because natural hazards occur with uncertainty and so do failures
+ of structures affected by natural hazards.
+ Research concerning the management of structures affected by natural hazards
+ can be grouped into three domains: 1) condition state prediction of single
+ structures or groups of structures, both sudden and gradual;
+\change_inserted 252894346 1443084625
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443084701
+I think it is more this - I am struggling to separate failure of an object
+ and failure of a system, which was not clear in the original text
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ 
+\change_inserted 372052361 1449583812
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449583816
+i agree
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+2) risk assessment, including the estimation of the impacts due to hazard
+ occurrence; 3) model selection in the determinati
+\change_deleted 372052361 1449583828
+n
+\change_unchanged
+o
+\change_inserted 372052361 1449583829
+n
+\change_unchanged
+ of optimal intervention strategies.
+ The work done in all three of these domains is required to determine optimal
+ intervention strategies.
+ 
+\end_layout
+
+\begin_layout Standard
+In the domain of condition state prediction for single structures or groups
+ of structures, researchers have focused either on improving prediction
+ making with respect to deterioration that can happen suddenly 
+\change_deleted 372052361 1449583860
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Lethanh2015"
+
+\end_inset
+
+)
+\change_unchanged
+ or gradually
+\change_inserted 372052361 1449583865
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Lethanh2015"
+
+\end_inset
+
+)
+\change_unchanged
+.
+ When concentrating on sudden deterioration they have in general concentrated
+ on developing and using fragility curves to predict how structures will
+ behave if a hazard occurs (e.g.
+ to predict how a bridge will behave if subjected to peak ground acceleration
+ during a 1 in 100 year earthquake 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Deodatis2013,Shinozuka2000"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Karim2001,Choi2004,Mackie2007,Mackie2011a"
+
+\end_inset
+
+, to predict how a rockfall protection gallery will behave if hit be a rock
+ fall 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Schubert2010"
+
+\end_inset
+
+).
+ When concentrating on both slow deterioration they have in general concentrated
+ on developing appropriate probabilistic distributions, e.g.
+ Exponential, Weibull, and approaches, e.g.
+ Markov, Bayesian, to be used to predict future conditions (e.g.
+ to predict when the corrosion of the reinforcement within a concrete bridge
+ deck will start 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Kobayashi2010a,Lethanh2013a,Sobanjo2011"
+
+\end_inset
+
+, to predict the condition of lighting systems 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Madanat1995"
+
+\end_inset
+
+, to predict the number of potholes occuring in a road section 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Lethanh2015b"
+
+\end_inset
+
+.
+ Some research has been focused on the combination of both
+\change_inserted 372052361 1449584115
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Mayet2002,Lethanh2015,Fernando2015"
+
+\end_inset
+
+
+\change_unchanged
+ 
+\change_deleted 372052361 1449584119
+[Fernando et al.; Lethanh et al.; Madanatat et al.;]
+\change_inserted 252894346 1443084043
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443084071
+I think you need to add these here - I can't see which references you mean,
+ they are not listed at the end of the document
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449584005
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449584014
+I add appropriate citation now
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+.
+ In state-of-practice, Bridge Management Systems it is predominately assumed
+ that exponential distributions are adequate and Markov models are used
+ to make predictions.
+ 
+\end_layout
+
+\begin_layout Standard
+In the domain of risk assessment, researchers have focused on on identifying
+ the probability of system states, using
+\change_deleted 252894346 1443085079
+ 
+\change_unchanged
+ techniques such as fault-tree analysis and event tree analysis
+\change_inserted 372052361 1449584135
+ 
+\change_unchanged
+and determining empirical models to quantify the consequences.
+ Examples of the former include the work done by 
+\change_deleted 372052361 1449584146
+.
+\change_unchanged
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Davis-McDaniel2013"
+
+\end_inset
+
+ on the development of fault trees for 
+\change_inserted 372052361 1449584216
+analyzing the failure of box girder bridges 
+\change_deleted 372052361 1449584218
+xxxx
+\change_inserted 252894346 1443085094
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443085102
+Please add a small description
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449584226
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449584227
+added
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+..
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Johnson1999"
+
+\end_inset
+
+ on the development of fault trees for 
+\change_deleted 372052361 1449584280
+xxx
+\change_inserted 372052361 1449584280
+bride's failure due to scour and channel instability
+\change_inserted 252894346 1443085110
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443085115
+Please add a small description
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449584287
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449584288
+added
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+, and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Tian2012"
+
+\end_inset
+
+ on the development of event trees for 
+\change_deleted 372052361 1449584280
+xxx
+\change_inserted 372052361 1449584324
+reliability analysis of oil-gas long pipeline system
+\change_inserted 252894346 1443085119
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443085125
+Please add a small description
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449584328
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449584329
+added
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+.
+
+\change_inserted 252894346 1443085704
+ 
+\change_unchanged
+Examples of the latter include the work done by
+\change_deleted 252894346 1443085857
+ 
+\change_unchanged
+ 
+\change_inserted 87135909 1435582731
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Talvitie1999,OECD1997"
+
+\end_inset
+
+
+\change_inserted 252894346 1443085757
+ 
+\change_unchanged
+on the listing of the
+\change_deleted 252894346 1443085864
+ 
+\change_unchanged
+ performance indicators to be used to measure impacts due to transportation
+ development projects, and 
+\change_inserted 87135909 1435582731
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Adey2012"
+
+\end_inset
+
+ 
+\change_unchanged
+on the listing of the impacts to be considered in the determination of optimal
+ intervention strategies for road networks.
+ 
+\end_layout
+
+\begin_layout Standard
+In the domain of model selection in the determination of optimal intervention
+ strategies, researchers have focused on two state or more than two state.
+ Examples of two state models are block and age replacement models
+\change_inserted 252894346 1443085978
+ 
+\change_inserted 372052361 1449584696
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Lethanh2013a,Adey2014a,Chen1992,Hong2006a"
+
+\end_inset
+
+
+\change_inserted 252894346 1443085978
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443086101
+Please add references - please also include our one in the Journal of Architectu
+re, ....out of Hong Kong
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449584360
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449584361
+added
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+.
+ Examples of the more than two state models are Markov models, and semi
+ Markov models
+\change_inserted 252894346 1443086058
+ 
+\change_inserted 372052361 1449584844
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Madanat1994,Robelin2007,Chen2004,Thomas2013"
+
+\end_inset
+
+
+\change_inserted 252894346 1443086058
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443086062
+Please add references
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449584385
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449584386
+added
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 87135909 1435583345
+
+\end_layout
+
+\begin_layout Subsection
+Rationale
+\end_layout
+
+\begin_layout Standard
+In this paper, the use of a two-state replacement model to determine optimal
+ replacement strategies for an APS that takes into consideration of both
+ the gradual and sudden deterioration processes is investigated and discussed.
+ The model is used to take into consideration the costs associated with
+ both the execution of preventive interventions and the risks of failure,
+ including the probability and costs related to the execution of corrective
+ interventions on the APS and the probability and costs related to the protected
+ infrastructure failing because the APS failed
+\change_deleted 252894346 1443095055
+ 
+\change_unchanged
+.
+\change_inserted 252894346 1443094690
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443094721
+There seems to me to be no point in referring to the bridge that get hits
+ by the avalanche that results from the failure of APS as 
+\begin_inset Quotes eld
+\end_inset
+
+critical infrastructure
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449650231
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449650238
+agree
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ The latter of these aspects is of particular importance when there are
+ potentially large consequences associated with the failure of the protected
+ infrastructure, e.g.the failure of the protected infrastructure results in
+ the closure of highway, which in turn results in massive increases in travel
+ time or in the inability to travel.
+ 
+\end_layout
+
+\begin_layout Standard
+In this paper, both the APS and the protected infrastructure are considered
+ to be in one of two basic states, non-failed and failed at any moment in
+ time.
+ The non-failed state of the protected infrastructure, however, is further
+ subdivided into five condition states to reflect a worsening ability to
+ resist being hit by an avalanche.
+ The non-failed basic state is not further subdivided for the APS as it
+ is assumed that the APS is not inspected, something which may happen if
+ it is in a very difficult to access area and there are budget restrictions
+ resulting in concentration on inspections on other infrastructure.
+ The non-failed basic state is further subdivided for the protected infrastructu
+re object as it is assumed that it is in an easy to access area and there
+ is sufficient ressources to conduct inspections.
+ The probability of the APS being in the failed state over time depends
+ on the likely occurence of snow loads on the APS, a sudden process, and
+ the ability of the APS to resist these snow loads, which deteriorates over
+ time, a gradual process.
+ It is modelled using a parametric probabilistic distribution (e.g.
+ Weibull distribution function
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Dodson2006"
+
+\end_inset
+
+).
+ The probability of failure of the protected object being in the failed
+ state depends on the likely occruence of the snow loads due to the avalanche
+ that results from the failure of the APS, a sudden process, and the ability
+ of the protected object to resits these loads, which deterioates over time,
+ a gradual process.
+ It is modelled using Markov models adapted as illustrated in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Mayet2002,Lethanh2015"
+
+\end_inset
+
+.
+ The optimal intervention strategy for the APS is determined using adapted
+ version of the two state replacement model proposed by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Kaio1984"
+
+\end_inset
+
+.
+
+\change_deleted 252894346 1443097935
+ 
+\change_unchanged
+ to determine the optimal time to execute preventive interventions for facilitie
+s and machinery, keeping in mind that corrective interventions would be
+ executed if it failed.
+ It includes the discount factor, which is not included in many works.
+\change_inserted 252894346 1443097986
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443098113
+I have shortend this a fair bit.
+ There were quite a few words which did not bring anything to the discussion.
+ I also don't beleive that there is such a thing as finite management or
+ infinite management, although I know what you are trying to get at.
+ If we really want to emphasise or state that there are models that are
+ suitable for strategies over finite and infinite time horizons than we
+ can say it but I still don't see the point, at this point in the text.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ 
+\change_inserted 372052361 1449650314
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449650315
+agree
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 252894346 1443097983
+
+\end_layout
+
+\begin_layout Standard
+The original contributions of the work presented in this paper are as follows:
+\change_inserted 252894346 1443098355
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443098378
+I deleted the last two points as they are not original contributions.
+ They are simply something we did to show what was done.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449650349
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449650351
+agreed
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Itemize
+The extension of the model of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Kaio1984"
+
+\end_inset
+
+ to use a Weibull function in estimating the probability of failure, in
+ this for an APS , 
+\end_layout
+
+\begin_layout Itemize
+The development of a connection between multiple objects in the estimation
+ of risk related to one object, where the condition of the objects changes
+ gradually over time.
+ 
+\end_layout
+
+\begin_layout Standard
+The paper is organized as follows: the two state replacement model used
+ to determine the optimal inte
+\change_inserted 372052361 1449650432
+r
+\change_unchanged
+vention strategy for the APS is given in section 2.
+ .
+ An example, in which a bridge on an highway network is the protected infrastruc
+ture is given in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec3"
+
+\end_inset
+
+ A sensitivity analysis investigating the
+\change_inserted 372052361 1449650594
+ changes in optimal intervention strategy in responde to the changes in
+ different types of impacts (e.g.
+ owners, users) and reliability parameters of the APS, which are likely
+ to be varied due to high level of uncertainty
+\change_inserted 252894346 1443098620
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443098636
+ You should give some insight into why we are doing a sensitivity analysisis.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_deleted 372052361 1449650389
+ 
+\change_inserted 372052361 1449650389
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449650397
+more texts added 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+given in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sa"
+
+\end_inset
+
+.
+ The last section concludes the paper with some highlights on the usefulness
+ and applicability of the model and some indications of possible research
+ directions.
+ 
+\end_layout
+
+\begin_layout Section
+The model
+\end_layout
+
+\begin_layout Subsection
+General
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec2"
+
+\end_inset
+
+ It is assumed that a PI is executed at regular intervals, 
+\begin_inset Formula $n\cdot T$
+\end_inset
+
+ (
+\begin_inset Formula $n=0,1,2,\cdots,N$
+\end_inset
+
+).
+ Between the execution of PIs, 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+ (
+\begin_inset Formula $[0\le\Delta t\le T]$
+\end_inset
+
+), hazards can occur and cause the APS to fail, where the failure, or damage,
+ states, are denoted as 
+\begin_inset Formula $i$
+\end_inset
+
+ (
+\begin_inset Formula $i=1,\cdots,I$
+\end_inset
+
+)).
+ Costs are incurred when a PI is executed.
+ The risks associated with failure, include the costs of the corrective
+ intervention and the consequences related to lost service.
+ To facilitate understanding of the text, the notation used is summarized
+ 
+\change_deleted 372052361 1449650646
+in table x
+\change_inserted 372052361 1449650649
+as below
+\change_inserted 252894346 1443099714
+.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443103100
+Please put these definitions in a table and in a logical order.
+ Please also check the definitions.
+ I believe they are no clearer but please make sure I haven't said anything
+ wrong.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_deleted 252894346 1443099663
+.
+\change_inserted 372052361 1449650652
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449650694
+no worries Bryan wi this point, when it appears in pdf, latex will make
+ the below part nice appears.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+Following notations are used to describe the formulation of the model.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="none" valignment="top" width="12.5cm">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lambda(\Delta t|t)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conditional failure rate 
+\begin_inset Formula $i$
+\end_inset
+
+ 
+\begin_inset Formula $(i=1,\cdots,I)$
+\end_inset
+
+ when the APS following the execution of a PI 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F(t)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cumulative distribution function (cdf) used to represent the cumulative
+ probability of failure of the APS over time following the execution of
+ a PI
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $w_{p}^{s}(t)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Impacts incurred by stakeholder 
+\begin_inset Formula $s$
+\end_inset
+
+ due to the execution of PI on the APS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $w_{c}^{s}(t)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Impacts incurred by stakeholder 
+\begin_inset Formula $s$
+\end_inset
+
+ due to the execution of the CI on the APS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $w_{o}^{s}(\Delta t|t)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Impacts incurred by stakeholder 
+\begin_inset Formula $s$
+\end_inset
+
+ during time interval 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+ when the APS
+\change_deleted 252894346 1443102543
+ 
+\change_unchanged
+ is not failed following the execution of a PI 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\rho$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+discount factor
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{l}^{k}(t)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+probability of the protected object k being in damage state 
+\begin_inset Formula $l$
+\end_inset
+
+ at time 
+\begin_inset Formula $t$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $C_{c}^{s,k}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Impacts incurred by stakeholder 
+\begin_inset Formula $s$
+\end_inset
+
+ due to the failure of the protected object, including the execution of
+ the CI on the protected object, k 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Length of the time interval between the execution of PIs on the APS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T^{\star}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Optimal length of the time interval between the execution of PIs on the
+ APS 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Omega_{p}(T,t)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449650878
+minimum 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449650902
+this should have the word minimum here as this notation indicates the minimum
+ of expect cost that shows later in the equation
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+expected total discounted impacts 
+\change_deleted 372052361 1449650950
+per unit time
+\change_inserted 372052361 1449650953
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449650981
+it is not per unit of time, it is the sum of cost over a time period as
+ shown in the equation below
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ 
+\change_inserted 372052361 1449651092
+for an infinite time span 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449651152
+this is important.
+ For general model, it is always refer to infinite time, as T can go to
+ infinitie.
+ Thus, it doesnt matter here to strickly say T is finite.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+when the APS is in a non-failed state
+\change_inserted 372052361 1449651302
+ after the execution of the PI
+\change_unchanged
+ 
+\change_inserted 252894346 1443102826
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443102842
+Perhaps this? But if so what are these supposed to be?
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449651354
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449651360
+Hi Bryan, the original words should be kept here.
+ This is the cost related to PI and the operationg cost when the system
+ not fail after execution of an PI.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Omega_{c}(T,t)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+minimum
+\change_inserted 372052361 1449651002
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449651013
+the word minimum should be here
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ expected total discounted impact for an infinite time span when a CI has
+ been executed on the APS, of the structure that has been in service during
+ a time interval 
+\begin_inset Formula $t$
+\end_inset
+
+ after the execution of the PI and the structure has entered failure state
+\change_inserted 372052361 1449651392
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449651388
+and this is the cost related to corrective intervention.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449651403
+refer to paper of Osaki et al.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\change_inserted 87135909 1435157008
+
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted 87135909 1435157008
+ 
+\change_deleted 252894346 1443102300
+In the model, it is assumed that when the APS is at failure state, there
+ exists a corresponding well defined CI for it.
+\change_inserted 252894346 1443102303
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443102317
+This does not need to be said.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449651526
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449651538
+it just adds more clarity to the reader
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ Within an increment of time 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+,
+\change_inserted 252894346 1443103168
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443103192
+Please put all symbols in the table.
+ This one is not included and neither is vc delta t
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ 
+\change_inserted 372052361 1449651460
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449651508
+I dont see it necessary, in the table, we only need to put the main notations,
+ delta t here is not the main ingredient.
+ I follow the writing of math paper.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+after the APS has been under the PI after time 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\change_inserted 372052361 1449651701
+if the APS fails, corrective intervention should be executed, hence 
+\change_unchanged
+the total expected impacts due to the execution of CIs are:
+\change_inserted 252894346 1443102344
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443103249
+This sentence does not make sense.
+ An APS can not be under a PI.
+ Please explain more clearly what you mean.
+ Dear Nam, I am skipping the rest of this section as I can not follow what
+ you are trying to say.
+ Please make the text clearer.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449651719
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449651712
+I add some text to make it clear
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & v_{c}(\Delta t|t)=\sum_{s=1}^{S}\left[w_{c}^{s}(\Delta t)+\sum_{k=1}^{K}p_{l}^{k}\cdot C_{c}^{s,k}\right]\cdot\lambda(\Delta t|t).\label{totalCIs}
+\end{eqnarray}
+
+\end_inset
+
+and the total impacts due to the execution of PIs on the APS and the total
+ impacts incurred by stakeholders during the service time of the APS are
+ defined in Eq.
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "totalPIs"
+
+\end_inset
+
+) and Eq.
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "totalO"
+
+\end_inset
+
+), respectively.
+ 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & v_{p}(t)=\sum_{s=1}^{S}w_{p}^{s}(t).\label{totalPIs}
+\end{eqnarray}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & v_{o}(t)=\sum_{s=1}^{S}w_{o}^{s}(t).\label{totalO}
+\end{eqnarray}
+
+\end_inset
+
+According to the principle of optimality, which is described in 
+\begin_inset CommandInset citation
+LatexCommand citet
+after "p. 15"
+key "Bellman1962"
+
+\end_inset
+
+, the minimum expected total discounted impact 
+\begin_inset Formula $\Omega_{c}(T,t)$
+\end_inset
+
+ for infinite time is formulated in following equation.
+ 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Omega_{c}(T,t)=\int_{0}^{\infty}\left[{v_{c}(\Delta t|t)}+\Omega_{p}(T,\Delta t|t)\right]dF(t).\label{omegaCI1}
+\end{eqnarray}
+
+\end_inset
+
+The minimum expected total discounted impact 
+\begin_inset Formula $\Omega_{p}(T,\Delta t|t)$
+\end_inset
+
+, which appears inside Eq.
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "totalCIs"
+
+\end_inset
+
+), is obtained as follows 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Omega_{p}(T,\Delta t)=min\Gamma(\Delta t).\label{omegaPI1}
+\end{eqnarray}
+
+\end_inset
+
+where 
+\begin_inset Formula $\Gamma(\Delta t)$
+\end_inset
+
+ is defined as 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Gamma(\Delta t)=\int_{0}^{\infty}\left[v_{o}\int_{0}^{dt}exp(-\rho\tau)d\tau+\left\{ {1-\theta(\Delta t|t)dt}\right\} \cdot\Omega_{p}(T,\Delta t+dt|t)exp(-\rho dt)\right.\nonumber \\
+ &  & \hspace{20mm}+\theta(\Delta t|t)dt\cdot\Omega_{c}(T,\Delta t+dt|t)exp(-\rho dt)\left.\vphantom{\int_{t}}\right]dF(t).\label{gamma1}
+\end{eqnarray}
+
+\end_inset
+
+According to 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Kaio1984"
+
+\end_inset
+
+, Eq.
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "gamma1"
+
+\end_inset
+
+) is rewritten in following form 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Gamma(\Delta t)=\Omega_{p}(T,\Delta t)+\left[-\rho\Omega_{p}(T,\Delta t)+d\Omega_{p}(T,\Delta t)/dt\right]dt\nonumber \\
+ &  & \hspace{30mm}+\int_{0}^{\infty}\left[v_{o}+v_{c}(\Delta t|t)\right]dF(t)dt.\label{gamma2}
+\end{eqnarray}
+
+\end_inset
+
+Thus, from 
+\begin_inset Formula $\Omega_{p}(T,\Delta t)=\Gamma(\Delta t)$
+\end_inset
+
+ (Eq.
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "omegaPI1"
+
+\end_inset
+
+)), the following equation can be derived: 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Omega_{p}(T,\Delta t)=exp(\rho\Delta t)\left[\Omega_{p}(T,0)-\int_{0}^{\infty}\int_{0}^{t}exp(-\rho\tau)\left\{ v_{o}+v_{c}(\tau|t)\right\} \right]d\tau dF(t).\label{omegaPI2}
+\end{eqnarray}
+
+\end_inset
+
+where, 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Omega_{p}(T,0)=\left\{ 1-exp(-\rho T)\right\} ^{-1}\int_{0}^{\infty}\left[\vphantom{\int_{t}}exp(-\rho T)\left\{ v_{p}(T,t)\right\} \right.\nonumber \\
+ &  & \hspace{45mm}+\int_{0}^{T}exp(-\rho\Delta t)\left\{ v_{o}(\Delta t|t)+v_{c}(\Delta t|t)\right\} dt\left.\vphantom{\int_{t}}\right]dF(t).\label{omegaPI3}
+\end{eqnarray}
+
+\end_inset
+
+when 
+\begin_inset Formula $T$
+\end_inset
+
+ tends to infinity 
+\begin_inset Formula $T\to\infty$
+\end_inset
+
+, Eq.
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "omegaPI3"
+
+\end_inset
+
+) becomes 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Omega_{p}(\infty,0)=\int_{0}^{\infty}\int_{0}^{\infty}exp(-\rho t)\left[v_{o}+v_{c}(\Delta t|t)\right]dtdF(t).\label{omegaPI4}
+\end{eqnarray}
+
+\end_inset
+
+Eqs.
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "omegaPI3"
+
+\end_inset
+
+) and (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "omegaPI4"
+
+\end_inset
+
+) are the explicit forms of the expected total discounted impact in finite
+ and infinite time 
+\change_deleted 372052361 1449651808
+horizons
+\change_inserted 252894346 1443103609
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443103619
+Can we please avoid the use of 
+\begin_inset Quotes eld
+\end_inset
+
+time horizon
+\begin_inset Quotes erd
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449651771
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449651985
+no problem, but it is here not per unit of time Bryan, it is the total sum
+ of expect cost, you can see from the integral part in the equation.
+ in the context of dynamic program, there is not per unit of time concept,
+ it is always the sum of the costs in entire life cycle.
+ The word finite and infinite here is not that important, because the T
+ can go to infinite as well.
+ however, it is good to said T can be finite so we can just put the number
+ on it such as 50 years for the sake of numerical calculation.
+ Thus, I think this part should be kept as it is, as it has been also shown
+ in the paper of Osaki et al., to which, our paper is derived from.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 87135909 1435156123
+, respectively
+\change_unchanged
+.
+ This is the classical optimization problem.
+ By differentiating the expected total discounted impact 
+\begin_inset Formula $\Omega_{p}(T,0)$
+\end_inset
+
+ and 
+\begin_inset Formula $\Omega_{p}(\infty,0)$
+\end_inset
+
+ and setting it equal to zero, the optimal time 
+\begin_inset Formula $T^{\star}$
+\end_inset
+
+ can be obtained.
+ The optimal time 
+\begin_inset Formula $T^{\star}$
+\end_inset
+
+ for PI is the solution of the following system of equations: 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \left\{ {\begin{array}{c}
+{{T^{\star}}=\arg\mathop{\min}\limits _{{T^{\star}}\in[0,T]}{\Theta_{p}}(T,0)}\\
+{{T^{\star}}=\arg\mathop{\min}\limits _{{T^{\star}}\in[0,\infty]}{\Theta_{p}}(\infty,0)}
+\end{array}}\right.
+\end{eqnarray}
+
+\end_inset
+
+in which the differentiates of 
+\begin_inset Formula $\Theta_{p}(T,0)$
+\end_inset
+
+ and 
+\begin_inset Formula $\Theta_{p}(\infty,0)$
+\end_inset
+
+ are respectively: 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Theta_{p}(T,0)=\frac{\delta(\Omega_{p}(T,0))}{\delta T}\nonumber \\
+ &  & \hspace{14mm}=\left[1-exp(-\rho T)\right]\int_{0}^{\infty}\left[\vphantom{\int_{t}}-\rho v_{p}(T,t)\right.\nonumber \\
+ &  & \hspace{20mm}+d(v_{p}(T,t))/dT+v_{o}(T,t)+v_{p}(T,t)\left.\vphantom{\int_{t}}\right]dF(t)\nonumber \\
+ &  & \hspace{20mm}-\rho\int_{0}^{\infty}\left[\vphantom{\int_{t}}exp(-\rho T)\left\{ v_{p}(T,t)\right\} \right.\nonumber \\
+ &  & \hspace{20mm}+\int_{0}^{T}exp(-\rho\Delta t)\left\{ v_{o}(\Delta t|t)+v_{c}(\Delta t|t)\right\} dt\left.\vphantom{\int_{t}}\right]dF(t).\label{omegaPI5}
+\end{eqnarray}
+
+\end_inset
+
+and 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Theta_{p}(\infty,0)=\frac{\delta(\Omega_{p}(\infty,0))}{\delta T}\nonumber \\
+ &  & \hspace{14mm}=\int_{0}^{\infty}\left[-\rho\left\{ v_{p}(\infty|t)+\int_{0}^{\infty}exp(-\rho t)\left\{ v_{o}(\Delta t|t)+v_{p}(\Delta t|t)\right\} \right\} \right.\nonumber \\
+ &  & \hspace{20mm}+\mathop{\lim}\limits _{T\to\infty}d(v_{p}(T,t))/dT+v_{o}(\infty|t)+v_{p}(\infty|t)\left.\vphantom{\int_{t}}\right]dF(t)\label{omegaPI6}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Estimation of the probability of failure of the APS and the protected object
+\end_layout
+
+\begin_layout Standard
+The probability of failure of the APS is modelled using the Weibull distribution
+ function 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Dodson2006,Kingman1963"
+
+\end_inset
+
+, where the failure rate 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, reliability function 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $f(\tau)$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+, and distribution function 
+\begin_inset Formula $F(\tau)$
+\end_inset
+
+ are estimated using the following equations, respectively.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \lambda(\tau)=\alpha\cdot m\cdot\tau^{m-1}\label{eq14}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & f(\tau)=\alpha\cdot m\cdot\tau^{m-1}\cdot e^{-(\alpha\cdot\tau)^{m}}\label{eq15}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & F(\tau)=1-e^{-(\alpha\cdot\tau)^{m}}\label{eq16}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+ are scale and shape parameters of the Weibull distribution.
+ Values of these parameters can be estimated given data on failure of the
+ APS 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Dodson2006,Lethanh2013a,Kobayashi2010a"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The probability of failure of the protected object is modelled using a Markov
+ model suited for modelling both gradual and sudden processes, as described
+ in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Lethanh2015,Fernando2015"
+
+\end_inset
+
+, where the transition matrix can be represented as: .
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & Q=\begin{array}{ccccccccc}
+{p_{11}} & {p_{12}} & \cdots & {p_{1I}} & \vline & {e_{11}^{p}} & {e_{12}^{p}} & \cdots & {e_{1L}^{p}}\\
+0 & {p_{22}} & \cdots & {p_{2I}} & \vline & {e_{21}^{p}} & {e_{22}^{p}} & \cdots & {e_{2L}^{p}}\\
+\vdots & \vdots & \ddots & \vdots & \vline & \vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & {p_{II}} & \vline & {e_{I1}^{p}} & {e_{I2}^{p}} & \cdots & {e_{IL}^{p}}\\
+\hline 0 & 0 & \cdots & 0 & \vline & {e_{11}} & {e_{12}} & \cdots & {e_{1L}}\\
+0 & 0 & \cdots & 0 & \vline & 0 & {e_{22}} & \cdots & {e_{2L}}\\
+\vdots & \vdots & \ddots & \vdots & \vline & \vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 0 & \vline & 0 & 0 & \cdots & 1
+\end{array}\label{mtpform2}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $p_{ij}$
+\end_inset
+
+ is used to represent the probabilities of transition between non-failure
+ states and is used to represent the probability of transition from non-failure
+ states to failure states.
+\end_layout
+
+\begin_layout Standard
+The transition probabilities between non-failure states, before taking into
+ consideration potential failures, 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Right? 
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449652003
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449652005
+true
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+can be estimated using available data as explained in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Kobayashi2012"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & {p_{ij}}(z)=\sum\limits _{k=i}^{j}\prod\limits _{m=i}^{k-1}\frac{{\theta_{m}}}{{{\theta_{m}}-{\theta_{k}}}}\prod\limits _{m=k}^{j-1}\frac{{\theta_{m}}}{{{\theta_{m+1}}-{\theta_{k}}}}\exp(-{\theta_{k}}z)\label{mtp-1}
+\end{eqnarray}
+
+\end_inset
+
+where, 
+\begin_inset Formula $i$
+\end_inset
+
+, 
+\begin_inset Formula $j$
+\end_inset
+
+, 
+\begin_inset Formula $k$
+\end_inset
+
+, 
+\begin_inset Formula $m$
+\end_inset
+
+ are running index of CS and 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ is hazard rate for state 
+\begin_inset Formula $i$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The transition probabilities from non-failure states i 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The condition states have to be referred to systematically.
+ I think you want to use i and l.
+ If so can you please use these consistently everywhere 
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449652034
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449652115
+no bryan, in the above equation, all, i,k,m are running index within the
+ equation itself.
+ for general statement, we can use i as we do.
+ l is refer to failure state, thus we need to use it different from i.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+to failure states l can be estimated using fragility curves,
+\change_inserted 87135909 1435654097
+.
+ 
+\change_inserted 252894346 1443105090
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443105038
+Why do you refer to them again? We already said this above.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+ 
+\change_inserted 372052361 1449652182
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449652199
+no, this is the first time I used it to make connection to the equation
+ below
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+The probability that the protect object fails , if hit by an avalanche,
+ which depends on the intensity of the avalanche and the condition of the
+ protected object is given by:
+\change_inserted 252894346 1443105288
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443105472
+The use of CS, i, and l need to be cleared up.
+ I assume you mean that each of the objects can be in condition states and
+ that these condition states are classified as non-failure states and failure
+ states.
+ You seem to want to use these i and l to denote these.
+ But then in the following equation you say that CS > l, but it is unclear
+ to me what this means, It can't be less than l when l has the value of
+ 1.
+ I suppose you mean that it hasn't failed.
+ Please clarify in the text.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449652238
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449652313
+Hi bryan, this notation, we use systematically in the paper we have published
+ with Dilum, l is for latent and i is for manifest, l can be 1, 2, 3,4 5,
+ and so does i.
+ but the meaning of l=1 is totally different from i=1.
+ This section, i restate the part of the paper with Dilum.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & Prob[{\rm {CS=}}l\left|{s,i,t}\right.]=\left\{ \begin{array}{l}
+\int\limits _{0}^{t}{{H_{s}}(t)\cdot d\Omega_{s,i}^{L-1}}\mathop{}_{}^{}\mathop{}_{}^{}\mathop{}_{}^{}\mathop{}_{}^{}\mathop{}_{}^{}\mathop{}_{}^{}\mathop{}_{}^{}l=L\\
+\int\limits _{0}^{t}{{H_{s}}(t)\cdot d\Omega_{s,i}^{l-1}}-\int\limits _{0}^{t}{{H_{s}}(t)\cdot d\Omega_{s,i}^{l}}\mathop{}_{}^{}l\le L-1
+\end{array}\right.\label{fragility1-1}
+\end{eqnarray}
+
+\end_inset
+
+where, 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Omega_{s,i}^{l}=prob[CS>l\left|{s,i}\right.]\label{fragility2-1}
+\end{eqnarray}
+
+\end_inset
+
+and, 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & {H_{s}}(t)=Prob[{\rm {intensity}}>s,(0,t)]=\delta\cdot{S^{-\gamma}}\label{fragility3-1}
+\end{eqnarray}
+
+\end_inset
+
+In Equations (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fragility1-1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fragility2-1"
+
+\end_inset
+
+), 
+\begin_inset Formula $s$
+\end_inset
+
+ is intensity of avalanche (e.g.
+ volume), 
+\begin_inset Formula $i$
+\end_inset
+
+ is manifest CS
+\change_inserted 252894346 1443105494
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443105529
+This has already been said, or at least it should have been, please all
+ notation in the table.
+ It doesn't make sense to have some in the table and some not in the table
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449652342
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449652403
+I think we dont need to add all notations in the tables.
+ we can explain them in the text as well.
+ For the main optimization part, we add the notations in kind of table form,
+ but only for main notations, not all such as i, j, k, m, l or delta, they
+ are not the main notations used in the model.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+, and 
+\begin_inset Formula $l$
+\end_inset
+
+ is latent CS (e.g.
+ in this example 
+\begin_inset Formula $l=L=1$
+\end_inset
+
+), 
+\begin_inset Formula $t$
+\end_inset
+
+ is the time.
+ In Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fragility3-1"
+
+\end_inset
+
+), 
+\begin_inset Formula $\delta$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ are coefficients that are determined based on local condition of the CRI
+\end_layout
+
+\begin_layout Itemize
+Total state probability
+\end_layout
+
+\begin_layout Standard
+When both transition probability due to the manifest and latent deteriorations
+ are determined.
+ The properties of the manifest transition will be multiplied with a factor
+ 
+\begin_inset Formula $\Delta_{i}$
+\end_inset
+
+, which is defined as follows: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%%%
+\end_layout
+
+\end_inset
+
+
+\change_inserted 252894346 1443105555
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443105596
+Please explain what is happening here better.
+ This is where you are modifying the transition probabilities to take into
+ consideration the two different ways of doing things, which is good but
+ explanation is required.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449652426
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449652435
+it is explain in the sentence after the equation
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \Delta_{i}=(1-\sum_{l=1}^{L}e_{il}^{p})\label{delta-1}
+\end{eqnarray}
+
+\end_inset
+
+Using this factor, it is guaranteed that the sum of row probabilities in
+ the combined transition matrix equals to 1
+\change_inserted 372052361 1449652514
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Lethanh2015"
+
+\end_inset
+
+
+\change_unchanged
+.
+ 
+\change_inserted 252894346 1443105637
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443105646
+The reader isn't even aware that this is a problem.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449652452
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449652482
+we can refer to the original paper.
+ I think it makes sense to the reader as everybody know that the total transitio
+n probabilities for a row must be 1.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+Finally, the manifest+latent transition probability matrix can be computed
+\end_layout
+
+\begin_layout Standard
+The future deterioration of the protect
+\change_inserted 372052361 1449652570
+ed
+\change_unchanged
+ object can be predicted using 
+\change_inserted 372052361 1449652605
+the probe state (state vector 
+\begin_inset Formula $\pi_{i}(t)$
+\end_inset
+
+)
+\change_unchanged
+the equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "delta-2"
+
+\end_inset
+
+) 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Is this true? The probable future condition of he bridge is not estimated
+ using these.
+ It is simply determined by multiplying the transition probabilities with
+ state probabilities over and over and over.
+ The Chapman-Kolmogorov equations are used to determined the steady state
+ probabilities.
+ Right?
+\end_layout
+
+\end_inset
+
+
+\change_deleted 252894346 1443105660
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+corrected
+\end_layout
+
+\end_inset
+
+.
+\change_inserted 252894346 1443105670
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1443105698
+Don't you mean the transition probabilities, and not the future deterioration`?
+ Please be clear.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449652539
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449652558
+this is state vector, not transition probability, state vector infers the
+ future deterioration at any time in the future.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & \pi_{i}(t+1)=\pi_{i}(t)\cdot p_{ij}\label{delta-2}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Illustrative example
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec3"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% % %
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+General
+\end_layout
+
+\begin_layout Standard
+In this example, the APS is a system of snow barriers installed on a side
+ rocky mountain above a road link.
+ An example of the system is illustated in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "snowbarriers"
+
+\end_inset
+
+.The protected structure is a two-lanes steel concrete hybrid bridge located
+ underneath the rocky mountain.
+ Due to the topology of the area, there is a high risk that snow-packs can
+ be formed in the starting zones and avalanches can occur.
+ If the system of the snow barriers fails to prevent an avalanche 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+no more word rockfall
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ok
+\end_layout
+
+\end_inset
+
+from occurring, avalanche might slide down and hit the bridge.
+ Due to the impact of the avalanche, there is a probability that the bridge
+ might fail.
+\change_inserted 87135909 1435654808
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 87135909 1435654908
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted 87135909 1435654908
+\begin_inset Graphics
+	filename avalanche_barrier.jpg
+	width 80line%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+
+\change_inserted 87135909 1435654937
+ Example of a snow barrier system
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "snowbarriers"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to minimize such as risk that the snow barrier system fails due
+ to heavy snow packs formed in the avalanche starting zones
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Do you mean here the probability of occruence or the risk?
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+changed now
+\end_layout
+
+\end_inset
+
+, the system of snow barriers needs to be replaced with an PI after a certain
+ period of time in service.
+
+\change_deleted 372052361 1449652873
+ 
+\change_unchanged
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+all of these have been now explained in the introduction and rationale sections,
+ therefore no need to mention here again.
+ In this example, we do calculatation straightforward
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ok
+\end_layout
+
+\end_inset
+
+ In this example, an PI for the snow barriers system is a replacement of
+ the old system with a new identical one.
+ In between two consecutive executions of PIs, if the snow barriers system
+ fails and avalanche occur, immediately after that and CI needs to be executed.
+ It is considered that the CI for the snow barriers system is also the replaceme
+nt of the old one with a new system.
+ However, as it is executed unexpectedly, the impacts incurred during the
+ execution of an CI will be higher than that of the PI.
+\end_layout
+
+\begin_layout Standard
+Without loss of generality, it is assumed that the PI costs
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+A PI cannot incur anything
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ok
+\end_layout
+
+\end_inset
+
+1 monetary unit (mu).
+ The impacts of the CIs on the snow-barrier system are 2 mus mus and on
+ the bridge are 10 mus, respectively
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+I am not sure what this means.
+ Do you mean the impacts related to the execution of a CI on the snow-barrier
+ system is x mus and on the bridge y mus? If so please say this.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+that is right
+\end_layout
+
+\end_inset
+
+.
+ It is important to noted here that these impacts can be separated into
+ two parts.
+ One is the impact due to avalanches before the execution of the CI and
+ the other is impact during the execution of the CI.
+
+\change_deleted 372052361 1449653088
+ 
+\change_unchanged
+ It is important at this outset of the calculation to mention that it is
+ not necessary to demonstrate the usefulness of the model with a real case
+ study since, from mathematical point of view, the determination of the
+ 
+\change_deleted 372052361 1449653129
+OIS
+\change_inserted 372052361 1449653137
+optimal time to execute an PI (OTE)
+\change_unchanged
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+What is an IOS?
+\end_layout
+
+\end_inset
+
+ 
+\change_inserted 372052361 1449653142
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449653145
+now change to OTE
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+is dependent mainly on the ratio between the PI and CI once the reliability
+ of the APS and the CRI are determined.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% A brief overview of the snow barriers system and the bridge is given in
+ Table 
+\backslash
+ref{exampleoverview}.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+begin{table}[htbp]
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+caption{Overview of the snow barriers system and the bridge}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+begin{tabular}{|l|c|c|}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+hline
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+textbf{Description} & 
+\backslash
+textbf{Snow barriers system} & 
+\backslash
+textbf{Bridge} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Number of objects & 20 & 1 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Width of an object & x & x 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Length of an object & x & x 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Materials & Steel & Hybrid steel 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Capacity & 29 KN/m3 & 100 train/day 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+label{exampleoverview}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Reliability assumption
+\end_layout
+
+\begin_layout Subsubsection
+Reliability of the snow barriers system
+\end_layout
+
+\begin_layout Standard
+The reliability of the snow barriers system is with a Weibull function as
+ described in sub-section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-reliability-of-APS"
+
+\end_inset
+
+.
+ Values of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+ are
+\change_deleted 372052361 1449653258
+ 
+\change_unchanged
+ 
+\begin_inset Formula $0.0252$
+\end_inset
+
+ and 
+\begin_inset Formula $1.2665$
+\end_inset
+
+, respectively
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+These are not assumed? They should be presented as facts in our example.
+ Please restructure the example to have the facts related to the situation
+ in the beginning of the example and then show how an infrastructure manager
+ woul duse this information to determine the OISs
+\end_layout
+
+\end_inset
+
+.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Please also include near the beginning an explanation as to why one might
+ be interested in time dependent intervention strategies and not state-dependent
+ intervention strategies.
+ I assume because fatigue is hard to detect in these remote locations, and
+ expensive.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+I have explained in the Rationale section
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+We don't need to refer to the next section in this section
+\end_layout
+
+\end_inset
+
+With these values, once can construct the reliability curves as shown in
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "reliability-snowbarriers"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename reliability-snowbarriers.eps
+	width 80line%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+ Reliability curves of snow-barrier systems
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "reliability-snowbarriers"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The reliability curves shows a gradual decrease in the reliability of the
+ snow-barrier system over time.
+ More or less after 25 years, the reliability of the system will reduce
+ to about 50%.
+\end_layout
+
+\begin_layout Subsubsection
+Reliability of the bridge
+\change_inserted 252894346 1430664985
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1430665147
+The example should be explained more clearly in the beginning to give the
+ reader an understanding of the situation.
+ At the moment it seems to be set up to to say that the the snow barrier
+ systems deteriorates over time and might fail and that the estimattion
+ of the consequences of this depends on the deterioration of the bridge
+ over time and it being hit by the avalanche.
+ It is, however, not clear to me how the probability of failure of the bridge
+ is related to the probability of the failure of the avalanche protection
+ system.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted 372052361 1449653302
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 372052361 1449653454
+there is no relation of the probability of failure of the bridge to the
+ failure of the APS, the failure of the APS is only depending on avalanche.
+ This is still a section telling the reader on the overview of the case
+ study.
+ we have APS, and we have bridge.
+ the APS has it own reliability function, and the bridge reliability is
+ depending on itself and on the intensitiy of avalance plus the reliability
+ of the APS.
+ Thus, i dont see there should be any change in this subsection
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+On the other hands, the reliability of the bridge is estimated using the
+ concept of Markov deterioration model with its manifest transition probabilitie
+s estimated using equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "mtp-1"
+
+\end_inset
+
+ and the concept of fragility curve explained in equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fragility1-1"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fragility2-1"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fragility3-1"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+For the bridge used in the illustrative example, five manifest deterioration
+ states and one latent state are defined based on criteria shown in Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "statedefinition"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Bridge CSs (Adapted from 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Lethanh2015"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="5">
+<features tabularvalignment="middle">
+<column alignment="none" valignment="top" width="2cm">
+<column alignment="none" valignment="top" width="1cm">
+<column alignment="none" valignment="top" width="1.5cm">
+<column alignment="left" valignment="top" width="0">
+<column alignment="none" valignment="top" width="6cm">
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS type
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Level of service (LOS)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Definition
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+non-failure
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full service
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Deck is new or near new, almost no sign of deterioration 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leakage is occurring over 
+\begin_inset Formula $<10\%$
+\end_inset
+
+ of deck surface area 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leakage is occurring over 
+\begin_inset Formula $<25\%$
+\end_inset
+
+ of deck surface area 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leakage is occurring over 
+\begin_inset Formula $\ge25\%$
+\end_inset
+
+ of deck surface are, some spalling is occurring, substantial efflorescence,
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Heavy spalling, heavy efflorescence, deck saturated to point that concrete
+ is rubble 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+failure
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No service
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $l=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+the bridge is not useable, 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "statedefinition"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Manifest deterioration process
+\end_layout
+
+\begin_layout Standard
+The manifest transition probabilities for 1 year (
+\begin_inset Formula $z=1$
+\end_inset
+
+) can be directly estimated from the values of hazard rates, which are
+\change_deleted 372052361 1449653469
+ 
+\change_unchanged
+ 
+\begin_inset Formula $\theta_{i}=(0.06,0.09,0.19,0.25,0)$
+\end_inset
+
+.
+
+\change_deleted 372052361 1449653469
+ 
+\change_unchanged
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "transitionmatrixa"
+
+\end_inset
+
+ shows the values of each transition probability.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Transition probabilities for bridges due to manifest processes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="7">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Year (
+\begin_inset Formula $t+1$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CSs 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=1$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=2$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=3$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=4$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=5$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=1$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.94176 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05567 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00241 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00015 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00001 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=2$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.91393 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.07827 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00717 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00062 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=3$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.82696 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.15250 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.02054 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=4$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.77880 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.22120 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{rotate}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+90
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ Year (
+\begin_inset Formula $t$
+\end_inset
+
+) 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{rotate}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=5$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "transitionmatrixa"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Latent deterioration process
+\end_layout
+
+\begin_layout Standard
+.
+ 
+\end_layout
+
+\begin_layout Standard
+For latent deterioration process of the bridge, in this example, values
+ of 
+\begin_inset Formula $\delta$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ are given as follows (Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alphagammavalue"
+
+\end_inset
+
+).
+ These values are parameters associated with the local condition of the
+ cliff and volume of avalanche 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Schultz2010"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Transition from manifest CS to latent state
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="4">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CSs
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+to CS6 (
+\begin_inset Formula $l=1$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Latent 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\delta$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\gamma$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{il}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.353
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.652
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00024 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.360
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.581
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00071 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.371
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.575
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00157 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.389
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.498
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00679 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.391
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.367
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01366 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alphagammavalue"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The last column of Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alphagammavalue"
+
+\end_inset
+
+ shows the probability of going to failure from each manifest CS.
+ The values were calculated for one year transition.
+ It can be seen that there is an increasing probability with respect to
+ the increase in the index of the CS.
+ If the bridge is in CS1, meaning the bridge is newly constructed or newly
+ renovated, it can withdstand the avalanche better than when it is in CS2.
+ In other words, the older the bridge becomes (increase in the index of
+ CS), the higher chance that it will be in failure state if an avalanche
+ comes into contact.
+ 
+\end_layout
+
+\begin_layout Itemize
+Total transition probability and state probability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+sorry Bryan, values of 0.00024 has nothing to do with figure 1.
+ Figure 1 is the reliability of the APS, while this section is about reliability
+ of the CRI.
+ The value of 0.00024 is calculated using fragility curve assuming that the
+ volume of avalanche is modelled with values of delta and gamma as shown
+ in table 3.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "delta-1"
+
+\end_inset
+
+, the transition probability of the manifest process can be adjusted and
+ finally, the total transition probability matrix for both manifest and
+ latent deterioration processes of the bridge in one year can be obtained
+ (Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "totalmatrix"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Manifest+Latent transition probability matrix
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="8">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Year (
+\begin_inset Formula $t+1$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" rightline="true" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CSs 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=1$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=2$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=3$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=4$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=5$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $l=1$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=1$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.94154 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05565 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00241 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00015 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00001 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00024 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=2$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.913288 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.07822 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00716 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00062 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00071 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=3$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.82566 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.15226 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.02051 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00157 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=4$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.77352 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.21970 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00679 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{rotate}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+90
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ Year (
+\begin_inset Formula $t$
+\end_inset
+
+) 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{rotate}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i=5$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.98634 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01366 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $l=1$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "totalmatrix"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%
+\end_layout
+
+\end_inset
+
+Evolution of condition states
+\end_layout
+
+\begin_layout Standard
+At the time of investigation, the bridge is in good condition, with a state
+ probability vector of 
+\change_inserted 87135909 1435657303
+
+\begin_inset Formula $\pi_{i}=(1,0,0,0,0)$
+\end_inset
+
+.
+ 
+\change_unchanged
+The evolution of the state over a period of 50 years was plotted in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "csevolution"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename G:/IM/06-Journals/02-In-progress/XX.XX-Extended-BR/Latex/csevolution.eps
+	width 80line%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Evolution of states (manifest+latent)
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "csevolution"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "csevolution"
+
+\end_inset
+
+, the black proportion infers the evolution of latent deterioration (state
+ 6 or 
+\begin_inset Formula $l=1$
+\end_inset
+
+).
+ There is a gradual increase in the probability that the bridge will be
+ in adequate LOS (fail) over time.
+ This is because as the operational time of the bridge get longers, the
+ bridge gets older and therefore, its reliability decreases.
+ The multiplication of the state probability (
+\begin_inset Formula $p_{l}^{k}$
+\end_inset
+
+ in Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "totalCIs"
+
+\end_inset
+
+), 
+\begin_inset Formula $k=1$
+\end_inset
+
+ as there is only one bridge) of the latent process and the unit impact
+ (
+\begin_inset Formula $Y=10$
+\end_inset
+
+) mus of the CI for the bridge gives the expected total impact for respective
+ year.
+ This value will be a part of total CI shown in Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "totalCIs"
+
+\end_inset
+
+).
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%%%%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Results
+\end_layout
+
+\begin_layout Standard
+Results of the example are shown in red curve in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "results"
+
+\end_inset
+
+.
+
+\change_deleted 372052361 1449653563
+ 
+\change_unchanged
+ This is considered as a reference case.
+ 
+\change_inserted 87135909 1435657658
+
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted 87135909 1435657435
+ 
+\change_unchanged
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename results.eps
+	width 80line%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Estimation results
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "results"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the reference case, the optimal time to execute a PI is at 19 year (point
+ A) because if the PI is executed at that time, the annual impact will be
+ minimal (
+\begin_inset Formula $6.59$
+\end_inset
+
+ 
+\begin_inset Formula $mus$
+\end_inset
+
+).
+ If either the PI is executed before or after that time, the annual impact
+ will be higher.
+ This is because if the PI is done earlier or more frequent, the impacts
+ of executing PI will exponentially increase.
+ On other hands, if the PI is executed less frequently, the impacts incurred
+ by executing CIs will exponentially increase.
+ In other wordsl, there is an optimal time to execute the PI and this is
+ important for infrastructure manager to know about it in order to be proactivel
+y prepared.
+\end_layout
+
+\begin_layout Standard
+Also in the figure, there are purple curve and blue curve, which are drawns
+ when implicitely selecting value of impact for of CI for the snow-barries
+ system to be twice more and twice less than that of the reference case.
+ The purpose is to give a quick sensitivity analysis on the changes in the
+ optimal time to execute an PI on the snow barriers system when there are
+ changes in the impacts related to CIs of the bridge.
+ It can be concluded that if the value of CI on the bridge is more, the
+ optimal time to execute the PI for the snow barriers system will be shorter
+ (point B) than that of the reference case (point A) and vise versa (point
+ C).
+ The following section gives an indepth sensitivity analysis on the change
+ in the ratio between PI of the snow barriers system and CI of the bridge
+ as well as on the change of parameters used in the model.
+ 
+\end_layout
+
+\begin_layout Section
+Sensitivity analysis
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sa"
+
+\end_inset
+
+ From the mathematical point of view, tthe optimal time to execute a PI
+ depends on the probability of failure of the snow barriers system and the
+ reliability of the bridge in successive years, which manifests itself in
+ the values of parameters to be used to model relaibility for both structures.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Please rephrase this in real world terms.
+ For example, the optimal time to execute an intervention depends on the
+ probability of failure in successive years, which manifests itself in the
+ values of parameters to be used to model relaibility.
+ 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+agree
+\end_layout
+
+\end_inset
+
+ However, values of coefficients and impacts cannot be estimated with great
+ certainty
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+They can indeed by calculated with great precision
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+i think they cannot because of the lack of data and also the impacts are
+ different to calculate anyway
+\end_layout
+
+\end_inset
+
+.
+
+\change_deleted 372052361 1449653679
+ 
+\change_unchanged
+ It is therefore important to conduct a sensitivity analysis to understand
+ the correlation in the changes of the optimal time to execute the PI and
+ the changes of coefficients and impacts values.
+ Following table gives an overview of criterias and ranges of their values
+ used in the sensitivity analysis.
+\change_inserted 87135909 1435658412
+
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted 87135909 1435658412
+ 
+\change_unchanged
+
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Ranges of values used for indicators and coefficients in the SA
+\end_layout
+
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="4">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+multirow
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+*
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Criteria
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+multirow
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+*
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Notation
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Range of value
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" rightline="true" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Min
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Max
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+multirow
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+*
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Impact ratio
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $CI_{A}/PI$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $CI_{B}/PI$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1'000 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+multirow
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+*
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="1">
+<features tabularvalignment="middle">
+<column alignment="none" valignment="top" width="0" special="@{}l@{}">
+<row>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Reliability of
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+snow-barrier system
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $m$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+multirow
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+*
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="1">
+<features tabularvalignment="middle">
+<column alignment="none" valignment="top" width="0" special="@{}l@{}">
+<row>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Reliability of
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bridge
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100% in state 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Avalanche intensity (
+\begin_inset Formula $m^{3}$
+\end_inset
+
+) 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Discount factor (%) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\rho$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" bottomline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sensi"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the table, the notation 
+\begin_inset Formula $CI_{A}$
+\end_inset
+
+and 
+\begin_inset Formula $CI_{B}$
+\end_inset
+
+are used for impacts related to CIs of the snow barries system and the bridge,
+ respectively.
+ The results of the SA for the impact 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+i think i use the word impact in the introductoin and rationale already
+ 
+\end_layout
+
+\end_inset
+
+ratio criteria are shown in graphs of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "impactratio"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement ht!
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+subfigure[$CI_A/PI$]{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename snowbarrierssa.eps
+	width 40line%
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+subfigure[$CI_B/PI$]{
+\end_layout
+
+\end_inset
+
+
+\change_inserted 252894346 1430666266
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 252894346 1430666386
+What is OTE? optimal time of between PIs? We need to add a discussion in
+ the appropriate place as to what we assume happens when a failure does
+ happen.
+ It is hard to justify the use of a time dependent intervention strategy
+ rather then an age dependent intervention stratey.
+ Don't you agree? I suppose the only possible argument is that the probability
+ of failiure is so small that there is actually no difference but then we
+ need to word that carefully because many people would want to see that.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ 
+\begin_inset Graphics
+	filename steelbridgesa.eps
+	width 40line%
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+SA-impact ratio
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "impactratio"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement ht!
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subfigure[$
+\backslash
+alpha$]{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename alpha.eps
+	width 40line%
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subfigure[$m$]{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename m.eps
+	width 40line%
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+SA-reliability of the snow-barrier system
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "reliabilitySPS"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement ht!
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subfigure[Avalanche intensity]{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename avalancheintensity.eps
+	width 40line%
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subfigure[Age of bridge]{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename bridgeCS.eps
+	width 40line%
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+SA-Avalanche intensity and state of the bridge
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "reliabilitybridge"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement ht!
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%
+\backslash
+subfigure[Discount factor]
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%	{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename discount.eps
+	width 40line%
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% }
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+SA-Discount factor
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "SAdiscount"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Following conclusions can be drawn by intepreting the changes in the optimal
+ time to execute the PI with respect to different criteria
+\end_layout
+
+\begin_layout Itemize
+The lower the impact ratio
+\change_inserted 252894346 1430666434
+ (
+\begin_inset Formula $CI_{A}/PI$
+\end_inset
+
+),
+\change_unchanged
+ is, the longer the optimal time to execute intervention (OTE) becomes (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "impactratio"
+
+\end_inset
+
+).
+ The OTE is quite sensitive to the impact ratio (
+\begin_inset Formula $CI_{A}/PI$
+\end_inset
+
+), but not so sensitive to the impact ratio (
+\begin_inset Formula $CI_{B}/PI$
+\end_inset
+
+).
+ This is because the impacts incurred by executing the CI for the snow-barriers
+ system will dramatically change the reliability of the system itself.
+ Whilst, the impact ratio 
+\begin_inset Formula $CI_{B}/PI$
+\end_inset
+
+ has to be multipled with the transition probability of the latent state
+ of the bridge, which is in fact significantly low in this example (Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "totalmatrix"
+
+\end_inset
+
+ and Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "csevolution"
+
+\end_inset
+
+), 
+\end_layout
+
+\begin_layout Itemize
+The OTE depends greatly on the values of parameters of the reliability function
+ used for the snow-barrier system.
+ As can be seen from Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "reliabilitySPS"
+
+\end_inset
+
+, the OTE decreases nonliearly as values of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+ increases.
+ In the case of Weibul function, if value of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+ increases, it means the rate of failure increases and therefore it is better
+ to execute the PI earlier, 
+\end_layout
+
+\begin_layout Itemize
+The intensity of avalanche has a great influence on both the OTE and the
+ annual impacts (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "reliabilitybridge"
+
+\end_inset
+
+-a) when it reaches to a certain threhold.
+ For example, when the intensity of avalanche becomes more than 10 
+\begin_inset Formula $m^{3}$
+\end_inset
+
+, there is a sharp decreasing in the OTE and a sharp increasing in the value
+ of impact.
+ This is because, the bridge itself was designed to withstand a certain
+ intensity of avalanche.
+ However, if the intensity of avalanche reaches to a certain level, there
+ is a higher chance that the bridge will be in adequate level of service.
+ Under this circumstance, the value of CI on the bridge will plays an important
+ part in determining the OTE.
+ This finding is important for manager to carefully use the fragility curve
+ for their objects by examining the most likely values of parameters of
+ the fragility curves (e.g.
+ values of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ in Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fragility3"
+
+\end_inset
+
+)), 
+\end_layout
+
+\begin_layout Itemize
+The OTE depends also on actual state probability of the bridge.
+ This conclusion can be confirmed with the curves shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "reliabilitybridge"
+
+\end_inset
+
+-b.
+ The OTE tends is shorter when the state of the bridge gets worse (e.g.
+ from being in state 1 to state 5).
+ In this figure, the changes is not significant.
+ However, it is not because the values of the state probability of the bridge
+ but it is because the transition probability from manifest CS to latent
+ Cs is really small.
+ This is an interesting finding and convey an implication that managers,
+ when determining the OTE for the snow-barrier system, they have to take
+ into consideration of how the actual condition of other objects that being
+ affected by the avalanche (e.g.
+ the bridge), 
+\end_layout
+
+\begin_layout Itemize
+Changes in value of the discount factor is quite sensible to the change
+ in the impact.
+ However, it does not significantly change the value of OTE.
+ In this example, the values of the discount factor was varied from 0 to
+ 10%, however, the difference of the OTE is only 4 years (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "SAdiscount"
+
+\end_inset
+
+).
+ This is also an interesting point when managers consider to manage both
+ the snow-barriers system and the bridge in a infinite time (e.g.
+ long term management).
+ Under an infinite case, the values of discount factor can be close to 0
+ (e.g.
+ interest rate in developed nations is extremely small) or even can be ignored
+ from the mathematical view points.
+ This will make the numerical solution to the model more convenient.
+ 
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% % %
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "conclusion"
+
+\end_inset
+
+ In this paper, a 
+\change_inserted 372052361 1449653779
+two states 
+\change_unchanged
+time-dependent replacement model
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+this needs to use the same terminology as at the beginning of the article
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+agree
+\change_inserted 372052361 1449653791
+ and add two state here
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+, which can be used to determine the optimal time to execute a preventive
+ intervention for avalanche protection structures, is presented.
+ The methodology is composed of an extended time-dependent replacement model
+ that can take into consideration of both finite and infinite time horizon
+ and impacts incurred during the preventive intervention and corrective
+ intervention of the avalanche protection structures and the impacts incurred
+ if the critical structures fail to provide adequate level of serives one
+ avalanche hit them.
+ It also includes the discussion on the integration of existing fragility
+ curves and Markov model used to model the manifest and latent deterioration
+ of civil structures that could be in state of failure due to avalanche.
+\end_layout
+
+\begin_layout Standard
+A numerical example was conducted for a snow-barriers system, which was
+ installed in the starting zones of avalanche.
+ The reliability of the system decreases over time and might fails to against
+ avalanche.
+ Consequently, avalanche might come into contact with a bridge and cause
+ the bridge to be in inadequate level of service.
+ Results of the example highlight important message to infrastructure managers
+ of the avalanche protection system that the system should be replaced at
+ an optimal time in order to minimize all negative impacts incurred by the
+ stakeholders.
+ The determination of the time is crucially dependent on the ratio of the
+ impacts between the corrective intervention and preventive intervention
+ as well as on the parameter values used to represent the reliability of
+ the snow-barriers system.
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted 87135909 1434973144
+ 
+\change_unchanged
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+bibliographystyle{unsrt} 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "reference"
+options "plainnat"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%%%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
