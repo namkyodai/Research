@@ -1,0 +1,1007 @@
+\documentclass[10pt]{article}
+\usepackage{makeidx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[dvipsnames,svgnames,table]{xcolor}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{ulem}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\author{Nam Lethanh}
+\title{Vulnerability Assessment of Arizona's Critical Infrastructure}
+\usepackage[paperwidth=612pt,paperheight=792pt,top=72pt,right=72pt,bottom=72pt,left=72pt]{geometry}
+
+\makeatletter
+	\newenvironment{indentation}[3]%
+	{\par\setlength{\parindent}{#3}
+	\setlength{\leftmargin}{#1}       \setlength{\rightmargin}{#2}%
+	\advance\linewidth -\leftmargin       \advance\linewidth -\rightmargin%
+	\advance\@totalleftmargin\leftmargin  \@setpar{{\@@par}}%
+	\parshape 1\@totalleftmargin \linewidth\ignorespaces}{\par}%
+\makeatother 
+
+% new LaTeX commands
+
+
+\begin{document}
+
+
+\textbf{\uppercase{A ROUTING ALGORITHM TO CONSTRUCT CANDIDATE WORKZONES WITH
+DISTANCE CONSTRAINTS}}
+
+Charel Eicher$^{1}$,$^{ }$Nam Lethanh$^{2,4}$, and Bryan T. Adey$^{3}$
+
+$^{1}$ Master student, Department of Civil, Environmental and Geomatic
+Engineering, ETH Z\"{u}rich, Switzerland
+
+$^{2}$ Dr. Institute of Construction and Infrastructure Management, ETH
+Z\"{u}rich, Switzerland
+
+$^{3}$ Prof. Dr. Institute of Construction and Infrastructure Management, ETH
+Z\"{u}rich, Switzerland
+
+$^{4}$ \href{mailto:lethanh@ibi.baug.ethz.ch}{lethanh@ibi.baug.ethz.ch}
+
+\begin{abstract} A road network consists of multiple objects that deteriorate over time with different speeds of deterioration. In order to provide an adequate level of service over longer time periods, these objects will eventually require interventions. The later the interventions the higher the impacts, e.g. additional travel time, increased accident rates, incurred by users due to a decreasing level of service [Adey et al., 2012]. The earlier the interventions the higher the impacts incurred by users due to interruption to traffic during the interventions. As road managers are trying in general to maximize the benefit obtained from the road network, it is in their interest to determine work programs that do so, i.e. interventions should be executed not too earlier and not too late. 
+This is relatively straight forward, at least conceptually, when looking at individual objects. It becomes more complicated when looking at objects embedded within a network. This is because the impacts related to executing interventions or due to inadequate levels of service are not additive. In other words, it is possible that it will be better to execute interventions on two objects in one work zone simultaneously results in lower impacts than executing the same two interventions two years apart, for example due to not having traffic disruptions in two successive years. It might also reduce the total intervention set-up costs.
+
+The objects included in the optimal work-zones depend on many factors, such as the condition / performance of the objects, the length of the work zone, the traffic configuration within the work zone, the length of time required to execute the interventions, and the budget available. In recent research, optimization models have been developed to solve such problems for small road networks \citep{Hajdin2007,Lethanh2014b}, and some research has been oriented in automating the construction of the possible work programs to deal with large road networks \citep{Eicher2015}. A short-coming of the research to date, however, is that no effort has been spent to make the models suitable for use in Geographical Information Systems (GIS); something that is necessary in the world of modern infrastructure management, and allows a much faster setup of a graphical network model with nodes and links coded with geographical coordinates. 
+
+In this paper, a GIS based model is proposed to be used in the determination of optimal work-zones for large road networks. It includes, within the GIS platform, the development of a routing algorithm that can be used together with these optimization models to automatically establish the combination matrix, taking into consideration constraints on the length of the work zone and the distance between work-zones. 
+
+The GIS platform enables users to establish input relational data tables in a way that can be linked directly to construct the routing algorithm and the optimization model. In addition, the GIS platform can be used to visualize the optimally selected work-zones on the entire road network. The proposed model is illustrated with an example of a road network in the Canton of Wallis, Switzerland, including more than 2'000 bridges, tunnels, and road sections. 
+\end{abstract}
+\section{introduction}
+
+Road networks are comprised of different types of objects, such as road
+sections, bridges, and tunnels. These objects are subjected to deterioration and,
+therefore, interventions (e.g. repair, rehabilitation, replacement) need to be
+executed to ensure that they continue to provide adequate levels of service. When
+an intervention is executed on an object, a workzone has to be set up to ensure
+that the intervention can be executed. When there are more than one object on
+which interventions are to be executed there is the possibility of grouping
+multiple objects within one work zone. Whether or not they are included, however,
+depends on their closeness to each other, the benefits of grouping them together
+as opposed to establishing separate work zones and constraints, such as the
+amount of funding available, the maximum allowed length of a work zone, and the
+minimum allowed distance between workzones. An infrastructure manager is, of
+course, interested in determining the set of workzones\footnote{a set of
+workzones can either be a single workzone or a group of multiple workzones}.
+
+The importance of having an optimal set of workzones can be simply explained
+with the following fictive road link consisting of 2 lanes comprised of five
+objects (Figure \ref{fig:1}). Object 1, 3, and 5 are in states in which
+interventions are required while object 2 and 4 are in states in which no
+interventions are required.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=214pt]{fig-1.eps}
+\caption{Possible sets of workzones (WZ) for a road link of five
+objects}\label{fig:1}
+\end{center}
+\end{figure}
+
+With 3 objects on which interventions are to be executed, there are 9 possible
+sets of workzones. The sets of workzones from 1 to 4 are possible when there is
+sufficient amount of budget. Whilst, in the sets from 5 to 9, a workzone might
+not include objects that require intervention due to limitation in the amount of
+budget. It is assumed that within a workzone, one lane is closed while the other
+lane is opened with a restriction on speed. In workzone set 1, there are 3
+workzones. However, in workzone set 2, there are 2 workzones and one of the
+workzone includes objects 1, 2, and 3. In this workzone, there is no intervention
+on object 2 because it is still in good state. However, restriction on speed
+limit of vehicles is still applied. This is because it is not feasible with
+regard to the capacity of traffic control to allow 2 lanes of traffic flows in
+opposite directions in a short distance. Evidently, the impacts on stakeholders
+are different for each set of workzone, e.g. with workzone set 1, the owner of
+the road would have higher setup costs than with workzone set 2, where the users
+if the road could have higher additional travel time costs.
+
+The problem of determination of optimal workzones undoubtedly becomes
+challenging when: 1) there is no longer a road link of only a few objects but a
+network of hundreds or thousands objects; 2) objects are not homogeneous sets but
+they are a mix of many different types of objects; 3) there are more than one
+intervention type or traffic configuration to be considered for each object (e.g.
+traffic flows for a road section of 4 lanes can be formed with more than one
+configuration).
+
+Recently, research work focused on solving this problem has been conducted, but
+there are still improvements to be made before implementation is possible. One of
+the pioneer research was the work of Hajdin \& Lindenmann (2007) and Hajdin \&
+Adey (2005), which presented a linear optimization model to determine a single
+workzone, but not multiple workzones. In setting up the model, it is a must to
+construct two matrices: the continuity matrix and the combination matrix. These
+two matrices have to be setup so that input parameters (e.g. intervention cost,
+long-term benefits) related to each object and to any possible workzone can be
+estimated when the optimization model runs. In Hajdin \& Lindenmann (2007), the
+authors verified the robustness of the model with a simple example of a road link
+with 36 objects. They setup the two matrices manually and thus it was possible
+with the size of the example. However, it is a tedious process and thus not
+possible if the size of the link becomes a network of hundreds or thousands
+objects and with a network having looping structure. This was done similarly in
+Hajdin \& Adey (2005).
+
+The approach emphasized in these two papers was extended from one work zone to
+multiple work zones in the work presented by Lethanh et al. (2014), using a
+mixed-integer linear model. This also involved the introduction of maximum length
+of a workzone and minimum distance between two adjacent workzones constraints.
+This work was, however, also done by setting up the continuity and combination
+matrices manually.
+
+In order to overcome the limitation of having to do this, it is necessary to
+develop a routing algorithm that allows a computer program to generate the two
+matrices giving only initial information such as the numbers of objects, numbers
+of nodes, maximum workzones length, and minimum distance between two adjacent
+workzones. The goal of the work presented in this paper was to develop such an
+algorithm.
+
+The remainder of the paper is set-up as follows. The optimization model of
+Lethanh et al. (2014), which is the model that this work is based on, is
+described in the following section. Section 3 contains the developed routing
+algorithm. An example on a road network with 567 objects is shown in Section 4.
+The last section concludes the paper with highlighted points and elaborates
+recommendations for future extension of the work.
+
+\section{The model}
+
+The objective function is
+
+$Maximize{\rm{  }}Z = \sum\limits_{n = 1}^N {\sum\limits_{k = 1}^K {{\delta
+_{n,k}} \cdot ({B_{n,k}} - {C_{n,k}})} } $\textbf{[1]}
+
+where ${\delta _{n,k}}$ is a binary variable, which has a value of 1 if an
+intervention of type \textit{k }is executed on\textit{ }road segment \textit{n}
+and 0 otherwise. ${B_{n,k}}$ and ${C_{n,k}}$ are the long term benefit and cost
+of executing an intervention of type \textit{k} on object \textit{n},
+respectively.
+
+Subject to the following constraints:
+
+\uline{Continuity}
+
+$\sum\limits_{k = 1}^K {{\delta _{n,k}}}  = 1{\rm{    }}\forall n$\textbf{[2]}
+
+This constraint enforces the model to select only one intervention of \textit{k}
+on object \textit{n}.
+
+\uline{Budget}
+
+$\sum\limits_{n = 1}^N {\sum\limits_{k = 1}^K {{\delta _{n,k}}}  \cdot {C_{n,k}}
+\le \Omega } $\textbf{[3]}
+
+The budget for executing interventions on the network is in general limited. The
+total cost of all interventions on the network cannot exceed a certain threshold
+$\Omega $ for a given planning period.
+
+\uline{Maximum workzone length}
+
+$\sum\limits_{l = a_l^w}^{e_l^w} {\sum\limits_{n = a_n^w}^{e_n^w} {{\lambda
+_{l,n}}} }  \le {\Lambda ^{MAX}}{\rm{ }}\forall w$\textbf{[4]}
+
+where ${\lambda _{l,n}}$ is the length of the object [\textit{l,n}]; ${a^w}{\rm{
+}}\left( {l = a_l^w,n = a_n^w} \right)$ is the first object of the workzone $w =
+(1,...,W)$, and object; ${e^w}{\rm{ }}\left( {l = e_l^w,n = e_n^w} \right)$ is
+the last object in the workzone. $W2LOK$ is the maximum length of the workzone.
+
+\uline{Minimum distance}
+
+$\sum\limits_{l = a_l^d}^{e_l^d} {\sum\limits_{n = a_n^d}^{e_n^d} {{\lambda
+_{l,n}}} }  \ge {\Lambda ^{MIN}}{\rm{ }}\forall d$\textbf{[5]}
+
+where ${a^d}{\rm{ }}\left( {l = a_l^d,n = a_n^d} \right)$ is the first object
+the default section \textit{d}; ${e^d}{\rm{ }}\left( {l = e_l^d,n = e_n^d}
+\right)$ is the last object of the default section \textit{d}; ${\Lambda ^{MIN}}$
+is minimum distance between two workzones.
+
+\uline{Combination of maximum workzone length and minimum distance}
+
+The maximum workzone length and the minimum distance between workzones
+constraint is merged into one constraint by defining a combination matrix of
+objects within the network that cannot be subjected to an intervention
+simultaneously.
+
+$\sum\limits_{n = 1}^N {\sum\limits_{k = 1}^K {{\delta _{n,k}} \cdot {\gamma
+_{n,k,i}}} }  \le 1{\rm{ }}\forall i$\textbf{[6]}
+
+${\gamma _{n,k,i}}$ is a I-by-J matrix, with I is the total number of rows and
+each row contains an object combination that cannot be selected simultaneously.
+
+\section{The routing algorithm}
+
+The algorithm was is described in this section using an example of a network
+comprised of 45 objects and 31 nodes with an equal length of 5 km per object
+(Figure \ref{fig:2}). The maximum length of any workzone and the minimum distance
+between two adjacent workzones are 15 km.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=224pt]{fig-2.eps}
+\caption{A simplified road network of 45 objects}\label{fig:2}
+\end{center}
+\end{figure}
+
+In Figure \ref{fig:2}, objects and nodes are indicated by numbers with no
+circles and numbers with circles, respectively. This network is different from
+the examples used in Hajdin \& Adey (2005); Hajdin \& Lindenmann (2007); and
+Lethanh et al. (2014) in that it has loops. The looping structure of the network
+becomes an obstacle when having to construct the combination and continuity
+matrices, which represent all possible ways to form a workzone starting from the
+first object in the workzone. The main task of the proposed algorithm is to
+calculate all the possible paths in the network taking into consideration both
+maximum workzone length and minimum distance between two adjacent workzones.
+Matlab code for each step is publicly available at Github
+repository\footnote{https://github.com/namkyodai/workzone-routing-algorithm}.
+
+\subsection{Maximum workzone length}
+
+For a given object \textit{n }in the network, the algorithm calculates all paths
+starting with this object (max-paths). The lengths of these paths are defined as
+the sum of the lengths of the objects. The paths are then stored in a matrix
+format. For example, with object 1, there are in total 6 paths that can be formed
+(solid thick lines in Figure \ref{fig:3} and combination of objects in Table
+\ref{tbl:1}).
+
+\begin{center}
+
+\begin{table}[h]
+\caption{Possible paths starting from object 1 statisfying maximum length}
+
+\vspace{3pt} \noindent
+\begin{tabular}{p{30pt}|p{19pt}|p{19pt}|p{19pt}|p{19pt}|p{19pt}|p{19pt}}
+\hline
+\parbox{30pt}{\centering 
+Paths
+} & \parbox{19pt}{\centering 
+1
+} & \parbox{19pt}{\centering 
+2
+} & \parbox{19pt}{\centering 
+3
+} & \parbox{19pt}{\centering 
+4
+} & \parbox{19pt}{\centering 
+5
+} & \parbox{19pt}{\centering 
+6
+} \\
+\hline
+\parbox{30pt}{\centering \multirow{3}{*}{
+Objects
+}} & \parbox{19pt}{\centering 
+1
+} & \parbox{19pt}{\centering 
+1
+} & \parbox{19pt}{\centering 
+1
+} & \parbox{19pt}{\centering 
+1
+} & \parbox{19pt}{\centering 
+1
+} & \parbox{19pt}{\centering 
+1
+} \\
+\cline{2-7} 
+ & \parbox{19pt}{\centering 
+2
+} & \parbox{19pt}{\centering 
+2
+} & \parbox{19pt}{\centering 
+3
+} & \parbox{19pt}{\centering 
+3
+} & \parbox{19pt}{\centering 
+3
+} & \parbox{19pt}{\centering 
+3
+} \\
+\cline{2-7} 
+ & \parbox{19pt}{\centering 
+4
+} & \parbox{19pt}{\centering 
+5
+} & \parbox{19pt}{\centering 
+4
+} & \parbox{19pt}{\centering 
+6
+} & \parbox{19pt}{\centering 
+7
+} & \parbox{19pt}{\centering 
+10
+} \\
+\hline
+\end{tabular}
+\vspace{2pt}
+\label{tbl:1}\end{table}
+
+\end{center}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=224pt]{fig-3.eps}
+\caption{All paths starting from object 1}\label{fig:3}
+\end{center}
+\end{figure}
+
+\subsection{Minimum distance between two adjacent workzones}
+
+The algorithm calculates, for a given object \textit{n}, all paths starting with
+this object (min-paths). Objects are added to a min-path as long as the
+min-path's length is smaller than the minimum distance between workzones. The
+length of a min-path is defined as the sum of the lengths of its objects minus
+the length of the first object in the path. Thus the number of objects in the
+paths for the minimum distance exceeds the number of objects in the paths for the
+maximum work zone length. Eventually, the total number of paths starting with an
+object for the minimum distance between workzones is significantly larger than
+the total number of paths starting with that object for the maximum workzone
+length. The following figure and table illustrate the matrix formation for the
+minimum distance constraint.
+
+\begin{center}
+
+\begin{table}[h]
+\caption{Possible min-paths starting after object 1}
+
+\vspace{3pt} \noindent
+\begin{tabular}{p{33pt}|p{8pt}|p{8pt}|p{8pt}|p{10pt}|p{8pt}|p{8pt}|p{8pt}|p{8pt}|p{8pt}|p{9pt}|p{9pt}|p{10pt}|p{10pt}|p{10pt}|p{10pt}}
+\hline
+\parbox{33pt}{\centering 
+Paths
+} & \parbox{8pt}{\centering 
+1
+} & \parbox{8pt}{\centering 
+2
+} & \parbox{8pt}{\centering 
+3
+} & \parbox{10pt}{\centering 
+4
+} & \parbox{8pt}{\centering 
+5
+} & \parbox{8pt}{\centering 
+6
+} & \parbox{8pt}{\centering 
+7
+} & \parbox{8pt}{\centering 
+8
+} & \parbox{8pt}{\centering 
+9
+} & \parbox{9pt}{\centering 
+10
+} & \parbox{9pt}{\centering 
+11
+} & \parbox{10pt}{\centering 
+12
+} & \parbox{10pt}{\centering 
+13
+} & \parbox{10pt}{\centering 
+14
+} & \parbox{10pt}{\centering 
+15
+} \\
+\hline
+\parbox{33pt}{\centering \multirow{3}{*}{
+Objects
+}} & \parbox{8pt}{\centering 
+2
+} & \parbox{8pt}{\centering 
+2
+} & \parbox{8pt}{\centering 
+2
+} & \parbox{10pt}{\centering 
+2
+} & \parbox{8pt}{\centering 
+2
+} & \parbox{8pt}{\centering 
+2
+} & \parbox{8pt}{\centering 
+3
+} & \parbox{8pt}{\centering 
+3
+} & \parbox{8pt}{\centering 
+3
+} & \parbox{9pt}{\centering 
+3
+} & \parbox{9pt}{\centering 
+3
+} & \parbox{10pt}{\centering 
+3
+} & \parbox{10pt}{\centering 
+3
+} & \parbox{10pt}{\centering 
+3
+} & \parbox{10pt}{\centering 
+3
+} \\
+\cline{2-16} 
+ & \parbox{8pt}{\centering 
+4
+} & \parbox{8pt}{\centering 
+4
+} & \parbox{8pt}{\centering 
+4
+} & \parbox{10pt}{\centering 
+4
+} & \parbox{8pt}{\centering 
+5
+} & \parbox{8pt}{\centering 
+5
+} & \parbox{8pt}{\centering 
+4
+} & \parbox{8pt}{\centering 
+4
+} & \parbox{8pt}{\centering 
+6
+} & \parbox{9pt}{\centering 
+6
+} & \parbox{9pt}{\centering 
+7
+} & \parbox{10pt}{\centering 
+10
+} & \parbox{10pt}{\centering 
+10
+} & \parbox{10pt}{\centering 
+10
+} & \parbox{10pt}{\centering 
+10
+} \\
+\cline{2-16} 
+ & \parbox{8pt}{\centering 
+3
+} & \parbox{8pt}{\centering 
+6
+} & \parbox{8pt}{\centering 
+7
+} & \parbox{10pt}{\centering 
+10
+} & \parbox{8pt}{\centering 
+6
+} & \parbox{8pt}{\centering 
+8
+} & \parbox{8pt}{\centering 
+2
+} & \parbox{8pt}{\centering 
+5
+} & \parbox{8pt}{\centering 
+5
+} & \parbox{9pt}{\centering 
+8
+} & \parbox{9pt}{\centering 
+0
+} & \parbox{10pt}{\centering 
+11
+} & \parbox{10pt}{\centering 
+12
+} & \parbox{10pt}{\centering 
+15
+} & \parbox{10pt}{\centering 
+18
+} \\
+\hline
+\end{tabular}
+\vspace{2pt}
+\end{table}
+
+\end{center}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=224pt]{fig-4.eps}
+\caption{All paths starting after object 1}
+\end{center}
+\end{figure}
+
+It can be seen that a min-path has its total length greater than the maximum
+workzone path. For example, path 10 is comprised of objects 3, 6 and 8 with its
+total length of 15 km. Then if the object 1 is selected to be in a workzone, the
+other workzone can only be formed after object 8.
+
+\subsection{Impossible object combinations}
+
+After all max-paths and min-paths for all objects in the network have been
+identified, the algorithm searches for a set of impossible object combinations.
+Impossible object combinations are pairs of network objects that violate the
+maximum workzone length constraint if they are to have interventions
+simultaneously. For example, if object 1 is part of a workzone, impossible object
+combinations are objects that are too far away to be part of the same workzone as
+object 1, but too close to be part of an adjacent workzone (they are objects 8,
+11, 12, 15, and 18 (Table \ref{tbl:2})).
+
+
+\begin{table}[h]
+\caption{Impossible object's combination starting from object 1}
+
+\vspace{3pt} \noindent
+\begin{tabular}{p{88pt}|p{2pt}|p{7pt}|p{7pt}|p{7pt}|p{7pt}|p{7pt}|p{7pt}|p{7pt}|p{13pt}|p{13pt}|p{13pt}|p{13pt}|p{13pt}}
+\hline
+\parbox{88pt}{\raggedright 
+Constrains
+} & \multicolumn{13}{|c}{\parbox{123pt}{\centering 
+Objects
+}} \\
+\hline
+\parbox{88pt}{\raggedright 
+Maximum length
+} & \parbox{2pt}{\centering 
+1
+} & \parbox{7pt}{\centering 
+2
+} & \parbox{7pt}{\centering 
+3
+} & \parbox{7pt}{\centering 
+4
+} & \parbox{7pt}{\centering 
+5
+} & \parbox{7pt}{\centering 
+6
+} & \parbox{7pt}{\centering 
+7
+} & \parbox{7pt}{\centering 
+-
+} & \parbox{13pt}{\centering 
+10
+} & \parbox{13pt}{\centering 
+-
+} & \parbox{13pt}{\centering 
+-
+} & \parbox{13pt}{\centering 
+-
+} & \parbox{13pt}{\centering 
+-
+} \\
+\hline
+\parbox{88pt}{\raggedright 
+Minimum distance
+} & \parbox{2pt}{\centering 
+1
+} & \parbox{7pt}{\centering 
+2
+} & \parbox{7pt}{\centering 
+3
+} & \parbox{7pt}{\centering 
+4
+} & \parbox{7pt}{\centering 
+5
+} & \parbox{7pt}{\centering 
+6
+} & \parbox{7pt}{\centering 
+7
+} & \parbox{7pt}{\centering 
+8
+} & \parbox{13pt}{\centering 
+10
+} & \parbox{13pt}{\centering 
+11
+} & \parbox{13pt}{\centering 
+12
+} & \parbox{13pt}{\centering 
+15
+} & \parbox{13pt}{\centering 
+18
+} \\
+\hline
+\parbox{88pt}{\raggedright 
+Invalid combination
+} & \parbox{2pt}{\centering 
+-
+} & \parbox{7pt}{\centering 
+-
+} & \parbox{7pt}{\centering 
+-
+} & \parbox{7pt}{\centering 
+-
+} & \parbox{7pt}{\centering 
+-
+} & \parbox{7pt}{\centering 
+-
+} & \parbox{7pt}{\centering 
+-
+} & \parbox{7pt}{\centering 
+8
+} & \parbox{13pt}{\centering 
+-
+} & \parbox{13pt}{\centering 
+11
+} & \parbox{13pt}{\centering 
+12
+} & \parbox{13pt}{\centering 
+15
+} & \parbox{13pt}{\centering 
+18
+} \\
+\hline
+\end{tabular}
+\vspace{2pt}
+\label{tbl:2}\end{table}
+
+
+\subsection{The combination matrix}
+
+The combination matrix is a m-by-n matrix where m is the number of constraints
+and n is the sumproduct of all the objects in the network and the number of
+intervention. The number of impossible object combinations and thus the number of
+constraints depends on the difference between the thresholds for the minimum
+distance between work zones and the maximum work zone length constraints. With
+increasing difference between these two thresholds, the number of impossible
+object combinations grows greatly with the number of constraints. Below is an
+example of the formulation of linear constraints for the impossible combinations
+with respect to object 1.
+
+\begin{figure}[h]
+\begin{center}
+
+\caption{Combination matrix starting from object
+1}\includegraphics[width=451pt]{fig-10.eps}\label{fig:4}
+\end{center}
+\end{figure}
+
+In Table \ref{fig:4}, the interventions to be executed on multiple objects can
+be seen. There are 2 types of interventions for objects 1, and 2, denoted 0 and
+1, and 3 types of intervention for objects 7, 8, 10, 11, and 12, denoted 0, 1 and
+2. Interventions denoted as ``0'' are the ``do-nothing'' interventions, i.e.
+there is no physical intervention executed and there is no change to the traffic
+configuration. Interventions denoted 1 and 2 are combinations of a physical
+intervention type and a traffic configuration. If intervention 1 or intervention
+2 is selected, then the object is included in the workzone. Otherwise it is not.
+The binary values appeared in the combination matrix (refer to Eq. [6]) become 1
+when it is impossible to form two workzones adjuscent to each other. This binary
+value will be multiplied with the binary in the upper part of the table to give a
+possible workzone. This means that in Table \ref{fig:4}, objects 1 are in a work
+zones, and objects 8, 11 and 12 are not in a work zone.
+
+\subsection{The continuity matrix}
+
+The continuity matrix ensures that exactly one intervention is selected for
+every object in the network. The continuity matrix is a p-by-n matrix where p is
+the number of objects in the network and n is the sumproduct of all the objects
+in the network and the number of intervention.
+
+\begin{figure}[h]
+\begin{center}
+
+\caption{Continuity matrix}\includegraphics[width=450pt]{fig-11.eps}
+\end{center}
+\end{figure}
+
+The right hand side of the continuity matrix shows the number of connections for
+every object. For example, object 1 is connected to two adjacent objects and
+object 2 is connected to four adjacent objects.
+
+\subsection{Example results}
+
+The optimal set of workzones for the simplified example is illustrated in Figure
+\ref{fig:5}. Workzones (shown with thick lines) have been identified and all
+constraints have been satisfied.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=224pt]{fig-5.eps}
+\caption{Result of the simplified example}\label{fig:5}
+\end{center}
+\end{figure}
+
+\section{Example}
+
+To demonstrate the robustness and efficiency of the routing algorithm, it was
+used to determine optimal work zones for a road network comprised of 567 objects
+with a total length of 671 km was tested.
+
+\subsection{Intervention types and condition states}
+
+\begin{center}
+
+\begin{table}[h]
+\caption{Condition states-cost and benefit of intervention (per 1 km)}
+
+\vspace{3pt} \noindent
+\begin{tabular}{|p{34pt}|p{82pt}|p{34pt}|p{34pt}|p{34pt}|}
+\hline
+\parbox{34pt}{\centering 
+CS
+} & \parbox{82pt}{\centering 
+Road description
+} & \parbox{34pt}{\centering 
+Low Benefit
+} & \parbox{34pt}{\centering 
+High Benefit
+} & \parbox{34pt}{\centering 
+Costs
+} \\
+\hline
+\parbox{34pt}{\centering 
+1
+} & \parbox{82pt}{\centering 
+Like new
+} & \parbox{34pt}{\centering 
+0
+} & \parbox{34pt}{\centering 
+1
+} & \parbox{34pt}{\centering 
+1
+} \\
+\hline
+\parbox{34pt}{\centering 
+2
+} & \parbox{82pt}{\centering 
+Good
+} & \parbox{34pt}{\centering 
+1
+} & \parbox{34pt}{\centering 
+2
+} & \parbox{34pt}{\centering 
+1
+} \\
+\hline
+\parbox{34pt}{\centering 
+3
+} & \parbox{82pt}{\centering 
+Acceptable
+} & \parbox{34pt}{\centering 
+2
+} & \parbox{34pt}{\centering 
+4
+} & \parbox{34pt}{\centering 
+1
+} \\
+\hline
+\parbox{34pt}{\centering 
+4
+} & \parbox{82pt}{\centering 
+Insufficient
+} & \parbox{34pt}{\centering 
+4
+} & \parbox{34pt}{\centering 
+8
+} & \parbox{34pt}{\centering 
+1,5
+} \\
+\hline
+\parbox{34pt}{\centering 
+5
+} & \parbox{82pt}{\centering 
+Bad
+} & \parbox{34pt}{\centering 
+8
+} & \parbox{34pt}{\centering 
+16
+} & \parbox{34pt}{\centering 
+1,5
+} \\
+\hline
+\end{tabular}
+\vspace{2pt}
+\label{tbl:3}\end{table}
+
+\end{center}
+
+For every object, three types of interventions can be executed: 1) Intervention
+type 0: Do nothing; 2) Intervention type 1: Low benefit intervention; 2)
+Intervention type 2: High benefit intervention. All objects are considered to be
+in one of five discrete states, with worsening physical condition from state 1 to
+state 5. Executing interventions on objects in state 1 yield low benefits whereas
+intervening on objects in state 5 yield high benefits. The exact values are given
+in Table \ref{tbl:3}. States for objects were randomly generated, but once
+determined, they were used for all investigated scenarios.
+
+\subsection{Scenarios and results}
+
+Four different scenarios were investigated by means of changes in the budget,
+the maximum workzone length and the minimum distance between workzones. The
+optimal sets of workzones were obtained by running the optimization model for
+these scenarios (Table 7).
+
+\begin{center}
+
+\begin{table}[h]
+\caption{Scenarios and Results}
+
+\vspace{3pt} \noindent
+\begin{tabular}{|p{54pt}|p{66pt}|p{40pt}|p{46pt}|p{43pt}|p{38pt}|p{63pt}|}
+\hline
+\parbox{54pt}{\centering 
+Results
+} & \parbox{66pt}{\centering 
+Budget (mus\footnote{\textit{mus} stands for monetary units})
+} & \parbox{40pt}{\centering 
+Maximum workzone length
+} & \parbox{46pt}{\centering 
+Minimum distance
+} & \parbox{43pt}{\centering 
+Number of objects selected
+} & \parbox{38pt}{\centering 
+Objective function
+} & \parbox{63pt}{\centering 
+Total number of constraints
+} \\
+\hline
+\parbox{54pt}{\centering 
+Unit
+} & \parbox{66pt}{\centering 
+[ MU/1'000 m]
+} & \parbox{40pt}{\centering 
+[ m ]
+} & \parbox{46pt}{\centering 
+[ m ]
+} & \parbox{43pt}{\centering 
+[ - ]
+} & \parbox{38pt}{\centering 
+[ MU ]
+} & \parbox{63pt}{\centering 
+[ - ]
+} \\
+\hline
+\parbox{54pt}{\centering 
+Scenario 1
+} & \parbox{66pt}{\centering 
+50
+} & \parbox{40pt}{\centering 
+5'000
+} & \parbox{46pt}{\centering 
+5'000
+} & \parbox{43pt}{\centering 
+23
+} & \parbox{38pt}{\centering 
+483.3
+} & \parbox{63pt}{\centering 
+2'911
+} \\
+\hline
+\parbox{54pt}{\centering 
+Scenario 2
+} & \parbox{66pt}{\centering 
+50
+} & \parbox{40pt}{\centering 
+5'000
+} & \parbox{46pt}{\centering 
+8'000
+} & \parbox{43pt}{\centering 
+29
+} & \parbox{38pt}{\centering 
+456.2
+} & \parbox{63pt}{\centering 
+6'109
+} \\
+\hline
+\parbox{54pt}{\centering 
+Scenario 3
+} & \parbox{66pt}{\centering 
+40
+} & \parbox{40pt}{\centering 
+6'000
+} & \parbox{46pt}{\centering 
+8'000
+} & \parbox{43pt}{\centering 
+17
+} & \parbox{38pt}{\centering 
+386.6
+} & \parbox{63pt}{\centering 
+5'196
+} \\
+\hline
+\parbox{54pt}{\centering 
+Scenario 4
+} & \parbox{66pt}{\centering 
+Unlimited
+} & \parbox{40pt}{\centering 
+5'000
+} & \parbox{46pt}{\centering 
+8'000
+} & \parbox{43pt}{\centering 
+176
+} & \parbox{38pt}{\centering 
+872.3
+} & \parbox{63pt}{\centering 
+6'108
+} \\
+\hline
+\end{tabular}
+\vspace{2pt}
+\end{table}
+
+\end{center}
+
+In scenario 1, the budget is restricted to 50 \textit{mus}, the maximum workzone
+length and the minimum distance between workzones are set to 5'000 m. For this
+scenario, the final version of the optimization model, contains a total of 2'911
+constraints, and once run the interventions to be executed in the optimal work
+zones are determined to provide a benefit of 483.3 \textit{mus}.
+
+In scenario 2, the budget and the maximum workzone length remain unchanged (with
+respect to scenario 1), whereas the minimum distance between workzones is
+increased to 8'000 m. Due to this increase, the gap between the minimum distance
+between workzones and the maximum workzone length increases. The larger gap
+(3'000 m) between those two workzone constraints causes the number of combination
+constraints to rise and the total number of constraints reaches 6'109. The number
+of continuity constraints remains the same for all four scenarios. A slight drop
+in the value of the objective function is observed from 483.3 to 456.2.
+
+In scenario 3, the minimum distance between workzones remains constant (with
+respect to scenario 2). The budget is lowered to 40 \textit{mus} and the maximum
+workzone length is increased to 6'000 m. This increase reduces the gap between
+both work zone constraints from 3'000 to 2'000 m and thus the number of
+impossible object combinations drops again. Scenario 3 has a total of 5'196
+constraints. The decrease in the value of the objective function is caused by the
+reduction in the available budget.
+
+In scenario 4, both workzone length constraints are equal to scenario 2, whereas
+the budget constraint is lifted. The total number of constraints descreases from
+6'109 to 6'108 (no budget constraint).
+
+A strong increase in the total number of objects to have an intervention from 29
+to 176 is observed due to the unlimited budget. However, the value of the
+objective function rises only by a factor of 2. This is because, in the first
+three scenarios, the objects to have an intervention are mainly in condition
+states 4 and 5. In scenario 4, a lot of objects in good condition states and thus
+lower benefits are subject to interventions because of the unrestricted budget.
+
+In all scenarios, computational time was less than 5 minutes on a normal lap top
+computer (32 bits, 4 GB RAM, Dual-Core Intel 2.53 GHz). This infers the power of
+computation and robustness of the model with respect to the size of network,
+especially when comparing with the manual setup, which might not be feasible with
+such a network.
+
+\subsection{Graphical representation of optimal workzones}
+
+Figure \ref{fig:6} illustrates parts of the optimal sets of workzones for the
+four scenarios. The nodes represent interventions and they are notated in the
+format of xx.yy, with xx being the object number and yy being the
+intervention\footnote{Intervention includes physical intervention types and
+traffic configuration}. Workzones are highlighted in rectangular boxes. It can be
+seen how the optimal workzones changes with the changes mentioned in the previous
+section.
+\includegraphics[width=291pt]{fig-6.eps}\includegraphics[width=291pt]{fig-7.eps}\includegraphics[width=291pt]{fig-8.eps}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=291pt]{fig-9.eps}
+\caption{Sets of workzones under 4 different scenarios}\label{fig:6}
+\end{center}
+\end{figure}
+
+\pagebreak{}
+
+\section{Conclusion}
+
+In this paper an efficient routing algorithm to be used to formulate two
+matrices (the continuity and combination matrices) for a mixed-integer linear
+optimization models is presented. Such an algorithm is beneficial if models
+developed to solve network problems, such as those developed by Hajdin \& Adey
+(2005); Hajdin \& Lindenmann (2007); and Lethanh et al. (2014) are to be expanded
+to large networks and networks that contain loops. Setting up the combination and
+continuity matrices, if done manually, is not possible when there are hundreds
+and thousands of objects in a road network. However, with the developed algorithm
+(coded in Matlab), they can be generated with ease. In addition, the algorithm
+allows construction of these two matrices taking into consideration looping
+structures of a road network.
+
+The algorithm was verified with examples of two simplified road networks: one
+with a small size network with only 45 objects to describe the algorithm step by
+step; the other with a large scale network of 567 objects to demonstrate the
+robustness and efficiency of the algorithm.
+
+With the development of this algorithm a substantial barrier to the
+implementation of these types of optimisation models has been removed, in the
+effort to automate the determination of optimal work programs, which are made of
+work zones, for large road networks. Further work will be focused on testing this
+algorithm and much larger networks and integrating it into geographical
+information systems.
+
+\textbf{References}
+
+Hajdin, R. \& Adey, B.T., 2005. An Algorithm to Determine Optimal Highway
+Worksites Subject to Distance and Budget Constraints. In \textit{84th Annual
+Meeting of the Transportation Research Board of the United States of America}.
+Washington D.C., United States of America: Transportation Research Board of the
+United States of America.
+
+Hajdin, R. \& Lindenmann, H.-P., 2007. Algorithm for the Planning of Optimum
+Highway Work Zones. \textit{Journal of Infrastructure Systems}, 13(3),
+pp.202--214.
+
+Lethanh, N., Adey, B.T. \& Sigrist, M., 2014. A Mixed-Integer Linear Model for
+Determining Optimal Work Zones on a Road Network. In \textit{Proceeding of the
+International Conference on Engineering and Applied Sciences Optimization}. KOS
+Island, Greece.
+
+
+\end{document}

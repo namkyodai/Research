@@ -1,0 +1,913 @@
+
+\documentclass[a4paper,3p,times,authoryear]{elsarticle}
+%% The `ecrc' package must be called to make the CRC functionality available
+\usepackage{ecrc}
+\volume{00}
+
+%% set the starting page if not 1
+\firstpage{1}
+
+%% Give the name of the journal
+\journalname{Article under preparation for journal publication }
+\runauth{}
+
+
+\jid{procs}
+
+
+\CopyrightLine{2015}{Published by IMG, IBI, ETHZ, Zurich.}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[figuresright]{rotating}
+\usepackage{color}
+ \usepackage{manyeqns}
+ \usepackage{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{ulem}
+\usepackage[dvipsnames,svgnames,table]{xcolor}
+
+\begin{document}
+\begin{frontmatter}
+
+
+\dochead{}
+
+
+\title{Determining optimal work-zones for large infrastructure networks using a GIS based optimization model}
+
+\author[nam]{Nam Lethanh \corref{cor1}}
+\ead{lethanh@ibi.baug.ethz.ch}
+\author[marcel]{Marcel Burkhalter}
+\ead{bumarcel@student.ethz.ch}
+\author[bryan]{Bryan T. Adey}
+\ead{adey@ibi.baug.ethz.ch}
+\address[nam]{Research Associate, PhD. Institute of Construction and Infrastructure Management, Swiss Federal Institute of Technology (ETH), Z\"{u}rich 8093, Switzerland}
+\address[marcel]{Master student, Institute for Transport Planning and Systems , Swiss Federal Institute of Technology (ETH), Z\"{u}rich 8093, Switzerland}
+\address[bryan]{Professor, PhD. Institute of Construction and Infrastructure Management, Swiss Federal Institute of Technology (ETH), Z\"{u}rich 8093, Switzerland}
+
+\begin{abstract}
+A road network consists of multiple objects that deteriorate over time with different speeds of deterioration. In order to provide an adequate level of service over longer time periods, these objects will eventually require interventions. The later the interventions the higher the impacts, e.g. additional travel time, increased accident rates, incurred by users due to a decreasing level of service \citep{Adey2012}. The earlier the interventions the higher the impacts incurred by users due to interruption to traffic during the interventions. As road managers are trying in general to maximize the benefit obtained from the road network, it is in their interest to determine work programs that do so, i.e. interventions should be executed not too earlier and not too late. 
+This is relatively straight forward, at least conceptually, when looking at individual objects. It becomes more complicated when looking at objects embedded within a network. This is because the impacts related to executing interventions or due to inadequate levels of service are not additive. In other words, it is possible that it will be better to execute interventions on two objects in one work zone simultaneously results in lower impacts than executing the same two interventions two years apart, for example due to not having traffic disruptions in two successive years. It might also reduce the total intervention set-up costs.
+
+The objects included in the optimal work-zones depend on many factors, such as the condition / performance of the objects, the length of the work zone, the traffic configuration within the work zone, the length of time required to execute the interventions, and the budget available. In recent research, optimization models have been developed to solve such problems for small road networks \citep{Hajdin2007,Lethanh2014b}, and some research has been oriented in automating the construction of the possible work programs to deal with large road networks \citep{Eicher2015}. A short-coming of the research to date, however, is that no effort has been spent to make the models suitable for use in Geographical Information Systems (GIS); something that is necessary in the world of modern infrastructure management, and allows a much faster setup of a graphical network model with nodes and links coded with geographical coordinates. 
+
+In this paper, a GIS based model is proposed to be used in the determination of optimal work-zones for large road networks. It includes, within the GIS platform, the development of a routing algorithm that can be used together with these optimization models to automatically establish the combination matrix, taking into consideration constraints on the length of the work zone and the distance between work-zones. 
+
+The GIS platform enables users to establish input relational data tables in a way that can be linked directly to construct the routing algorithm and the optimization model. In addition, the GIS platform can be used to visualize the optimally selected work-zones on the entire road network. The proposed model is illustrated with an example of a road network in the Canton of Wallis, Switzerland, including more than 2'000 bridges, tunnels, and road sections. 
+\end{abstract}
+
+\begin{keyword}
+infrastructure management\sep work zones\sep geographic information systems\sep routing algorithms\sep roads
+\end{keyword}
+
+\end{frontmatter}
+%%
+%% Start line numbering here if you want
+%%
+%\linenumbers
+%% main text
+\section{Introduction} \label{introduction}
+Planning and management of workzones on road infrastructure networks have attracted a great attention of road-operating organizations because of increasing travel demand and aging road infrastructure networks requiring more frequent interventions, whilst still needing to provide adequate level of service (LOS) to stakeholders (e.g. owners, users, and the public). 
+
+Road infrastructure networks are comprised of different types of objects, such as road
+sections, bridges, and tunnels. These objects are subjected to deterioration and,
+therefore, interventions (e.g. repair, rehabilitation, replacement) need to be
+executed to ensure that they continue to provide adequate LOS. When
+an intervention is executed on an object, a workzone has to be set up to ensure
+that the intervention can be executed. When there are more than one object on
+which interventions are to be executed there is the possibility of grouping
+multiple objects within one work zone. Whether or not they are included, however,
+depends on their closeness to each other, the benefits of grouping them together
+as opposed to establishing separate work zones and constraints, such as the
+amount of funding available, the maximum allowed length of a work zone, and the
+minimum allowed distance between workzones. An infrastructure manager is, of
+course, interested in determining the set of workzones\footnote{a set of
+workzones can either be a single workzone or a group of multiple workzones}.
+
+The importance of having an optimal set of workzones can be simply explained
+with the following fictive road link consisting of 2 lanes comprised of five
+objects (Figure \ref{fig:1}). Object 1, 3, and 5 are in states in which
+interventions are required while object 2 and 4 are in states in which no
+interventions are required.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=300pt]{fig-1.eps}
+\caption{Possible sets of workzones (WZ) for a road link of five
+objects}\label{fig:1}
+\end{center}
+\end{figure}
+
+With 3 objects on which interventions are to be executed, there are 9 possible
+sets of workzones. The sets of workzones from 1 to 4 are possible when there is
+sufficient amount of budget. Whilst, in the sets from 5 to 9, a workzone might
+not include objects that require intervention due to limitation in the amount of
+budget. It is assumed that within a workzone, one lane is closed while the other
+lane is opened with a restriction on speed. In workzone set 1, there are 3
+workzones. However, in workzone set 2, there are 2 workzones and one of the
+workzone includes objects 1, 2, and 3. In this workzone, there is no intervention
+on object 2 because it is still in good state. However, restriction on speed
+limit of vehicles is still applied. This is because it is not feasible with
+regard to the capacity of traffic control to allow 2 lanes of traffic flows in
+opposite directions in a short distance. Evidently, the impacts on stakeholders
+are different for each set of workzone, e.g. with workzone set 1, the owner of
+the road would have higher setup costs than with workzone set 2, where the users
+if the road could have higher additional travel time costs.
+
+The problem of determination of optimal workzones undoubtedly becomes
+challenging when: 1) there is no longer a road link of only a few objects but a
+network of hundreds or thousands objects; 2) objects are not homogeneous sets but
+they are a mix of many different types of objects; 3) there are more than one
+intervention type or traffic configuration to be considered for each object (e.g.
+traffic flows for a road section of 4 lanes can be formed with more than one
+configuration); 4) Objects, algorithms, and workzones have to be developed and stored in a relational database management system that has integrating features for visualization and manipulation with a geographical information system (GIS).
+
+Recently, research work focused on solving this problem has been conducted, but
+there are still improvements to be made before implementation is possible. One of
+the pioneer research was the work of \cite{Hajdin2007} and \cite{Hajdin2005}, which presented a linear optimization model to determine a single workzone, but not multiple workzones. In setting up the model, it is a must to
+construct two matrices: the continuity matrix and the combination matrix. These
+two matrices have to be setup so that input parameters (e.g. intervention cost,
+long-term benefits) related to each object and to any possible workzone can be
+estimated when the optimization model runs. In \cite{Hajdin2007}, the
+authors verified the robustness of the model with a simple example of a road link
+with 36 objects. They setup the two matrices manually and thus it was possible
+with the size of the example. However, it is a tedious process and thus not
+possible if the size of the link becomes a network of hundreds or thousands
+objects and with a network having looping structure. This was done similarly in
+\cite{Hajdin2005}.
+
+The approach emphasized in these two papers was extended from one work zone to
+multiple work zones in the work presented by \cite{Lethanh2014b}, using a
+mixed-integer linear model. This also involved the introduction of maximum length
+of a workzone and minimum distance between two adjacent workzones constraints.
+This work was, however, also done by setting up the continuity and combination
+matrices manually and can only be used for network without looping structures.
+
+In order to overcome the limitation of having to do this, it is necessary to develop a new network model that includes a well-defined relational database structure enabling to retrieve geo-spatial data to form a logic network structure (e.g with nodes and links), an optimization model with its algorithm to allow a computer to generate two matrices giving only initial information such as the numbers of objects, numbers of nodes, maximum workzones length, and minimum distance between two adjacent workzones. 
+
+The goal of the work presented in this paper was to develop such a new network model based on GIS database systems. 
+The remainder of the paper is set-up as follows. 
+% Section \ref{background} outlines the literature review and state-of-the-art research on workzone anlysis so as to position the contribution of the proposed model. 
+In section \ref{methodology}, the methodology to form a new network model to determine optimal workzones is presented with detailed description of model's formulation, algorithm, and their connectivity with the GIS database systems. An example on a road infrastructure network with more than 2'000 objects is shown in section \ref{casestudy}.
+The last section concludes the paper with highlighted points and elaborates recommendations for future extension of the work.
+%
+% \section{Background} \label{background}
+% Workzone analysis is the process of determining impacts incurred by stakeholders of an intervention program (IP) executed on either a single infrastructure object or on a network. In understanding impacts incurred by stakeholders, managers 
+%
+%
+\section{The methodology} \label{methodology}
+%
+\subsection{The model} \label{model}
+The objective function is
+
+\begin{eqnarray}
+      && Maximize \rm{\hspace{2mm} }Z = \sum\limits_{n = 1}^N \sum\limits_{k = 1}^K \delta_{n,k} \cdot (B_{n,k} - C_{n,k}) \label{obj}
+\end{eqnarray}
+
+where ${\delta _{n,k}}$ is a binary variable, which has a value of 1 if an
+intervention of type \textit{k }is executed on\textit{ }road segment \textit{n}
+and 0 otherwise. ${B_{n,k}}$ and ${C_{n,k}}$ are the long term benefit and cost
+of executing an intervention of type \textit{k} on object \textit{n},
+respectively.
+
+Subject to the following constraints:
+
+\uline{Continuity}
+
+\begin{eqnarray}
+      && \sum\limits_{k = 1}^K {{\delta _{n,k}}}  = 1{\rm{  \hspace{2mm}  }} \forall \hspace{2mm} n \label{continuity}
+\end{eqnarray}
+This constraint enforces the model to select only one intervention of \textit{k}
+on object \textit{n}.
+
+\uline{Budget}
+
+\begin{eqnarray}
+      && \sum\limits_{n = 1}^N {\sum\limits_{k = 1}^K {{\delta _{n,k}}}  \cdot {C_{n,k}}
+\le \Omega } \label{budgets}
+\end{eqnarray}
+
+
+The budget for executing interventions on the network is in general limited. The
+total cost of all interventions on the network cannot exceed a certain threshold
+$\Omega $ for a given planning period.
+
+\uline{Maximum workzone length}
+
+\begin{eqnarray}
+      && \sum\limits_{l = a_l^w}^{e_l^w} {\sum\limits_{n = a_n^w}^{e_n^w} {{\lambda
+_{l,n}}} }  \le {\Lambda ^{MAX}}{\rm{\hspace{2mm} }}\forall\hspace{2mm} w \label{maxlength}
+\end{eqnarray}
+
+where ${\lambda _{l,n}}$ is the length of the object [\textit{l,n}]; ${a^w}{\rm{
+}}\left( {l = a_l^w,n = a_n^w} \right)$ is the first object of the workzone $w =
+(1,...,W)$, and object; ${e^w}{\rm{ }}\left( {l = e_l^w,n = e_n^w} \right)$ is
+the last object in the workzone. $W2LOK$ is the maximum length of the workzone.
+
+\uline{Minimum distance}
+
+\begin{eqnarray}
+      && \sum\limits_{l = a_l^d}^{e_l^d} {\sum\limits_{n = a_n^d}^{e_n^d} {{\lambda
+_{l,n}}} }  \ge {\Lambda ^{MIN}}{\rm{\hspace{2mm} }}\forall \hspace{2mm} d \label{minlength}
+\end{eqnarray}
+
+where ${a^d}{\rm{ }}\left( {l = a_l^d,n = a_n^d} \right)$ is the first object
+the default section \textit{d}; ${e^d}{\rm{ }}\left( {l = e_l^d,n = e_n^d}
+\right)$ is the last object of the default section \textit{d}; ${\Lambda ^{MIN}}$
+is minimum distance between two workzones.
+
+\uline{Combination of maximum workzone length and minimum distance}
+
+The maximum workzone length and the minimum distance between workzones
+constraint is merged into one constraint by defining a combination matrix of
+objects within the network that cannot be subjected to an intervention
+simultaneously.
+
+\begin{eqnarray}
+      && \sum\limits_{n = 1}^N {\sum\limits_{k = 1}^K {{\delta _{n,k}} \cdot {\gamma
+_{n,k,i}}} }  \le 1{\rm{\hspace{2mm} }}\forall \hspace{2mm} i \label{combinationmatrix}
+\end{eqnarray}
+
+${\gamma _{n,k,i}}$ is a I-by-J matrix, with I is the total number of rows and
+each row contains an object combination that cannot be selected simultaneously.
+
+\subsection{The routing algorithm} \label{routingalgorithm}
+%
+The algorithm was is described in this section using an example of a network
+comprised of 45 objects and 31 nodes with an equal length of 5 km per object
+(Figure \ref{fig:2}). The maximum length of any workzone and the minimum distance
+between two adjacent workzones are 15 km.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=380pt]{fig-2.eps}
+\caption{A simplified road network of 45 objects}\label{fig:2}
+\end{center}
+\end{figure}
+
+In Figure \ref{fig:2}, objects and nodes are indicated by numbers with no
+circles and numbers with circles, respectively. This network is different from
+the examples used in \cite{Hajdin2005}; \cite{Hajdin2007}; and
+\cite{Lethanh2014b} in that it has loops. The looping structure of the network
+becomes an obstacle when having to construct the combination and continuity
+matrices, which represent all possible ways to form a workzone starting from the
+first object in the workzone. The main task of the proposed algorithm is to
+calculate all the possible paths in the network taking into consideration both
+maximum workzone length and minimum distance between two adjacent workzones.
+Matlab code for each step is publicly available at Github
+repository\footnote{https://github.com/namkyodai/workzone-routing-algorithm}.
+\subsection{Maximum workzone length}
+
+For a given object \textit{n }in the network, the algorithm calculates all paths
+starting with this object (max-paths). The lengths of these paths are defined as
+the sum of the lengths of the objects. The paths are then stored in a matrix
+format. For example, with object 1, there are in total 6 paths that can be formed
+(solid thick lines in Figure \ref{fig:3} and combination of objects in Table
+\ref{tbl:1}).
+
+\begin{table}[H]
+	\centering
+	\caption{Possible paths starting from object 1 satisfying maximum length} \label{tbl:1}
+	\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+Paths & 1 & 2 & 3 & 4 & 5 & 6 \\ 
+\hline
+ & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+\cline{2-7}
+Object & 2 & 2 & 3 & 3 & 3 & 3 \\ 
+\cline{2-7}
+ & 4 & 5 & 4 & 6 & 7 & 10 \\ 
+\hline
+\end{tabular}	
+\end{table}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=380pt]{fig-3.eps}
+\caption{All paths starting from object 1}\label{fig:3}
+\end{center}
+\end{figure}
+\subsection{Minimum distance between two adjacent workzones}
+
+The algorithm calculates, for a given object \textit{n}, all paths starting with
+this object (min-paths). Objects are added to a min-path as long as the
+min-path's length is smaller than the minimum distance between workzones. The
+length of a min-path is defined as the sum of the lengths of its objects minus
+the length of the first object in the path. Thus the number of objects in the
+paths for the minimum distance exceeds the number of objects in the paths for the
+maximum work zone length. Eventually, the total number of paths starting with an
+object for the minimum distance between workzones is significantly larger than
+the total number of paths starting with that object for the maximum workzone
+length. The following figure and table illustrate the matrix formation for the
+minimum distance constraint.
+\begin{table}[H]
+	\centering
+	\caption{Possible min-paths starting after object 1} \label{tbl:2}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Paths & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\ 
+\hline
+ & 2 & 2 & 2 & 2 & 2 & 2 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 \\ 
+\cline{2-16}
+Objects & 4 & 4 & 4 & 4 & 5 & 5 & 4 & 4 & 6 & 6 & 7 & 10 & 10 & 10 & 10 \\ 
+\cline{2-16}
+ & 3 & 6 & 7 & 10 & 6 & 8 & 2 & 5 & 5 & 8 & 0 & 11 & 12 & 15 & 18 \\ 
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=380pt]{fig-4.eps}
+\caption{All paths starting after object 1}
+\end{center}
+\end{figure}
+
+It can be seen that a min-path has its total length greater than the maximum
+workzone path. For example, path 10 is comprised of objects 3, 6 and 8 with its
+total length of 15 km. Then if the object 1 is selected to be in a workzone, the
+other workzone can only be formed after object 8.
+
+\subsection{Impossible object combinations}
+
+After all max-paths and min-paths for all objects in the network have been
+identified, the algorithm searches for a set of impossible object combinations.
+Impossible object combinations are pairs of network objects that violate the
+maximum workzone length constraint if they are to have interventions
+simultaneously. For example, if object 1 is part of a workzone, impossible object
+combinations are objects that are too far away to be part of the same workzone as
+object 1, but too close to be part of an adjacent workzone (they are objects 8,
+11, 12, 15, and 18 (Table \ref{tbl:3})).
+\begin{table}[H]
+	\centering
+	\caption{Impossible object's combination starting from object 1} \label{tbl:3}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Constrains & \multicolumn{13}{c|}{Objects} \\ 
+\hline
+Maximum length & 1 & 2 & 3 & 4 & 5 & 6 & 7 & - & 10 & - & - & - & - \\ 
+\hline
+Minimum distance & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 10 & 11 & 12 & 15 & 18 \\ 
+\hline
+Invalid combination & - & - & - & - & - & - & - & \cellcolor{blue!25}8 & - & \cellcolor{blue!25}11 & \cellcolor{blue!25}12 & \cellcolor{blue!25}15 & \cellcolor{blue!25}18 \\ 
+\hline
+\end{tabular}
+\end{table}
+\subsection{The combination matrix}
+
+The combination matrix is a m-by-n matrix where m is the number of constraints
+and n is the sum-product of all the objects in the network and the number of
+intervention. The number of impossible object combinations and thus the number of
+constraints depends on the difference between the thresholds for the minimum
+distance between work zones and the maximum work zone length constraints. With
+increasing difference between these two thresholds, the number of impossible
+object combinations grows greatly with the number of constraints. Below is an
+example of the formulation of linear constraints for the impossible combinations
+with respect to object 1.
+
+\begin{table}[H]
+\centering
+\caption{Combination matrix starting from object} \label{tbl:4}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Objects} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{12} & \multicolumn{1}{c|}{12} & \multicolumn{1}{c|}{12} \\ 
+\hline
+\multicolumn{1}{|c|}{Interventions} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} \\ 
+\hline
+\multicolumn{1}{|c|}{Binary} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} \\ 
+\hline
+\multicolumn{35}{c}{Combination  Matrix} \\ 
+\multicolumn{1}{c|}{WZs} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{|c|}{ 1-8} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} \\ 
+\hline
+\multicolumn{1}{|c|}{ 1-11} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} \\ 
+\hline
+\multicolumn{1}{|c|}{ 1-12} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} \\ 
+\hline
+\end{tabular}}
+\end{table}
+
+In Table \ref{tbl:4}, the interventions to be executed on multiple objects can
+be seen. There are 2 types of interventions for objects 1, and 2, denoted 0 and
+1, and 3 types of intervention for objects 7, 8, 10, 11, and 12, denoted 0, 1 and
+2. Interventions denoted as ``0'' are the ``do-nothing'' interventions, i.e.
+there is no physical intervention executed and there is no change to the traffic
+configuration. Interventions denoted 1 and 2 are combinations of a physical
+intervention type and a traffic configuration. If intervention 1 or intervention
+2 is selected, then the object is included in the workzone. Otherwise it is not.
+The binary values appeared in the combination matrix (refer to Eq. [6]) become 1
+when it is impossible to form two workzones adjacent to each other. This binary
+value will be multiplied with the binary in the upper part of the table to give a
+possible workzone. This means that in Table \ref{tbl:4}, objects 1 are in a work
+zones, and objects 8, 11 and 12 are not in a work zone.
+
+\subsection{The continuity matrix}
+
+The continuity matrix ensures that exactly one intervention is selected for
+every object in the network. The continuity matrix is a p-by-n matrix where p is
+the number of objects in the network and n is the sumproduct of all the objects
+in the network and the number of intervention.
+
+\begin{table}[H]
+\centering
+\caption{Continuity matrix} \label{tbl:5}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|llll|}
+\cline{1-32}
+Objects & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
+\cline{1-32}
+Interventions & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
+\cline{1-32}
+Binary & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
+\cline{1-32}
+\multicolumn{35}{c}{Continuity matrix} \\ 
+\multicolumn{1}{l}{Objects} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  &  &  & \multicolumn{1}{l}{} \\ 
+\cline{1-32}\cline{34-35}
+\multicolumn{1}{|c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{=} & \multicolumn{1}{c|}{\cellcolor{blue!25}2} \\ 
+\cline{1-32}\cline{34-35}
+\multicolumn{1}{|c|}{2} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{=} & \multicolumn{1}{c|}{\cellcolor{blue!25}4} \\ 
+\cline{1-32}\cline{34-35}
+\multicolumn{1}{|c|}{3} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{=} & \multicolumn{1}{c|}{\cellcolor{blue!25}6} \\ 
+\cline{1-32}\cline{34-35}
+\multicolumn{1}{|c|}{4} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{=} & \multicolumn{1}{c|}{\cellcolor{blue!25}6} \\ 
+\cline{1-32}\cline{34-35}
+\multicolumn{1}{|c|}{5} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{=} & \multicolumn{1}{c|}{\cellcolor{blue!25}4} \\ 
+\cline{1-32}\cline{34-35}
+\multicolumn{1}{|c|}{6} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{=} & \multicolumn{1}{c|}{\cellcolor{blue!25}6} \\ 
+\cline{1-32}\cline{34-35}
+\multicolumn{1}{|c|}{7} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{\cellcolor{blue!25}1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{=} & \multicolumn{1}{c|}{\cellcolor{blue!25}4} \\ 
+\cline{1-32}\cline{34-35}
+\end{tabular}}
+\end{table}
+%
+The right hand side of the continuity matrix shows the number of connections for
+every object. For example, object 1 is connected to two adjacent objects and
+object 2 is connected to four adjacent objects.
+%
+\subsection{Example results}
+%
+The optimal set of workzones for the simplified example is illustrated in Figure
+\ref{fig:5}. Workzones (shown with thick lines) have been identified and all
+constraints have been satisfied.
+%
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=380pt]{fig-5.eps}
+\caption{Result of the simplified example}\label{fig:5}
+\end{center}
+\end{figure}
+%
+\subsection{GIS modeling framework}
+The overall methodological framework to develop a GIS based optimization model can be depicted in Fig. \ref{methodology1}, which shows a flow of information in highest level of abstraction. There are three main modules (input, process, and output) and one GIS database system. All three modules are directly connected and interacted with the GIS database system.
+%
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{methodology1.eps}
+\caption{A GIS based process}\label{methodology1}
+\end{center}
+\end{figure}
+The GIS database system is considered as an integrated platform to store not only spatial and temporal input/output data of every individual infrastructure object but also serve as interactive environment for implementing queries developed by users using other computer programs or systems. 
+
+The input module (Fig. \ref{input}) can consist of a large number of relational tables, which record information on geographical coordinate (e.g. X and Y coordinates of a point or a series of points forming a road section) of every segment and object of a network; a set of Structure Query Language (SQL) codes to automate the process of data filtering and data creation (e.g. creating a new table); attributes of objects (e.g. width, length, materials, slopes); time-series information of each object (e.g. condition state, intervention types, traffic volume); and models used to update information or to predict future condition states of individual objects. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{input.eps}
+\caption{input module}\label{input}
+\end{center}
+\end{figure}
+
+The process (Fig. \ref{process}) is the core part of the entire methodology that consists of sequential and parallel tasks forming the proposed GIS based optimization model. The first step in the process is to create a physical network having nodes and links well-defined using a topological function of the pgRouting algorithm\footnote{http://pgrouting.org/}. The function can be implemented in the GIS database system (e.g. PostgreSQL server) to form two additional column named ``source'' and ``target'' and automatically assign integer values for these two columns \citep{Obe2015}. Here, it is important to note that a node in the physical network represents the join between two or more than two objects and a link represents the object itself (e.g. a road section, a tunnel, a bridge).
+%
+%
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.45]{process.eps}
+\caption{process module}\label{process}
+\end{center}
+\end{figure}
+An example of using the pgRouting algorithm to form a physical network can be graphically shown in Fig. \ref{fig:2} and in Table \ref{pgroutingal} for 10 objects of the network.
+%
+
+%
+
+\begin{table}[H]
+\centering
+\caption{Example of using pgRouging algorithm to create physical network} \label{pgroutingal}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{gid} & \multicolumn{1}{c|}{obj$\_$name} & \multicolumn{1}{c|}{source} & \multicolumn{1}{c|}{target} & \multicolumn{1}{c|}{the$\_$geom} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{13} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{13} & \multicolumn{1}{c|}{15} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\multicolumn{1}{|c|}{-} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{ -} \\ 
+\hline
+\end{tabular}
+\end{table}
+As can be seen in Fig. \ref{fig:2}, each object is denoted in red text and connection points between objects are nodes. The pgRouting algorithm will create automatically integer values for two columns ``source'' and ``target'' in Table \ref{pgroutingal}. By looking at the table, it is possible to visualize how the objects are connected to form a network (e.g. objects 4 and 5 are connected at node 3). 
+
+After the physical network is created in the GIS database, following tasks should be defined as inputs of the routing algorithm described in section \ref{routingalgorithm} 
+
+\begin{itemize}
+ \item \underline{Intervention types}: to define a set of intervention type for each object (e.g. a road section can receive two ITs: resurfacing the asphalt layer or executing of crack sealing). 
+ \item \underline{Traffic configuration}: Under each IT, there can be more than one traffic configurations (TC) possible. For example, in a 4 lane highway with two directions of traffic flow, one TC is to close completely two lanes in one side and reroute the traffic in both directions in 2 narrow lanes; another TC is to close one lane of traffic in each direction.
+ \item \underline{Maximum workzone length} and \underline{Minimum distance} tasks are required to define by users before the \underline{routing algorithm} is executed: 
+ \item \underline{Routing algorithm}: One the constrains on maximum workzone length and minimum distance between workzones are defined, the routing algorithm is executed to establish matrices (combination matrix and continuity matrix) used in the optimization model.
+ \item \underline{Workzone impact estimation}: When all possible workzones are defined after executing the routing algorithm, impacts can be estimated for different workzones based on how it is formed and on the selected intervention type and traffic configuration.
+ \item \underline{Budget constrain}: An amount of budget used to execute all interventions on the network can be defined. 
+\end{itemize}
+
+The optimization model can be coded in any programing language (e.g. Matlab, R, Python) that includes linear optimization solver (e.g. Gurobi, CPLEX,MINTO\footnote{http://www.neos-server.org/neos/solvers/index.html}) and has capacity to retrieve data from the GIS database.
+
+The output module includes a set of outcomes (Fig. \ref{output}) such as the value of objective function, i.e. the long term benefit that has been maximized through the optimization process (value of equation \eqref{obj}); the binary variable (refer to $\delta$ in equation \eqref{obj} and \eqref{continuity}) reflecting the combination of intervention type and traffic configuration selected by the optimization model for each object. This set of binary variable is recorded automatically in the GIS database and later used for visualization on a GIS software; the workzones are defined as a combination of binary variable. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{output.eps}
+\caption{output module}\label{output}
+\end{center}
+\end{figure}
+%
+\section{Case study} \label{casestudy}
+%
+\subsection{Proposed softwares}
+In order to apply the proposed GIS based optimization model in a real case study, the PostgreSQL was selected as a GIS database system and the optimization was developed in Matlab, which includes an optimization toolbox. The PostgreSQL was choosen because it is considered as the world's most advanced open source database server system, thus very suitable for research purposes. Within the PostgreSQL server, the pgRouting algorithm and the PostGIS\footnote{PostGIS is a supporting program for the PostgreSQL aiming to create spatial and geographic objects} were installed as PostgreSQL's extensions, which are required to interact with the geo-spatial data \citep{Obe2015}. Data in the PostgreSQL can be sorted, filtered, updated, and manipulated using a third party software such as the pgAdmin, which is a leading graphical open source management designed for working with the PostgreSQL. All tasks in the input module can be executed via a set of SQL codes to form a complete data set to run the routing algorithm and the optimization model in the process module. 
+
+In this work, the process module was coded using Matlab. The optimization model can be done via a built-in function ``intlinprog'' in the Matlab's toolbox. The intlinprog function is a Matlab's inteface with its ability to feed the optimization model to the MILP solver ``Gurobi''\footnote{http://www.neos-server.org/neos/solvers/index.html}.
+
+The entire program used in this study is published in a Github repository\footnote{https://github.com/namkyodai/GIS-workzones} as an open source package
+\subsection{Overview of the case study}
+To demonstrate the robustness and efficiency of the GIS based optimization model, a road network of the Canton of Wallis in Switzerland was selected. A GIS database of the network was extracted from a freely distributed Internet source provided by the Federal Office of Topography. The original database consists of nearly 35'000 objects encompassing road sections of various classes (e.g. national highway, cantonal road, rural road, mountain road, and jogging paths), bridges, tunnels, culverts. Data is stored in shapefile\footnote{https://en.wikipedia.org/wiki/Shapefile} format that includes also attributes to each object such as maximum speed for vehicles; daily traffic volume (DTV), etc. A map of the entire network is shown in Fig. \ref{wallismap}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=291pt]{wallismap.eps}
+\caption{Road network in the Canton of Wallis, Switzerland}\label{wallismap}
+\end{center}
+\end{figure}
+
+The original data was used to create a new database used to run the model. The new database consists of 1'959 objects, which include 244 bridges, 78 tunnels, and 1'637 road sections. The total length of the network is 627 km. The purpose of creating this network for the study was because original data consists of road sections and jogging paths that were separated from the main network that join together all objects for accessibility of vehicles. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=291pt]{wallismap-objects.eps}
+\caption{Simplified road network for the case study}\label{wallismapobjs}
+\end{center}
+\end{figure}
+
+\subsection{Condition states}
+The condition of any object in the network was defined using discrete condition states (CS) with a scale from 1 to 5.   It was assumed that if an object is in CS 1 and 2, it is considered as in an excellent or good condition and hence the LOS is adequately provided. When an object is in CS 3, 4, and 5, it cannot provide adequate LOS like in CS 1 and 2, and thus, the object should be considered to receive an intervention so its state can be recovered to CS 1 or 2 and again provide adequate LOS. An rational definition of discrete state for each object is described in Table \ref{tbl:ex1}. Values of condition state for each object used in this example were generate randomly.
+
+\begin{table}[H]
+	\centering
+	\caption{Condition states and level of services} \label{tbl:ex1}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{CS} & Description & \multicolumn{1}{m{15mm}|}{\centering Provide adequate LOS?} & \multicolumn{1}{m{20mm}|}{\centering Require intervention?} \\ 
+\hline
+\multicolumn{1}{|c|}{1} & Like new & \multicolumn{1}{c|}{yes} & \multicolumn{1}{c|}{no} \\ 
+\hline
+\multicolumn{1}{|c|}{2} & Good & \multicolumn{1}{c|}{yes} & \multicolumn{1}{c|}{no} \\ 
+\hline
+\multicolumn{1}{|c|}{3} & Moderate & \multicolumn{1}{c|}{no} & \multicolumn{1}{c|}{yes} \\ 
+\hline
+\multicolumn{1}{|c|}{4} & Bad & \multicolumn{1}{c|}{no} & \multicolumn{1}{c|}{yes}  \\ 
+\hline
+\multicolumn{1}{|c|}{5} & Worst & \multicolumn{1}{c|}{no} & \multicolumn{1}{c|}{yes} \\ 
+\hline
+\end{tabular}
+\end{table}
+%
+% In the example, for each object, there are 4 possible intervention types (IT): 1) do nothing; 2) execute a 
+
+\subsection{Traffic configurations}
+For any object in the network, there are traffic configurations (TC) attached to it. The numbers of TCs assumed for each object are shown in Fig. \ref{highwayTC} and Fig. \ref{roadTC}. The description of each TC is given in Table \ref{trafficconfig}
+
+\begin{figure}[h]
+\centering
+ \begin{minipage}[h]{0.2\linewidth}
+        \centering
+        \includegraphics[width=30mm]{highwayTC0.eps}
+				\subcaption{TC0-normal flow}\label{highwayTC0}
+     \end{minipage}
+\vspace{3.00mm}
+    \begin{minipage}[h]{0.2\linewidth}
+       \centering
+       \includegraphics[width=30mm]{highwayTC1.eps}
+			\subcaption{TC1- (4-0)}\label{highwayTC1}
+     \end{minipage}
+\vspace{3.00mm} 
+    \begin{minipage}[h]{0.2\linewidth}
+        \centering
+        \includegraphics[width=30mm]{highwayTC2.eps}
+				\subcaption{TC2- (H2-N2)}\label{highwayTC2}
+     \end{minipage}
+\caption{Traffic configurations on 4 lanes highways}
+\label{highwayTC}
+\end{figure}
+
+
+
+\begin{figure}[h]
+\centering
+ \begin{minipage}[h]{0.2\linewidth}
+        \centering
+        \includegraphics[width=15mm]{roadTC0.eps}
+				\subcaption{TC0-normal flow}\label{roadTC0}
+     \end{minipage}
+\vspace{3.00mm}
+    \begin{minipage}[h]{0.2\linewidth}
+       \centering
+       \includegraphics[width=15mm]{roadTC1.eps}
+			\subcaption{TC1- (1-0)}\label{roadTC1}
+     \end{minipage}
+\vspace{3.00mm} 
+    \begin{minipage}[h]{0.2\linewidth}
+        \centering
+        \includegraphics[width=15mm]{roadTC2.eps}
+				\subcaption{TC2- (N2)}\label{roadTC2}
+     \end{minipage}
+\caption{Traffic configurations on 2 lanes roads}
+\label{roadTC}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Description of traffic configurations} \label{trafficconfig}
+\begin{tabular}{|l|p{5cm}|p{5cm}|}
+\hline
+TCs & 4 lanes traffic objects in highways \& primary roads & 2 lanes traffic object in cantonal \& rural roads \\ 
+\hline
+TC0 & Vehicles can traveled on all 4 lanes in both sides freely & Vehicles can traveled on 2 lanes in both sides freely \\ 
+\hline
+TC1 & (4-0) Close one side completely while still allow 4 lanes of traffic and use emergency lane in other side & (H2-N2) Still use 4 lanes of traffic but keep one side as in normal traffic (2 lanes) other side to be narrowed and use emergency lane \\ 
+\hline
+TC2 & (1-0) Close one side completely and use traffic light to route the vehicles from both directions in sequence & (N2) Keep two lanes of traffic but make them narrower\\ 
+\hline
+\end{tabular}
+\end{table}
+% \subsection{Impacts}
+\subsection{Interventions and impacts}
+Once the entire network data is defined after running the routing algorithm, assigning intervention types for each object in its corresponding CS, and setting possible traffic configurations for each object, the impacts (cost and benefit) can be estimated. For this example, impacts were estimated in line with the impact hierarchy developed by \cite{Adey2012}, which suggests an orthogonal approach to estimate impacts incurred to stakeholders (e.g. owners and users) being affected by road interventions.
+% 
+% In this section, estimation of impacts for a primarily road with a length of 457 m and a width of 11 m is given along with the empirical equations used to quantify the impacts for the case study. The selected road has its speed limitation of 80 km/h, daily traffic volume (DTV) of 9'400 cars/day and 600 trucks/day. Its condition state is 5, which is the worst one. Two TCs can be set when the road is under an intervention: TC1 (1-0) and TC2 (N2).
+\subsubsection{Owner impacts}
+Impacts incurred by the owner are directly linked to intervention activities and traffic configurations set for each object. Principally, they can be calculated using following equations.
+\begin{eqnarray}
+      && \Pi^{owner}=\alpha+\beta+\eta \label{intervention}
+\end{eqnarray}
+In this equation, without loss of generality, $n$ and $k$ used in equation \eqref{obj} are omitted for sake of readability. Total impact incurred by the owner is the summation of fixed impact $\alpha$ (e.g. a fixed amount of intervention cost not related to the length or width of each object. In other words, it is considered as a setup cost), variable impact $\beta$ (e.g. cost varies due to the actual length and width of each object), and additional impact $\eta$ (e.g. cost spent on setting up and regulating the traffic configuration when there is an intervention executed on an object).
+
+Following tables describe intervention types for road sections, bridges, and tunnels along with the impacts incurred by the owner. Values in the tables are considered as good proxies built based on norms and expert's opinions in Switzerland.
+
+\begin{table}[H]
+\centering
+\caption{Intervention types and owner's impacts on roads} \label{roadimpacts}
+\begin{tabular}{|l|p{5cm}|c|c|}
+\hline
+CSs & Intervention types & Fixed impacts& Variable impacts\\ 
+ &  & [CHF] & [CHF/m2] \\ 
+\hline
+CS 3 & Maintenance intervention & 3'500 & 8.00 \\ 
+\hline
+CS 4 & Rehabilitation intervention & 4'100 & 52.00 \\ 
+\hline
+CS 5 & Renovation intervention & 9'600 & 108.80 \\ 
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Intervention types and owner's impacts on bridges} \label{bridgeimpacts}
+\begin{tabular}{|l|p{5cm}|c|c|}
+\hline
+CSs & Intervention types & Fixed impacts& Variable impacts\\ 
+ &  & [CHF] & [CHF/m2] \\ 
+\hline
+CS 3 & Maintenance intervention & 20'000 & 2'100 \\ 
+\hline
+CS 4 & Rehabilitation intervention & 30'000 & 2'800 \\ 
+\hline
+CS 5 & Renovation intervention & 40'000 & 3'500 \\ 
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Intervention types and owner's impacts on tunnels} \label{tunnelimpacts}
+\begin{tabular}{|l|p{5cm}|c|c|}
+\hline
+CSs & Intervention types & Fixed impacts& Variable impacts\\ 
+ &  & [CHF] & [CHF/m2] \\ 
+\hline
+CS 3 & Maintenance intervention & 100'000 & 20'000 \\ 
+\hline
+CS 4 & Rehabilitation intervention & 150'000 & 35'000 \\ 
+\hline
+CS 5 & Renovation intervention & 200'000 & 50'000 \\ 
+\hline
+\end{tabular}
+\end{table}
+
+The additional impacts were related directly to the traffic configurations. In this example, without loss of generality, it was assumed that additional impacts incurred by the owners can be calculated in two cases: 1) Additional impacts on an object of a 4 lanes highway are 20\% and 10\% of the total fixed impacts when the traffic configurations are in TC1 (4-0) and TC2 (H2-N2), respectively; 2) Additional impacts on an object of a 2 lanes road are 20\% and 10\% of the total fixed impacts when the traffic configurations are in TC1 (1-0) and TC2 (N2), respectively;
+%
+%
+\subsubsection{Users impacts} \label{userimpacts}
+In this example, users impacts ($\Pi^{users}$) include three main components: travel time ($\Gamma$), accident ($\Delta$), vehicle operation cost ($\Theta$), and emission ($\Lambda$).
+\begin{eqnarray}
+      && \Pi^{users}=\Gamma+\Delta+\Theta + \Lambda \label{usersimpacts}
+\end{eqnarray}
+%
+\subsubsection*{\ref{userimpacts}.1. \underline{Travel time}}
+
+Impacts associated with travel time is the loss in time suffered by users when they are on the road. This impact is linked directly to traffic configuration set for each object in a workzone. Eventually, it has to be calculated based on speed limit ($\upsilon, \upsilon_0$), duration of the intervention ($t$), length of object ($l$), daily traffic volume ($d$), cost per hour ($s$) of operating a vehicle, and duration of intervention works. Following equation can be used to estimate the loss in travel time.
+\begin{eqnarray}
+      && \Gamma= t \cdot \left[ \frac{l}{\upsilon-\upsilon_0} \right]\cdot\sum_{i=1}^{I} d_i\cdot s_i \label{traveltimeimpacts}
+\end{eqnarray}
+In the equation, $\upsilon$ and $\upsilon_0$ represent speed limits under a traffic configuration and normal traffic, respectively. Index $i$ represents type of vehicle (e.g. car or truck) and $I$ is total number of vehicle types. In this example, only two types of vehicles were considered. They are car and truck. Value of $s$ for car and truck were 18.1 $CHF/hour$ and 132.5 $CHF/hour$, respectively. Those values were used based on the work of \cite{De-Jong2008}.
+\subsubsection*{\ref{userimpacts}.2. \underline{Accident}}
+To estimate the impacts incurred to users due to potential accident, following equation was used to estimate the impacts incurred in normal traffic configuration in a specific duration of time ($t$).
+\begin{eqnarray}
+      && \Delta= t \cdot l \cdot a \cdot \sum_{i=1}^{I} d_i \label{accidentimpact}
+\end{eqnarray}
+In the equation, $a$ represents the monetary units for accident per vehicle kilometer. This value was set to 0.13 $CHF/km$ in the example. It was chosen according to the research of \cite{Bakaba2012}, which showed a case study in Germany and concluded that the additional cost due to the change in traffic configuration could cost additional 56\% of normal accident cost. The normal accident cost was 0.23 $CHF/km$ according to the work of \cite{Lethanh2014b}.
+%
+\subsubsection*{\ref{userimpacts}.3. \underline{Vehicle operation}}
+Impacts incurred by the users include vehicle operation cost (VOC), which is money that they have to pay for fuel consumption and maintenance of vehicles. Briefly, the VOC can be the sum of operation cost for cars, trucks and can be calculated in following simple form.
+\begin{eqnarray}
+      && \Theta= t\cdot l \cdot p \cdot \sum_{i=1}^{I} d_i \cdot \bar F_i \label{vocimpact}
+\end{eqnarray}
+where, $p$ is the mean fuel price (1.88 $CHF/litre$), $\bar F_i$ is mean fuel consumption of vehicle type $i$ (6.7 $litres$ and 33 $litres$ per 100 $km$ for car and truck respectively). 
+\subsubsection*{\ref{userimpacts}.4. \underline{Emission}}
+Vehicles produce emissions to the surrounding environment while traveling on roads. Some of the important polluted chemical substances are carbon dioxide ($CO_2$), carbon monoxide ($CO$), nitrogen oxide ($NO_x$), volatile organic compounds ($VOC$), and particulate matter ($PM$). Table \ref{tbl:emission} shows the composition of the exhaust fumes for cars and trucks. Values shown in the table were taken from the work of \cite{Geringer2004}.
+
+\begin{table}[H]
+\centering
+\caption{Emission composition} \label{tbl:emission}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Emissions} & \multicolumn{2}{c|}{Composition} & \multicolumn{2}{c|}{Quantity $w$ [g/veh.km]} & \multicolumn{1}{c|}{Cost} \\ 
+\cline{2-5}
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{car} & \multicolumn{1}{c|}{truck} & \multicolumn{1}{c|}{car} & \multicolumn{1}{c|}{truck} & \multicolumn{1}{c|}{$[CHF/ton]$} \\ 
+\hline
+\multicolumn{1}{|c|}{$CO_2$} & \multicolumn{1}{c|}{20\%} & \multicolumn{1}{c|}{20\%} & \multicolumn{1}{c|}{164.8} & \multicolumn{1}{c|}{811.7} & \multicolumn{1}{c|}{22.05} \\ 
+\hline
+\multicolumn{1}{|c|}{$CO$} & \multicolumn{1}{c|}{0.258\%} & \multicolumn{1}{c|}{0.025\%} & \multicolumn{1}{c|}{1.807} & \multicolumn{1}{c|}{1.015} & \multicolumn{1}{c|}{10'669.35} \\ 
+\hline
+\multicolumn{1}{|c|}{$NO_x$} & \multicolumn{1}{c|}{0.020\%} & \multicolumn{1}{c|}{0.061\%} & \multicolumn{1}{c|}{0.221} & \multicolumn{1}{c|}{2.476} & \multicolumn{1}{c|}{3'200.81} \\ 
+\hline
+\multicolumn{1}{|c|}{VOC} & \multicolumn{1}{c|}{0.018\%} & \multicolumn{1}{c|}{0.005\%} & \multicolumn{1}{c|}{0.007} & \multicolumn{1}{c|}{0.203} & \multicolumn{1}{c|}{34.85} \\ 
+\hline
+\multicolumn{1}{|c|}{$PM$} & \multicolumn{1}{c|}{0.000\%} & \multicolumn{1}{c|}{0.005\%} & \multicolumn{1}{c|}{0.131} & \multicolumn{1}{c|}{0.203} & \multicolumn{1}{c|}{9'033.39} \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Table \ref{tbl:emission} also shows the quantity $w$ of emissions by cars and trucks in gram per vehicle kilometer and the approximate cost associated with each of the emission type. 
+
+Following equation was used to approximate the impacts due to emissions.
+\begin{eqnarray}
+      && \Lambda= t \cdot l \cdot 10^{-6} \cdot (1+\bar f) \cdot (1+\hat f)\sum_{i=1}^{I} \sum_{j=1}^J d_i \cdot e_j \cdot \omega_j \label{emissionimpact} 
+\end{eqnarray}
+where $e_j$ and $\omega_j$ are quantity and cost per ton of the emission type $j$ discharging to environment. $\bar f$ and $\hat f$ are coefficients related to increasing disturbance due to the intervention and traffic configuration and actual condition state of the road and location of the object, respectively. In this example, it was assumed that when the object is in CS3, CS4, and CS5, the corresponding values of the coefficient $\hat f$ are 5\%, 12\%, and 20\%. The value of $\hat f$ is 18\% when object is located in the mountain.
+
+\subsubsection*{\ref{userimpacts}.5. \underline{benefit}}
+Benefits by executing intervention under a specific traffic configuration can be calculated in two generic situations: 1) when there is an actual intervention on an object; and 2) when there is no intervention on the object but the object is in a workzone and thus there is benefit by having it in a certain traffic configuration.Following equation was used for calculating benefits in both two situations.
+\begin{eqnarray}
+      && \hat B=  \left[\hat \Pi^{owner}_k-\hat \Pi^{owner}_0  + \hat \Pi^{user}_k-\hat \Pi^{user}_0 \right] +\sum_{t=1}^T \cdot \left[\Pi^{user}(t)-\Pi^{user}_0(t)  \right] \label{benefitintervention} 
+\end{eqnarray}
+In the equation, the first polynomial indicates the benefit generate by setting up traffic configuration type $k$ again the normal traffic configuration. The second polynomial is the sum of yearly benefit generated for users when intervention has been executed and when the intervention was not executed.
+%
+\subsection{Scenarios}
+Four different scenarios were investigated by means of changes in the budget,
+the maximum workzone length and the minimum distance between workzones. The
+optimal sets of workzones were obtained by running the optimization model for
+these scenarios (Table \ref{tbl:ex2}).
+\begin{table}[H]
+\centering
+\caption{Scenarios} \label{tbl:ex2}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Scenarios} & \multicolumn{1}{c|}{Budget} & \multicolumn{1}{m{1.5cm}|}{ \centering Maximum workzone length} & \multicolumn{1}{m{1.5cm}|}{ \centering Minimum distance }  \\ 
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{[ CHF ]} & \multicolumn{1}{c|}{[ m ]} & \multicolumn{1}{c|}{[ m ]} \\ 
+\hline
+\multicolumn{1}{|c|}{Scenario 1} & \multicolumn{1}{c|}{Unlimited} & \multicolumn{1}{c|}{2'000} & \multicolumn{1}{c|}{3'000} \\ 
+\hline
+\multicolumn{1}{|c|}{Scenario 2} & \multicolumn{1}{c|}{\textbf{20 Millions}} & \multicolumn{1}{c|}{2'000} & \multicolumn{1}{c|}{3'000} \\ 
+\hline
+\multicolumn{1}{|c|}{Scenario 3} & \multicolumn{1}{c|}{Unlimited} & \multicolumn{1}{c|}{\textbf{1'000}} & \multicolumn{1}{c|}{3'000} \\ 
+\hline
+\multicolumn{1}{|c|}{Scenario 4} & \multicolumn{1}{c|}{Unlimited} & \multicolumn{1}{c|}{2'000} & \multicolumn{1}{c|}{\textbf{2'000}} \\ 
+\hline
+\end{tabular}
+\end{table}
+\subsection{Results}
+Results of the example on 4 scenarios are summarized in Table \ref{tbl:resultobje} and in Fig. \ref{mapscenario1}, Fig. \ref{mapscenario2}, Fig. \ref{mapscenario3}, and Fig. \ref{mapscenario4}. 
+
+In scenario 1 (reference scenario), there are 682 objects selected to be in different workzones. Among those selected objects, there are 72 bridges and 11 tunnels, which account for 10.6\% and 1.6\% of total selected, respectively. In scenario 2, when there was only 20 millions of Swiss Franc to carry out interventions, the total numbers of objects selected for intervention reduced significantly to 159 objects, in which, there are only 4 bridges and 1 tunnels. In scenario 3, when maximum  of each workzone was constrained to 1'000 m long, there are also less total number of objects to be selected in comparison with that of scenario 1. Among 258 objects being selected for execution in scenario 3, there are 10 bridges and 2 tunnels. When the minimum distance constrain was set to 2'000 (scenario 4), there are more objects to be selected (949 objects in total).
+
+\begin{table}[H]
+\centering
+\caption{Comparison of selected objects} \label{tbl:resultobje}
+\small
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Scenarios} & \multicolumn{4}{c|}{Numbers of selected objects} & \multicolumn{1}{c|}{Mean} & \multicolumn{2}{c|}{Cost} & \multicolumn{2}{c|}{Benefit} & \multicolumn{1}{c|}{B/C} \\ 
+\cline{2-5}\cline{7-10}
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{Total} & \multicolumn{1}{c|}{bridge} & \multicolumn{1}{c|}{tunnel} & \multicolumn{1}{c|}{road} & \multicolumn{1}{c|}{CS} & \multicolumn{1}{c|}{[$10^6$ CHF]} & \multicolumn{1}{c|}{\% of scn. 1} & \multicolumn{1}{c|}{[$10^6$ CHF]} & \multicolumn{1}{c|}{\% of scn. 1} & \multicolumn{1}{c|}{ratio} \\ 
+\hline
+\multicolumn{1}{|c|}{1} & \multicolumn{1}{c|}{682} & \multicolumn{1}{c|}{72} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{599} & \multicolumn{1}{c|}{3.2} & \multicolumn{1}{c|}{95} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{265} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{2.8} \\ 
+\hline
+\multicolumn{1}{|c|}{2} & \multicolumn{1}{c|}{159} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{154} & \multicolumn{1}{c|}{3.6} & \multicolumn{1}{c|}{19} & \multicolumn{1}{c|}{19.6\%} & \multicolumn{1}{c|}{88} & \multicolumn{1}{c|}{33.2\%} & \multicolumn{1}{c|}{4.7} \\ 
+\hline
+\multicolumn{1}{|c|}{3} & \multicolumn{1}{c|}{258} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{246} & \multicolumn{1}{c|}{3.7} & \multicolumn{1}{c|}{71} & \multicolumn{1}{c|}{74.9\%} & \multicolumn{1}{c|}{197} & \multicolumn{1}{c|}{74.2\%} & \multicolumn{1}{c|}{2.8} \\ 
+\hline
+\multicolumn{1}{|c|}{4} & \multicolumn{1}{c|}{949} & \multicolumn{1}{c|}{90} & \multicolumn{1}{c|}{19} & \multicolumn{1}{c|}{840} & \multicolumn{1}{c|}{3.2} & \multicolumn{1}{c|}{118} & \multicolumn{1}{c|}{123.8\%} & \multicolumn{1}{c|}{355} & \multicolumn{1}{c|}{134.1\%} & \multicolumn{1}{c|}{3.0} \\ 
+\hline
+\end{tabular}
+\end{table}
+
+As a matter of fact, in scenario 2 and 3, there are less total numbers of objects being selected for interventions because there were constrains imposing on the optimization model. Particularly, the percentages of bridges and tunnels in these scenarios were much less than scenario 1. The reason is that interventions on bridges and tunnels incurred much higher impacts to both owners and users. Consequently, the optimization model picked up more road sections rather than bridges and tunnels. In addition to this, it was found that the mean condition state of those objects selected in scenario 2 and 3 are also higher than that of scenario 1 (e.g. mean CS of selected objects in scenario 1 is 3.2, whilst, it is 3.6 and 3.7 in scenario 2 and 3, respectively). Graphically, it can also be clearly seen the differences in Fig. \ref{mapscenario1}, Fig. \ref{mapscenario2}, and Fig. \ref{mapscenario3}. The circles in these figures highlight some important differences among scenarios. 
+
+Table \ref{tbl:resultobje} also shows the total benefit and cost under each scenario. Again, it is clearly seen from the table that the amount of intervention cost and benefits in scenario 1 are significantly higher than that in scenario 2 and 3. This can be explained with the benefit and cost ratio. Evidently, objects with high B/C ratio are more likely to be selected. Under budget constraint (scenario 2), higher B/C ratio is expected as the optimization model tends to select objects with higher B/C ratio than in scenario 1.
+
+When the maximum length of each workzone is shorten (e.g. scenario 3), there are also less objects to be selected. This is due to the fact that each workzone cannot include more objects which can result in the violation of total length and also having to satisfy the minimum distance between adjacent workzones. This is opposite in the scenario 4, when there is unlimited budget, the maximum workzone length is the same with scenario 1 (2'000 m), but the distance between adjacent workzones is reduced from 3'000 m to 2'000 m. This means there are more space for each workzone, which has total length less than 2'000 m, to include more nearby objects. Thus, in scenario 4, the numbers of objects being selected increased to 949 objects and it offers more long term benefits (355 millions CHF) than all other scenarios, despite the fact that its intervention cost also higher than the others.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=291pt]{mapscenario1.eps}
+\caption{Scenario 1 - visual locations of workzones}\label{mapscenario1}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=291pt]{mapscenario2.eps}
+\caption{Scenario 2 - visual locations of workzones}\label{mapscenario2}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=291pt]{mapscenario3.eps}
+\caption{Scenario 3 - visual locations of workzones}\label{mapscenario3}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=291pt]{mapscenario4.eps}
+\caption{Scenario 4 - visual locations of workzones}\label{mapscenario4}
+\end{center}
+\end{figure}
+
+
+%
+% \subsection{Graphical representation of optimal workzones}
+% %
+% 
+% \subsubsection{Scenario 1 - Reference}
+% 
+% \subsubsection{Scenario 2}
+% 
+% \subsubsection{Scenario 3}
+% \subsubsection{Scenario 4}
+\section{Conclusions} \label{conclusion}
+This paper has presented a new methodology to determine optimal set of workzones on a large scale transportation network. The methodology includes a mixed-integer linear optimization model, a routing algorithm and a set of SQL functions that allows the optimization model run and interact with a GIS platform. The interaction with the GIS supported database such as the PostgreSQL allow users to use the model for a large scale network including hundreds and thousands of objects. The methodology also provides users with constant interaction with the GIS database so that information of each object can be updated in real time.
+
+The robustness of the proposed GIS based optimization model was tested on a road network in the Canton of Wallis in Switzerland. The network has nearly 2'000 objects and the model took 8 hours to complete the optimization process. The results could be graphically shown on any GIS software, which turns out to be useful in practical situations.
+
+
+%
+\bibliographystyle{elsarticle-harv} 
+\bibliography{reference}
+\end{document}
