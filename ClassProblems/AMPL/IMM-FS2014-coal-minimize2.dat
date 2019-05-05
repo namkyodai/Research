@@ -1,0 +1,14 @@
+data; 
+set TYPE:= 1	2	3;
+set POLLUTANT:= Sulfur 	Dust ;
+param S:=	1	24000	2	36000	3	28000;
+param f:=	1	1.7		2	3.2		3	2.4;
+#param e: 		1   	2   	3   := 
+#	   Sulfur	1100	3500	1300
+#		Dust	1.7		3.2		2.4;
+param e: 		Sulfur   	Dust := 
+		1		1100		1.7	
+		2		3500		3.2
+		3		1300		2.4;
+		
+param E:=	Sulfur	2500	Dust	2.8;

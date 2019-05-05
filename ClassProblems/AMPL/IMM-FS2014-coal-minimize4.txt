@@ -1,0 +1,8 @@
+for {1..1} {
+solve;
+display x,d1,d2,d3;
+}
+
+	
+
+	

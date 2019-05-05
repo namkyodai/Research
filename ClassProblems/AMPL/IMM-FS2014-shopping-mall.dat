@@ -1,0 +1,8 @@
+data;
+param T:=6; #planning term (6 period in 24 hours)
+
+#minimum no of people
+param limit_min := 1 9	2	22	3	25	4	16	5	30	6	13;
+
+#param limit_min := 1 90	2	215	3	250	4	165	5	300	6	125;
+	
