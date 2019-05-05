@@ -1,0 +1,597 @@
+\documentclass[Journal]{ascelike}
+%
+\usepackage{setspace}
+\usepackage{longtable}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{manyeqns}
+\usepackage{graphicx}
+\usepackage{endfloat}
+\usepackage{natbib}
+%lists,noheads,nomarkers,tablesfirst
+%\usepackage{footnote}
+%\usepackage{appendix}
+\usepackage[letterpaper, top=25.4mm, bottom=10mm, left=25.4mm, right=25.4mm]{geometry}
+%
+\begin{document}
+%
+% You will need to make the title all-caps
+\title{An Exponential Hidden Markov Model for Deterioration Prediction in Infrastructure Management System}
+%
+\author{Nam Lethanh \thanks{Dr., Institute of Construction and Infrastructure Management., Swiss Federal Institute of Technology (ETH), 8093 Zurich, Switzerland. E-mail: lethanh@ibi.baug.ethz.ch}, Kiyoyuki Kaito \thanks{Associate Professor, Dr., Graduate School of Engineering, Osaka University, Suita, Osaka, Japan. \hspace{10mm}E-mail: kaito@ga.eng.osaka-u.ac.jp}, Bryan T. Adey \thanks{Associate Professor, Dr., Institute of Construction and Infrastructure Management., Swiss Federal Institute of Technology (ETH), 8093 Zurich, Switzerland. E-mail: adey@ibi.baug.ethz.ch} and Kiyoshi Kobayashi%
+\thanks{Professor, Dr., Dept. of Urban Management., Kyoto University, Katsura, Nishikyo-ku, Kyoto, Japan. \hspace{10mm}E-mail: kobayashi.kiyoshi.6n@kyoto-u.ac.jp}
+\ %Member, ASCE
+%
+}
+%
+\maketitle
+%
+\begin{abstract}
+In this paper, a statistical model is proposed under assumption that the deterioration of pavement is a complex process that includes frequently occurrence of local damages and slowly degradation of states of the surface course. The local damages are represented by a continous pavement index and it is modelled by exponential distribution function. Meanwhile, the deterioration process of pavement surface course is modeled with multi-stage exponential Markov model. Due to the nature of inspection schedules of both processes, information required to derive the evolution of states in Markov model is not always available within a certain period, thus remain as hidden deterioration process. However, in that period, information regarding the deterioration of local damages is available. The two deterioration processes (deterioration of local damages followed exponential distribution and evolution of states in Markov model) are statistically dependent and therefore the proposed model is referred as Exponential hidden Markov model. The model is a complex one and the estimation approach required to derive parameters of the model is not possible with conventional maximum likelihood estimation approach. Bayesian approach is therefore suggested. The model is empirically tested to demonstrate its applicability in the real world.
+\end{abstract}
+%
+\\
+\textbf{CE Database subject headings:} Exponential hidden Markov model; Potholes; Pavement management; Bayesian estimation; Markov Chain Monte Carlo.
+\section{Introduction}\label{introduction}
+In recent years, there has been a significant development and application of statistical models in the field of infrastructure asset management, particularly, in pavement management system (PMS) and bridge management system (BMS) \citep{Madanat1995,kobayashitsuda,Kobayashi2010a,Kobayashi2011}, the statistical models are of preference due to their capability to incorporate the uncertainties genuinely embedded in the deterioration forecasting and management  of civil infrastructures. Among existing applied statistical models, Markov deterioration forecasting models have been widely used. In Markov models, deterioration of civil infrastructure is expressed through the transition probability among discrete condition states, which are deduced values or composite values of performance indicators (e.g. roughness and cracking of the road surface) \citep{Kenneth2010}.
+
+In the PMS, the application and development of Markov deterioration forecasting models generally focus on a certain investigation time interval (e.g. 1 or 2 years transition probability). Using the historical data of pavement indicators, a Markov transition probability (m.t.p) is obtained and used for making intervention decisions (e.g. resurfacing, renewal) by means of Markov decision process (MDP) models \citep{Madanat1993,Kobayashi2008b}. The interventions using the MDP are therefore considered for a fixed time interval (hereafter referred as frequent interventions). However, in actual practices of the PMS, frequent repairs on damages such as cracking, which are detected by daily patrols, are required to ensure the riding quality and road safety to road users as well beside the frequent interventions. 
+
+Suffice it to state that under the consideration of frequent inspections for frequent interventions and daily patrols for emergency repairs, there are two deterioration processes involved in the course of deterioration prediction and management of the PMS: one is the deterioration process causing the local damages and the other is the deterioration process, which can be frequently measured through frequent inspections. In this paper, we take the case of pothole occurrences as local damages and deterioration process of road surface, which is expressible by means of Markov models, as frequent deterioration process.
+
+Statistically, there is a physical and statistical correlation between the occurrence of localized damages such as potholes and the deterioration process of surface. For instance, when cracks occur on the surface, the possibility of potholes increases. To formulate the statistical relation between the two processes (occurence of local damages and deterioration of pavement surfaces), we consider in this study following assumptions: 
+\begin{itemize}
+	\item the process of the generation of localized damages such as potholes is expressed by a Poisson process. This assumption is realistic as Poisson process is appropriately used for modelling count events \citep{Kingman1963}, and
+	\item the process of surface deterioration is expressed by the Markov deterioration hazard model. This assumption is also realistic as modelling pavement surface with Markovian approach has been widley used in the field \citep{Madanat1993,Madanat1995,Kobayashi2011}. 
+\end{itemize}
+Upon these assumptions, the authors propose a pavement deterioration prediction model that considers how declining surface condition impacts the process of pothole generation.
+
+The process of damages that occur in pavements is a composite deterioration process composed of localized damages that occur relatively frequently, and the surface deterioration process that changes relatively slowly. Moreover, while localized damages can be observed by daily patrol, surface condition is observed by surface inspections, which are performed significantly less frequently compared to daily patrols. It is often the case that although localized damage can be observed in daily patrol, surface condition cannot. 
+
+This study employs an Exponential hidden Markov deterioration (EXIMA) model to express the composite deterioration process that comprises localized damage and surface deterioration. Precisely in the paper, a multi-stage exponential Markov (MUSTEM) model of \cite{kobayashitsuda} is employed to model the deterioration process of road surface condition. The MUSTEM model is a profound model, which was also developed under the same research laboratory. As a matter of fact, the deterioration of road surface condition cannot be predicted in daily patrol (in other words, it is hidden process), but the probability distribution of surface condition can be predicted with the MUSTEM model. Furthermore, the exponential rate of damages, which is followed exponential distribution, is dependent on unobserable surface condition, and therefore the combination of two deterioration process is considered as a mixture of continous exponential model and discrete Markov model. 
+%Specifically, the deterioration process of surface condition is expressed by the MUSTEM model of \cite{kobayashitsuda}. Surface condition cannot be observed in daily patrol, but the probability distribution of surface condition can be predicted with the MUSTEM model. Furthermore, the generation rate of localized damage is dependent on unobservable surface condition, so the process of localized damage is expressed by a mixture Poisson generation model, using the probability distribution of surface condition predicted with the MUSTEM model. Upon this, the pavement deterioration process is expressed with a POHIMA model, which links the MUSTEM model and the mixture Poisson generation model.
+%
+%This paper proposes a deterioration prediction model that expresses the composite deterioration process of pavement, as an average of localized damage and surface deterioration. Furthermore, a case study is used to empirically analyze the applicability of the pavement deterioration prediction model. Section \ref{modelformulation} formulizes the POHIMA model. Section \ref{estimationmethod} proposes its estimation method, and Section \ref{Estimationalgorithm} describes an estimation algorithm using the Markov Chain Monte Carlo (MCMC) method. Section \ref{casestudy} studies the applied case study.
+%%
+\section{Formulation of the Model}\label{modelformulation}
+\subsection{Preconditions}\label{sub21}
+In order to formulate the POHIMA model, a timeline as shown in Fig. \ref{4jikanjiku} is implemented. Let us say the road administrator repairs the pavement at point $s_0$ in the calendar, and conducts daily patrols along the timeline. The targeted road includes many road sections. Here, in order to simplify the example, we continue the discussion with a focus on only one section. Section \ref{estimationmethod} expands the discussion to include all sections.
+%
+\begin{figure}[t]
+\begin{center}
+\includegraphics[scale=0.8]{zujikei} 
+\end{center} 
+\caption{Localized timeline.} 
+\label{4jikanjiku}
+\end{figure} 
+%
+Let us here implement a discrete timeline $t=0,1,2,\cdots,\infty$, with point $s_0$ in the calendar as the starting time $t=0$. The points on the discrete time line are categorized as time or calendar points. The periods between the discrete time points are standardized as 1. Surface inspections that are conducted on the target pavement are added to the discrete timeline as $t=0,t_1,\cdots,t_n,\cdots$. Furthermore, surface condition $h(t_n)$ can be evaluated from the surface inspection at point $t_n$. The period between two consecutive inspections is $\tau_n=[t_n,t_{n+1})$, and the length is $T_n=t_{n+1}-t_n$. Surface condition is expressed in discrete scale of condition states (hereafter shortly named as state)$i~(i=1,\cdots,I)$. The higher the number of $i$ is, the further deterioration has progressed. At $h(t_n)=I$, the surface has reached its limit of use (absorbing state). $h(0)=1$ holds true at the starting point $t=0$. 
+
+Moreover, road patrol is conducted at each point $u=0,1,\cdots$, and the number of potholes are observed. When a pothole is found, emergency repair is performed immediately. In order to analyze the generation process of potholes within the period $\tau_n$, we consider the localized discrete timeline $u_n=0,1\cdots,T_n$, with surface inspection point $t_n$ as the starting point $u_n=0$. However, localized point $u_n$ on the localized discrete timeline corresponds to point $t_n+u_n$ on the discrete timeline, therefore $t_{n+1}=t_n+T_n$ holds true. The condition variable that expresses the number of potholes at localized point $u_n$ is $g(u_n)=y_{u_n}~(y_{u_n}=0,1,\cdots)$. Let us say the surface condition is found to be $h(t_n)=\bar{i}$ and $h(t_{n+1})=\bar{j}$ at the surface inspections of point $t_n$ and $t_{n+1}=t_n+T_n$. However, $\bar{i} \leq \bar{j}$ is true. At this time, information on the true states $h(t_n+u_n)$ of localized time $u_n=1,\cdots,T_n-1$ within period $[t_n,t_{n+1})$ cannot be obtained, but the following condition regarding pavement state $h(t_n+u_n)$ holds true:
+\begin{eqnarray}
+&& h(t_n)=\bar{i}\leq \cdots \leq  h(t_n+u_n) \leq \cdots \leq h(t_{n+1})=\bar{j}\label{4uu} 
+\end{eqnarray}
+\subsection{Pavement Deterioration Process}\label{sub22}
+Let us again consider the discrete timeline $t=0,1,\cdots$ with the performance of pavement repairs $s_0$ as the starting point. The m.t.p that expresses the deterioration process of surface condition for the period $[t,t+1)$ on the discrete timeline, with the state $h(t)=i$ at point $t$, can be defined as the conditional probability that the state is $h(t+1)=j$ at point $t+1$   $\mbox{Prob}[h(t+1)=j|h(t)=i] =p_{ij}$.
+
+The m.t.p can be expressed with the multi-stage exponential Markov (MUSTEM) model developed by \cite{kobayashitsuda}. This section present only the general mathematical form of the cited paper. In the cited paper, the hazard rate of state $i~(i=1,\cdots,I-1)$ at point $t$ is expressed as
+\begin{eqnarray}
+&& \lambda^{i}=\mbox{\boldmath$x$}\mbox{\boldmath$\beta$}^i      \label{4(18)}
+\end{eqnarray}
+Where, $\mbox{\boldmath$x$}=(x_{1},\cdots,x_{Q})$ is the explanatory variable vector, and $\mbox{\boldmath$\beta$}^{i}=(\beta_1^{i},\cdots,\beta_{Q}^{i})^\prime$ is the unknown parameter vector. Here, the symbol $\prime$ indicates transposition, and $Q$ indicates the number of the explanatory variable. Furthermore, the parameter vector is expressed as $\mbox{\boldmath$\beta$}=(\mbox{\boldmath$\beta$}^{1\prime},\cdots,\mbox{\boldmath$\beta$}^{I-1\prime})^\prime$. Hazard rate $\lambda^{i}$ is defined within the period $[t,t+1)$. Following equation is general form of the m.t.p $p_{ij}$ ($i=1,\cdots,I-1;j=i,\cdots,I$): 
+\begin{eqnarray}
+      && p_{ij}=\mbox{Prob}[h(t+1)=j|h(t)=i] 
+      =\sum_{m=i}^{j}\prod_{s=i}^{m-1}\frac{\lambda^{s}}
+      {\lambda^{s}-\lambda^{m}}\prod_{s=m}^{j-1}\frac{\lambda^{s}}{\lambda^{s+1}
+      -\lambda^{m}}\exp(-\lambda^{m}) \label{4poi2}
+\end{eqnarray}
+In addition, for convenience the multiplicative form inside Eq. (\ref{4poi2}) can be simplified to:
+  \begin{eqnarray}
+      && \prod_{s=i,\neq m}^{j-1}\frac{\lambda^{s}}{\lambda^{s}-\lambda^{m}}
+      \exp (-\lambda^{m})
+       =\prod_{s=i}^{m-1}\frac{\lambda^{s}}{\lambda^{s}-\lambda^{m}}
+      \prod_{s=m}^{j-1}\frac{\lambda^{s}}{\lambda^{s+1}-\lambda^{m}}
+      \exp(-\lambda^{m})\label{c2}
+   \end{eqnarray}
+%
+The transitional probability matrix for period $[t,t+u]~(u=1,2,\cdots)$ can be expressed as (hereinafter, $u$ period transition probability matrix):
+\begin{eqnarray}
+&& { P}(u)= \{{ P}\}^u
+\end{eqnarray}
+However, the components of $u$ period transition probability matrix can be expressed, using the m.t.p defined in Eq. (\ref{4poi2}):
+\begin{manyeqns}
+p_{ij}(u) &=& \sum_{m=i}^{j}\prod_{s=i,\neq m}^{j-1}\frac{\lambda^{s}}{\lambda^{s}-\lambda^{m}}
+      \exp (-\lambda^{m}u) \label{4ppoi}
+\end{manyeqns}
+\subsection{Poisson Hidden Markov Process}\label{sub23}
+Information on surface condition can be obtained at road surface inspections performed at points $t_n~(n=1,2,\cdots)$. However, this information cannot be obtained at localized points $u_n~(u_n=1,\cdots,T_n-1)$. In other words, the condition at localized point $u_n$ is a probability variable that cannot be observed by inspectors, but we hypothesize that state $h(t_n+u_n)=l_{u_n}$ is already known.
+
+Now, let us examine the period $\tau_n=[t_n,t_{n+1})$, defined by the two inspection points, assuming we know the state $h(t_n)=\bar{i},h(t_{n+1})=\bar{j}$, for consecutive surface inspection points $t_n,t_{n+1}$. In this hypothesis, repair has not been performed on the pavement during period $\tau_n$. We also know the number of potholes ($g(u_n)=y_{u_n}~(u_n=0,\cdots,T_n-1)$) that were generated at localized points $u_n=0,1,\cdots,T_n-1$, with inspection point $t_n$ as the starting point. Although we do not have information regarding state $h(t_n+u_n)$ for localized points $u_n~(u_n=1,\cdots,T_n-1)$, we know Eq. (\ref{4uu}) holds true from the state $h(t_n)=\bar{i},h(t_{n+1})=\bar{j}$. Let us now look at localized period $\iota_{u_n}=[u_n,u_n+1)~(u_n=0,\cdots,T_n-1)$, which composes period $\tau_n$. The arrival rate of potholes $\mu(l_{u_n},\mbox{\boldmath$z$}_{u_n})>0$ in period $\iota_{u_n}$ corresponds to the Poisson generation model expressed by
+\begin{eqnarray}
+&& \mu(l_{u_n},\mbox{\boldmath$z$}_{u_n})= \mbox{\boldmath$z$}_{u_n}\mbox{\boldmath$\alpha$}^{l_{u_n}}      \label{4(19)}
+\end{eqnarray}
+However, $\mbox{\boldmath$z$}_{u_n}=(z_{1,u_n},\cdots,z_{P,u_n})$ is the explanatory variable vector observed at localized point $u_n$. $\mbox{\boldmath$\alpha$}^{l_{u_n}}=(\alpha_1^{l_{u_n}},\cdots,\alpha_{P}^{l_{u_n}})^\prime$ is the unknown parameter vector, and also $\mbox{\boldmath$\alpha$}=(\mbox{\boldmath$\alpha$}^{1\prime},\cdots,\mbox{\boldmath$\alpha$}^{I-1\prime})^\prime$. $P$ indicates the number of the explanatory variable. The arrival rate $\mu(l_{u_n},\mbox{\boldmath$z$}_{u_n})$ is defined according to localized period $[u_n,u_n+1)$. Here, it is thought potholes arrive according to the Poisson generation model with average $\mu(l_{u_n},\mbox{z}_{u_n})$ at point $t$. However, $l_{u_n}$ is the surface condition at localized point $u_n$, and is hypothesized to be a certain value within localized period $\iota_{u_n}$. Because the localized period $\iota_{u_n}$ is standardized as 1, the conditional probability $\pi(y_{u_n}|l_{u_n},\mbox{z}_{u_n})$ that a $y_{u_n}$ number of potholes are generated within localized period $\iota_{u_n}$, can be expressed as:
+\begin{eqnarray}
+&& \pi(y_{u_n}|l_{u_n},\mbox{z}_{u_n}) 
+= \mbox{Prob}[g(u_n)=y_{u_n}|h(t_n+u_n)=l_{u_n},\mbox{z}_{u_n}] \nonumber \\
+&&=\exp\{-\mu(l_{u_n},\mbox{\boldmath$z$}_{u_n})\}\frac{\left\{\mu(l_{u_n},\mbox{\boldmath$z$}_{u_n})\right\}^{y_{u_n}}}{y_{u_n}!} \label{4poisson1}
+\end{eqnarray}
+Of course, with Eq. (\ref{4poisson1}), $\sum_{y_n=0}^\infty \pi(y_{u_n}|l_{u_n})=1$ holds true. However, $0!=1$. Moreover, under the condition that state $h(t_n)=i$ at point $t_n$, when the conditional probability $\rho_{u_n}(l_{u_n}|i)$ that the state is $l_{u_n}$ at localized point $u_n$ is expressed by
+\begin{eqnarray}
+&& \rho_{u_n}(l_{u_n}|i) =\mbox{Prob}\{h(t_n+u_n)=l_{u_n}|h(t_n)=i\}  = p_{il_{u_n}}(u_n)
+\end{eqnarray}
+then the probability $\tilde{\pi}_{u_n}(y_{u_n},\mbox{\boldmath$z$}_{u_n})$ that a $y_{u_n}$ number of potholes is generated within localized period $\iota_{u_n}$ can be defined as follows
+%
+\begin{eqnarray}
+&& \hspace{-5mm} \tilde{\pi}_{u_n}(y_{u_n},\mbox{\boldmath$z$}_{u_n}) = \sum_{l_{u_n}=i}^j \pi(y_{u_n}|l_{u_n},\mbox{\boldmath$z$}_{u_n}) \rho_{u_n}(l_{u_n}|i) 
+\end{eqnarray}
+Here, the state at surface inspection point $t_n$ is $h(t_n)=\bar{i}$, which defines the conditional probability (likelihood) ${\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$})$ that vector $\bar{\xi}_n$ is observed at localized point $u_n~(u_n=0,\cdots,T_n-1)$. However, the symbol $\bar{\text{\hspace{2mm}}}$ indicates the observed value, $\bar{\xi}_n=\{\bar{\mbox{\boldmath$y$}}_n,\bar{\mbox{\boldmath$z$}}_n,\bar{i},\bar{j}\}$ is the observed value vector, and $\mbox{\boldmath$\theta$}=(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$})$ is the unknown parameter vector.
+
+Under the assumption that state $h(t_n)=\bar{i}$ is observed at point $t_n$, the likelihood ${\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$})$ is defined as the product of the conditional probability (likelihood), in which [1] the observed value vector $\bar{\mbox{\boldmath$y$}}_n$ of the number of potholes is observed at localized point $u_n~(u_n=0,\cdots,T_n-1)$, and [2] a state of $h(t_{n+1})=\bar{j}$ is observed at point $t_{n+1}$. In other words, likelihood ${\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$})$ can recursively be defined as:
+\begin{manyeqns}
+&& {\cal L}(\bar{\xi}_n,\mbox{\boldmath$\theta$}) = \pi(\bar{y}_0|\bar{i},\bar{\mbox{\boldmath$z$}}_{0}) \sum_{l_1=i}^j p_{\bar{i}l_1}\ell_{1}(l_1) \label{4mu0}\\
+&& \ell_{u_n}(l_{u_n})= \pi(\bar{y}_{u_n}|l_{u_n},\bar{\mbox{\boldmath$z$}}_{u_n}) \sum_{l_{u_n+1}=l_{u_n}}^j p_{l_{u_n}l_{u_{n}+1}} \ell_{u_n+1}(l_{u_n+1}) \\
+&& (1\leq u_n \leq T_n-1) \nonumber \\
+&& \ell_{T_{n}-1}(l_{T_n-1}) = \pi(\bar{y}_{T_n-1}|l_{T_n-1},\bar{\mbox{\boldmath$z$}}_{T_n-1}) p_{l_{T_n-1}\bar{j}}  \label{4mu1}
+\end{manyeqns}
+%%%%%%%%%
+\section{Estimation Method}\label{estimationmethod}
+\subsection{Data Set}\label{subsec31}
+Let us consider the example that a road administrator manages a set of roads comprising $K$ road sections. For each section $k~(k=1,\cdots,K)$, the discrete timeline is established as $t=0,1,\cdots$ with the most recent repair $s_0$ as the starting point. Surface inspections are conducted at points $t_n~(n=1,\cdots,N)$, and state $h_k(t_n)$ is observed. $N$ indicates the number of times surface inspection is performed. Additionally, let us say for each period $\tau_n=[t_n,t_{n+1})~(n=0,\cdots,N-1)$, road patrol is conducted at localized points $u_n~(u_n=0,\cdots,T_n-1)$, where the pothole amount vector $\bar{\mbox{\boldmath$y$}}_n^k=(\bar{y}_{0}^k,\cdots,\bar{y}_{T_n-1}^k)$, and explanatory variable vector $\bar{\mbox{\boldmath$z$}}_n^k=(\bar{z}_{0}^{k},\cdots,\bar{z}_{T_n-1}^{k})$ which influences the generation of potholes, are observed. The data vector  $\bar{\xi}_n^k=\{\bar{\mbox{\boldmath$y$}}_n^k,\bar{\mbox{\boldmath$z$}}_n^k,\bar{h}^k(t_n),\bar{h}^k(t_{n+1})\}$ is defined for section $k$ and period $\tau_n$. The overall data set is defined as $\bar{\Xi}=\{\bar{\xi}_n^k:n=0,\cdots,N,k=1,\cdots,K\}$. The likelihood ${\cal L}(\bar{\xi}_n^k,\mbox{\boldmath$\theta$})$ that data $\bar{\xi}_n^k$ is observed is defined by Eqs. (\ref{4mu0})-(\ref{4mu1}). Therefore, the probability (likelihood) that the overall data set $\Xi$ is observed can be formulized by
+\begin{eqnarray}
+&& {\cal L}(\bar{\Xi},\mbox{\boldmath$\theta$}) = \prod_{k=1}^K \prod_{n=1}^{N} {\cal L}(\bar{\xi}_n^k,\mbox{\boldmath$\theta$}) \label{4yyy}
+\end{eqnarray}
+Therefore, the estimation problem with the POHIMA model attributes to the problem of estimating parameter vector $\hat{\mbox{\boldmath$\theta$}}$ that maximizes likelihood function (LF) in Eq. (\ref{4yyy}).
+
+The LF of the POHIMA model (Eqs. (\ref{4mu0})-(\ref{4mu1})) is a high-order non-linear polynomial, with an extremely large number of solutions for first order optimality conditions (including complex solutions) \citep{robe}. Of course, estimates of the probability of potholes $\pi^k(\bar{y}^k_{u_n}|l_{u_n}^k,\bar{\mbox{\boldmath$z$}}_{u_n}^k)$ and the m.t.p $p^k_{l_{u_{n}}^kl_{u_{n+1}}^k}$ must be real solutions. In addition, of the numerous real solutions as probability estimates, those between 0 and 1 must be selected. The problem of solving the high-order non-linear polynomial can be avoided by using Bayesian estimation in place of maximum likelihood estimation (MLE). However, the LF in Eqs. (\ref{4mu0})-(\ref{4mu1}) includes many terms, causing the calculation to be enormous \citep{robe}. In order to overcome this difficulty of the MLE, completion must be performed on the LF.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Complete Likelihood Function (CLF)}\label{subsec32}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let us again look at road section $k$. It is assumed that surface inspection was conducted at points $t_n,t_{n+1}$, and the state was observed to be $\bar{i}_n^k,~\bar{j}_{n+1}^k$. In addition, in order to estimate the parameters of the POHIMA model, the transition pattern of surface condition in period $[t_n,t_{n+1})$ is expressed using the potential variable vector $\mbox{\boldmath$m$}_n^k=(m_1^k,\cdots,m_{T_n-1}^k)$. Due to the characteristic of deterioration process, as long as the facility is not repaired,
+
+\begin{eqnarray}
+&& \bar{i}_n^k\leq m_1^k \leq \cdots \leq m_{T_{n}-1}^k \leq \bar{j}_{n+1}^{k} \label{4stk0} 
+\end{eqnarray}
+%
+holds true. The true condition vector $\mbox{\boldmath$m$}_n^k$ is essentially un-measurable, and only the  states $\bar{i}_n^k, \bar{j}_{n+1}^{k}$ at point $t_n,t_{n+1}$ are measurable. However, for convenience let us assume the potential variable is established as $\tilde{\mbox{\boldmath$m$}}_n^k=(\tilde{m}_1^k,\cdots,\tilde{m}_{T_n-1}^k)$. Furthermore, for the virtual instance $\tilde{\mbox{\boldmath$m$}}_n^k$ for potential variable $\mbox{\boldmath$m$}_n^k$, we will introduce the dummy variable:
+%
+\begin{eqnarray}
+&& \delta_{s_{u_n}}^k=\left\{
+\begin{array}{ll}
+1 & \tilde{m}_{u_n}^k =s_{u_n}^k\\
+0 & \tilde{m}_{u_n}^k \ne s_{u_n}^k
+\end{array}
+\right., \hspace{2mm}
+ (s_{u_n}^k=\bar{i}_n^k,\cdots,\bar{j}_n^k;u_n=1,\cdots,T_n-1) \nonumber
+\end{eqnarray}
+Under the condition that the virtual instance vector of the potential variable is $\tilde{\mbox{\boldmath$m$}}_n^k$, the LF (Eqs. (\ref{4mu0})-(\ref{4mu1})) can be rewritten as:
+\begin{eqnarray}
+&& \overline{\cal L}(\tilde{\mbox{\boldmath$m$}}_n^k,\bar{\xi}_n^k,\mbox{\boldmath$\theta$})
+ = \prod_{u_n=0}^{T_n-1} \prod_{s^k_{u_{n}+1}=\bar{i}_n^k}^{\bar{j}_n^k} 
+\pi^k(\bar{y}_{u_n}|s^k_{u_n},\bar{z}_{u_n}^k)^{\delta_{s_{u_n}}^k} \{p_{s^k_{u_n}s^k_{u_{n+1}}}\}^{\delta^k_{s_{n}}} 
+\nonumber \\
+&&= \prod_{u_n=0}^{T_n-1} \pi^k(\bar{y}_{u_n}|\tilde{m}^k_{u_n},\bar{z}_{u_n}^k) p_{\tilde{m}^k_{u_n}\tilde{m}^k_{u_{n}+1}} \label{4hyuudo2}
+\end{eqnarray}
+The above process is referred to as completion. The LF in Eq. (\ref{4hyuudo2}) (hereinafter, complete likelihood function (CLF)) is significantly simplified compared to the regular LF in Eqs.  (\ref{4mu0})-(\ref{4mu1}). However, the potential variable $\tilde{\mbox{\boldmath$m$}}_n^k$ within the CLF in Eq. (\ref{4hyuudo2}) is a variable that cannot be measured. Therefore, we predict the probability distribution of the potential variable, using the CLF. Using the CLF, the full conditional posterior distribution of the potential variable $\tilde{\mbox{\boldmath$m$}}_n^k$ can be estimated. Due to the characteristic of the deterioration process, as long as the pavement is not repaired, condition in Eq. (\ref{4stk0}) holds true. Here, if $\tilde{\mbox{\boldmath$m$}}_{-u_n}^k=(\tilde{m}_1^k,\cdots,\tilde{m}_{u_n-1}^k,\tilde{m}_{u_n+1}^k,\cdots,\tilde{m}_{T_n}^k),\tilde{\mbox{\boldmath$m$}}_{-u_n}^{m,k}=(\tilde{m}_1^k,$$\cdots,$$\tilde{m}_{u_n-1}^k,m,\tilde{m}_{u_n+1}^k,\cdots,\tilde{m}_{T_n}^k)$, then the full conditional posterior distribution of $m_{u_n}^k=m ~(m$ $\in \{\tilde{m}_{u_n-1}^k,$$\cdots, \tilde{m}_{u_n+1}^k\})$ can be expressed with the Bayesian rule:
+\begin{eqnarray}
+&& \mbox{Prob}\{m_{u_n}^k=m|\tilde{\mbox{\boldmath$m$}}_{-u_n}^k\}
+ =\frac{\overline{\cal L}(\tilde{\mbox{\boldmath$m$}}_{-u_n}^{m,k},\bar{\xi}_n^k,\mbox{\boldmath$\theta$})}{\sum_{m=\tilde{m}_{u_n-1}^k}^{\tilde{m}_{u_n+1}^k} 
+\overline{\cal L}(\tilde{\mbox{\boldmath$m$}}_{-u_n}^{m,k},\bar{\xi}_n^k,\mbox{\boldmath$\theta$})} \nonumber \\
+&& =\frac{
+\pi^k(\bar{y}_{u_n}^k|m,\bar{\mbox{\boldmath$z$}}_{u_n}^k) \omega_{m,t}^k(\tilde{m}_{u_{n}-1}^k,\tilde{m}_{u_{n}+1}^k) }{
+\sum_{m=\tilde{m}_{u_n-1}^k}^{\tilde{m}_{u_n+1}^k} \pi^k(\bar{y}_{u_n}^k|m,\bar{\mbox{\boldmath$z$}}_{u_n}^k) \omega_{m,t}^k(\tilde{m}_{u_{n}-1}^k,\tilde{m}_{u_{n}+1}^k) } \label{hhu}
+\end{eqnarray}
+However,
+%
+\begin{eqnarray}
+&& \omega_{m,t}^k(\tilde{m}_{u_{n}-1}^k,\tilde{m}_{u_{n}+1}^k) 
+ =\left\{
+\begin{array}{ll}
+p^k_{\bar{j}_n^k,m}p^k_{m,\tilde{m}_2^{k}} & u_n=1 \\
+p^k_{\tilde{m}_{u_{n}-1}^k,m} p^k_{m\tilde{m}_{u_{n}+1}^k} & 2\leq u_n \leq T_n-2 \\
+p^k_{\tilde{m}_{T_n-2}^k,m}p^k_{m,\bar{j}_{n}^k} & u_n=T_n-1
+\end{array}
+\right.
+\end{eqnarray}
+%
+In other words, if we can obtain the generation probability of potholes $\pi^k(\bar{y}_{u_n}^k|m,\bar{z}_{u_n}^k)$ and the m.t.p  $p^k_{m\tilde{m}_{u_{n}+1}^k}$~$(u_n=0,\cdots,T_n-1;n=1,\cdots,N,k=1,\cdots,K)$, we can obtain the full conditional posterior distribution of surface condition $m_{u_n}^k \in \{\tilde{m}_{u_n-1}^k,\cdots,\tilde{m}_{u_n+1}^k\}$ for localized point $u_n$ under the condition $\tilde{\mbox{\boldmath$m$}}_{-u_n}^k$. 
+
+In the CLF (Eq. (\ref{4hyuudo2})), the potential variable $\tilde{\mbox{\boldmath$m$}}_n^k$ is decided. However, unknown parameters $\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}$ are included in the pothole probability and transition probability between states, so the full conditional posterior probability of potential variable cannot be obtained first. Using the MCMC method that uses the full conditional posterior probability (later refer to Eq. (\ref{4hhu})), the potential variable $\mbox{\boldmath$m$}$ is generated repeatedly and randomly, and the parameters $\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}$ are estimated by the Bayesian method. The method of obtaining these unknown parameters and full conditional posterior probability is further explained in section \ref{Estimationalgorithm}. It has been proven that, through these procedures, the Bayesian estimation of the parameters obtained with the CLF can be converged to the maximum likelihood estimate of the parameter obtained with the true LF \citep{robe}.
+%%%%%%%%%%%%%%%%
+\section{Estimation Algorithm}\label{Estimationalgorithm}
+\subsection{MCMC Method} \label{subsec41}
+Estimating with a mixture distribution model that includes a hidden Markov deterioration model would involve a high-order non-linear LF, which makes it difficult to use a regular maximum likelihood or Bayesian estimation \citep{robe}. Therefore, for mixture distribution models, it has been proposed to use CLFs and conduct estimation with the MCMC method instead of a regular LF \citep{robe}. Existing hidden Markov deterioration models yield the m.t.p in deterministic values and are limited to the aggregation of these fixed parameters. However, the POHIMA model proposed in this paper estimates the m.t.p using the MUSTEM model. The authors have already developed a MCMC algorithm that incorporates a m.t.p Bayesian estimation algorithm, in order to estimate a hidden Markov deterioration model \citep{Kobayashi2011}. This study further improves on the MCMC method developed in \cite{Kobayashi2011} for the estimation of parameters of the proposed POHIMA model.
+
+First, parameter $\mbox{\boldmath$\alpha$}^i=(\alpha_1^i,\cdots,\alpha_P^i)$ included in the arrival rate of potholes (\ref{4(18)}) is an unknown parameter. We hypothesize a normal distribution as the prior probability density function (pdf) of this parameter. That is, the prior pdf of parameter $\mbox{\boldmath$\alpha$}^i$ is $\mbox{\boldmath$\alpha$}^i \sim {\cal N}_P(\mbox{\boldmath$\zeta$}^{i,\alpha},\mbox{\boldmath$\Sigma$}^{i,\alpha})$. However, the pdf of $P-$variate normal distribution ${\cal N}_P(\mbox{\boldmath$\zeta$}^{i,\alpha},\mbox{\boldmath$\Sigma$}^{i,\alpha})$ is given by
+%
+\begin{eqnarray}
+      && \hspace{-2mm}
+      \phi(\mbox{\boldmath$\alpha$}^i|
+      \mbox{\boldmath$\zeta$}^{i,\alpha},\mbox{\boldmath$\Sigma$}^{i,\alpha})
+      = \frac{1}{(2\pi)^{\frac{P}{2}}\sqrt{|\mbox{\boldmath$\Sigma$}^{i,\alpha}|}}
+            \exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\alpha$}^i
+      -\mbox{\boldmath$\zeta$}^{i,\alpha})
+      \{\mbox{\boldmath$\Sigma$}^{i,\alpha}\}^{-1}
+    (\mbox{\boldmath$\alpha$}^{i}-\mbox{\boldmath$\zeta$}^{i,\alpha})^\prime\Big\}
+            \label{4Kseiki}
+   \end{eqnarray}
+ %
+%
+However, $\mbox{\boldmath$\zeta$}^{i,\alpha}$ is the prior expectation value of ${\cal N}^P(\mbox{\boldmath$\zeta$}^{i,\alpha}, \mbox{\boldmath$\Sigma$}^{i,\alpha})$ and $\mbox{\boldmath$\Sigma$}^{i,\alpha}$ is the prior variance-covariance matrix. Similarly, the prior pdf of $\mbox{\boldmath$\beta$}^i$ should correspond to a multi-variate normal distribution, so we can hypothesize $\mbox{\boldmath$\beta$}^i \sim {\cal N}_Q(\mbox{\boldmath$\zeta$}^{i,\beta},\mbox{\boldmath$\Sigma$}^{i,\beta})$. However, the pdf of $Q-$variate normal distribution ${\cal N}_Q(\mbox{\boldmath$\zeta$}^{i,\beta},\mbox{\boldmath$\Sigma$}^{i,\beta})$ is:
+ %
+   \begin{eqnarray}
+      && \hspace{-2mm}
+      \psi(\mbox{\boldmath$\beta$}^i|
+      \mbox{\boldmath$\zeta$}^{i,\beta},\mbox{\boldmath$\Sigma$}^{i,\beta})
+      = \frac{1}{(2\pi)^{\frac{Q}{2}}\sqrt{|\mbox{\boldmath$\Sigma$}^{i,\beta}|}}
+       \exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\beta$}^{i}
+      -\mbox{\boldmath$\zeta$}^{i,\beta})
+      \{\mbox{\boldmath$\Sigma$}^{i,\beta}\}^{-1}
+      (\mbox{\boldmath$\beta$}^i-\mbox{\boldmath$\zeta$}^{i,\beta})^\prime\Big\}
+            \label{4Keiki}
+   \end{eqnarray}
+ %
+However, $\mbox{\boldmath$\zeta$}^{i,\beta}$ is the prior expectation value and $\mbox{\boldmath$\Sigma$}^{i,\beta}$ is the prior variance-covariance matrix. Here, the complete posterior pdf $\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\tilde{\mbox{\boldmath$m$}},\bar{\mbox{\boldmath$\xi$}})$ is:
+ %
+   \begin{eqnarray}
+      && \rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\tilde{\mbox{\boldmath$m$}},\bar{\mbox{\boldmath$\xi$}}) 
+      \propto {\cal L}(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$},\tilde{\mbox{\boldmath$m$}},\bar{\mbox{\boldmath$\xi$}})\prod_{i=1}^{I-1}\Bigl\{\phi(\mbox{\boldmath$\alpha$}^i|\mbox{\boldmath$\zeta$}^{i,\alpha},\mbox{\boldmath$\Sigma$}^{i,\alpha})  \psi(\mbox{\boldmath$\beta$}^i|\mbox{\boldmath$\zeta$}^{i,\beta},\mbox{\boldmath$\Sigma$}^{i,\beta})
+      \nonumber \\
+      && \propto \prod_{k=1}^K \prod_{n=1}^{N} \prod_{u_n=0}^{T_n-1} \left[
+            \exp\left(- \bar{\mbox{\boldmath$z$}}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^k} \right)\left(
+\bar{\mbox{\boldmath$z$}}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^k}\right)^{\bar{y}_{u_n}^k} \right.
+       \left. \sum_{l=\tilde{m}_{u_n}^k}^{\tilde{m}_{u_{n+1}}^k} \Bigl\{ \prod_{h=\tilde{m}_{u_n}^k,\neq l}^{l-1}\frac{\lambda_h^k}{\lambda_{h}^k-\lambda_{l}^k} \exp (-\lambda_{l}^k)\Bigr\} \right] \nonumber \\
+      && \prod_{i=1}^{I-1}
+      \exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\alpha$}^i
+      -\mbox{\boldmath$\zeta$}^{i,\alpha})
+      \{\mbox{\boldmath$\Sigma$}^{i,\alpha}\}^{-1}
+      (\mbox{\boldmath$\alpha$}^{i}-\mbox{\boldmath$\zeta$}^{i,\alpha})^\prime 
+       -\frac{1}{2}
+      (\mbox{\boldmath$\beta$}^{i}-\mbox{\boldmath$\zeta$}^{i,\beta})
+      \{\mbox{\boldmath$\Sigma$}^{i,\beta}\}^{-1}
+      (\mbox{\boldmath$\beta$}^{i}-\mbox{\boldmath$\zeta$}^{i,\beta})^\prime\Big\} \label{4post1}
+   \end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Gibbs Sampling}\label{subsec42}
+%%%
+In the POHIMA model, the posterior pdf $\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\tilde{\mbox{\boldmath$m$}},\bar{\mbox{\boldmath$\xi$}})$ cannot be obtained with direct analysis. Therefore, we extract samples of parameters $\mbox{\boldmath$\alpha$}$,$\mbox{\boldmath$\beta$}$ from the posterior pdf using Gibbs Sampling \citep{gibbs1}, a representative MCMC method. Also, the full conditional posterior distribution of potential variable $\mbox{\boldmath$m$}$ is expressed with Eq. (\ref{hhu}). With the MCMC method and Gibbs Sampling, the hidden Markov deterioration model can be estimated. Following steps describe the estimation procedure.
+%%%
+\subsubsection{a) Step 1: Establish initial value}
+Arbitrarily establish the number of prior distribution (Eqs.  (\ref{4Kseiki}),(\ref{4Keiki})) parameter vector (matrix) $\mbox{\boldmath$\zeta$}^{i,r}, \mbox{\boldmath$\Sigma$}^{i,r}(i=1,\cdots,I-1;r=\alpha,\beta)$. Establish the initial value of the potential variable $\tilde{\mbox{\boldmath$m$}}^{(0)}=(\tilde{\mbox{\boldmath$m$}}_n^{k(0)}:k=1,\cdots,K;n=1,\cdots,N)$. However, $\tilde{\mbox{\boldmath$m$}}_n^{k(0)}=(\tilde{m}_1^{k(0)},\cdots,\tilde{m}_{T_n-1}^{k(0)})$. Also, $\bar{i}_n^k\leq \tilde{m}_1^{k(0)}\leq \cdots \leq \tilde{m}_{T_n-1}^{k(0)}\leq \bar{j}_n^k$ is satisfied. Next, arbitrarily establish the initial values of parameters $\mbox{\boldmath$\alpha$}^{(0)}$ and $\mbox{\boldmath$\beta$}^{(0)}$. The influence of initial values grows weaker in proportion to the number of MCMC simulations. The number of MCMC samples $v$ is $v=1$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\subsubsection{b) Step 2: Extract samples of $\mbox{\boldmath$\alpha$}^{(v)}$}
+In Step 2, under the condition of potential variable $\tilde{\mbox{\boldmath$m$}}^{(v-1)}$, we obtain parameter samples regarding the generation rate of potholes $\mbox{\boldmath$\alpha$}^{(v)}=(\mbox{\boldmath$\alpha$}^{1(v)},\cdots,\mbox{\boldmath$\alpha$}^{I-1(v)})$. However, $\mbox{\boldmath$\alpha$}^{i(v)}$$=(\alpha_z^{i(v)}:z=1,\cdots,P)$. The Gibbs Sampler used in Step 2 can be defined with the complete conditional posterior density function $\rho(\mbox{\boldmath$\alpha$}^{(v)}|\tilde{\mbox{\boldmath$m$}}^{(v-1)},\bar{\mbox{\boldmath$\xi$}})$ . Under the conditions of virtual state distribution $\tilde{\mbox{\boldmath$m$}}^{(v-1)}$ and observed data $\bar{\mbox{\boldmath$\xi$}}$, the Gibbs sampler for completion $\mbox{\boldmath$\alpha$}^{i(v)}$ is a dummy variable:
+\begin{eqnarray}
+&& \hat{\rho}(\mbox{\boldmath$\alpha$}^{i(v)}|\tilde{\mbox{\boldmath$m$}}^{(v-1)},\bar{\mbox{\boldmath$\xi$}}) \propto \prod_{k=1}^K \prod_{n=1}^{N} \prod_{u_n=0}^{T_n} 
+\left\{ \exp\left(- \bar{\mbox{\boldmath$z$}}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^{k(v-1)}(v)} \right)\left(
+\bar{\mbox{\boldmath$z$}}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^{k(v-1)}(v)}\right)^{\bar{y}_{u_n}^k}\right\}^{\delta_{i}^{u_nk}}
+\nonumber \\
+&& \hspace{35mm}\exp\Big\{-\frac{1}{2}(\mbox{\boldmath$\alpha$}^{i(v)}
+      -\mbox{\boldmath$\zeta$}^{i,\alpha})
+      \{\mbox{\boldmath$\Sigma$}^{i,\alpha}\}^{-1}
+      (\mbox{\boldmath$\alpha$}^{i(v)}-\mbox{\boldmath$\zeta$}^{i,\alpha})^\prime \Big\} \label{4dir}
+\end{eqnarray}
+However, $\delta_{i}^{u_nk}$ is a dummy variable by the following.
+\begin{eqnarray}
+&& \delta_{i}^{u_nk}=\left\{
+\begin{array}{ll}
+1 & when \hspace{3mm} \tilde{m}_{u_n}^k=i \\
+0 & otherwise
+\end{array}
+\right. 
+\end{eqnarray}
+
+Furthermore, the unknown parameter $\mbox{\boldmath$\alpha$}^i$ is expressed as $\mbox{\boldmath$\alpha$}_{-p}^i$, when $\alpha_{p}^i$ (the number $p~(p=1,\cdots,P)$ component) is excluded. Here, from Eq. (\ref{4dir}), the conditional posterior pdf $\hat{\rho}(\alpha_{p}^i|\mbox{\boldmath$\alpha$}_{-p}^i,\tilde{\mbox{\boldmath$m$}}^{(v-1)},\bar{\mbox{\boldmath$\xi$}})$ of $\alpha_{p}^i$, when $\mbox{\boldmath$\alpha$}_{-p}^i$ is already known, is:
+%
+\begin{eqnarray}
+&& \hat{\rho}(\alpha_{p}^i|\mbox{\boldmath$\alpha$}_{-p}^i,\tilde{\mbox{\boldmath$m$}}^{(v-1)},
+      \bar{\mbox{\boldmath$\xi$}}) \propto \prod_{k=1}^K \prod_{n=1}^{N} \prod_{u_n=0}^{T_n}\left\{\exp \left(- \bar{\mbox{\boldmath$z$}}_{p,u_n}^k \alpha_p^{\tilde{m}_{u_n}^{k(v-1)}(v)} \right)
+\left(\bar{\mbox{\boldmath$z$}}_{u_n}^k\mbox{\boldmath$\alpha$}^{\tilde{m}_{u_n}^{k(v-1)}(v)}\right)^{\bar{y}_{u_n}^k}\right\}^{\delta_{i}^{u_nk}}  \nonumber \\
+&& \hspace{40mm} 
+ \exp\Big\{-\frac{\sigma_{pp}^i}{2}(\alpha_{p}^i-\hat{\zeta}_{p}^i)^2 \Big\}  \\
+&& \hspace{40mm}
+      \hat{\zeta}_{p}^i
+      = \zeta_{p}^i+\sum_{h=1,\neq p}^{P}(\alpha_{h}^h-\zeta_h^{i})\sigma_{hp}^i
+\label{4condition11}
+\end{eqnarray}
+%
+$\zeta_{p}^i$ is the number $p$ component of prior expectation vector $\mbox{\boldmath$\zeta$}^i$, and $\sigma^{i}_{hp}$ is the number $(h,p)$ component of prior distribution variance-covariance matrix $\mbox{\boldmath$\Sigma^i$}^{-1}$. Moreover, $\sum_{h=1,\neq p}^{P}$ is the sum total of components from 1 to $P$, excluding $p$. Here, $\mbox{\boldmath$\alpha$}^{(v)}=(\alpha_{1}^{1(v)},\cdots,\alpha_{Q}^{I-1(v)})$ is randomly sampled with the following procedures:
+\begin{itemize}
+	\item \textbf{Step 2-1} Randomly generate $\hat{\rho}(\alpha_{1}^{1(v)}|\mbox{\boldmath$\alpha$}_{-1}^{1(v-1)}, \tilde{\mbox{\boldmath$m$}}^{(v-1)},\bar{\mbox{\boldmath$\xi$}})$ from $\alpha_{1}^{1(v)}$.
+	\item \textbf{Step 2-2} Randomly generate $\hat{\rho}(\alpha_{2}^{1(v)}|\mbox{\boldmath$\alpha$}_{-2}^{1(v-1)}, \tilde{\mbox{\boldmath$m$}}^{(v-1)},\bar{\mbox{\boldmath$\xi$}})$ from $\alpha_{2}^{1(v)}$.
+	\item \textbf{Step 2-3} Repeat these steps.
+	\item \textbf{Step 2-4} Randomly generate $\hat{\rho}(\alpha_{P}^{I-1(v)}|\mbox{\boldmath$\alpha$}_{-P}^{I-1(v-1)},\tilde{\mbox{\boldmath$m$}}^{(v-1)},\bar{\mbox{\boldmath$\xi$}})$ from $\alpha_{P}^{I-1(v)}$.
+\end{itemize}
+Furthermore, this paper uses adaptive rejection sampling \cite{gilks} as the method of sampling parameter $\mbox{\boldmath$\alpha$}$ from Eq. (\ref{4condition11}).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{c) Step 3: Extract samples of $\mbox{\boldmath$\beta$}^{(v)}$}
+Here we extract samples of parameter $\mbox{\boldmath$\beta$}^{(v)}$ of the MUSTEM model. Unknown parameter $\mbox{\boldmath$\beta$}^e~(e=1,\cdots,Q)$ is expressed as $\mbox{\boldmath$\beta$}_{-q}^e$, when $\beta_{q}^e$ (the number $q~(q=1,\cdots,Q)$ component) is excluded. The Gibbs sampler $\hat{\rho}(\beta_{q}^e|\mbox{\boldmath$\beta$}_{-q}^e,\tilde{\mbox{\boldmath$m$}}^{(v-1)},\bar{\mbox{\boldmath$\xi$}})$ of $\beta_{q}^e$, when $\mbox{\boldmath$\beta$}_{-q}^e$ is already known, is defined by
+%
+   \begin{eqnarray}
+      && \hat{\rho}(\beta_{q}^e|\mbox{\boldmath$\beta$}_{-q}^e,\tilde{\mbox{\boldmath$m$}}^{(v-1)},
+      \bar{\mbox{\boldmath$\xi$}}) 
+       \hspace{2mm} \propto
+\prod_{i=1}^{i} \prod_{j=i}^I \prod_{k=1}^K  \prod_{u_n=1}^{T_n-1} \Bigl[ \prod_{l=i}^{j-1} (\beta_{q}^i x_q^k)^{\delta_{ij}^{u_nk}-\delta_{ie}^{u_nk}}  \nonumber \\
+     && \hspace{2mm} \sum_{h=i}^{j} \prod_{l=i,\neq h}^{h-1}\frac{1}{\lambda_{l}^k-\lambda_{h}^k} \exp (-\lambda_{h}^k)\Bigl]^{\delta_{ij}^{tk}} 
+ \exp\Big\{-\frac{\sigma_{qq}^e}{2}(\beta_{q}^e-\hat{\zeta}_{q}^e)^2 \Big\} \\
+&& \hspace{10mm}
+      \hat{\zeta}_{q}^e
+      = \zeta_{q}^e+\sum_{h=1,\neq q}^{Q}(\beta_{h}^e-\zeta_h^{e})\sigma_{hq}^e
+       \label{4condition1}
+      \end{eqnarray}
+%
+Here $\delta_{ie}^{u_nk}$ and $\delta_{ij}^{u_nk}$ are as follows.
+\begin{eqnarray}
+&& \delta_{ie}^{u_nk}=\left\{
+\begin{array}{ll}
+1 & when \hspace{3mm} \tilde{m}_{u_n}^k=i=e \\
+0 & otherwise
+\end{array}
+\right. and  \hspace{3mm}
+ \delta_{ij}^{u_nk}=\left\{
+\begin{array}{ll}
+1 & when \hspace{3mm} \tilde{m}_{u_n}^k=i,~\tilde{m}_{u_n+1}^k=j\\
+0 & otherwise
+\end{array}
+\right. 
+\end{eqnarray}
+%
+In addition, $\zeta_{q}^e$ is the number $q$ component of prior expectation vector $\mbox{\boldmath$\zeta$}^e$, and $\sigma^{e}_{hq}$ is the number $(h,q)$ component of prior distribution variance-covariance matrix $\mbox{\boldmath$\Sigma^e$}^{-1}$. With the Gibbs Sampler explanatory here, samples of $\mbox{\boldmath$\beta$}^{(v)}$ can be obtained with the procedures explanatory in Step 3.
+%%%%%%%%%%%%%%%
+\subsubsection{d) Step 4: Updating potential variable}
+We now generate random samples of the new potential variable $\tilde{\mbox{\boldmath$m$}}^{(v)}$ based on full conditional posterior probability (Eq. (\ref{hhu})). Here, the potential variable vector is defined as $\tilde{\mbox{\boldmath$m$}}_{-u_n}^{k(v)}=(\tilde{m}_1^{k(v)},\cdots,\tilde{m}_{u_n-1}^{k(v)},\tilde{m}_{u_n+1}^{k(v)},\cdots,\tilde{m}_{T_n-1}^{k(v)})$. At this time, the full conditional posterior probability of $m_{u_n}^{k(v)} ~(m_{u_n}^{k(v)} \in \{\tilde{m}_{u_n-1}^{k(v)},\cdots, \tilde{m}_{u_n+1}^{k(v)}\})$ is:
+\begin{eqnarray}
+&& \hspace{-10mm}\mbox{Prob}\{m_{u_n}^{k(v)}=m|\mbox{\boldmath$\alpha$}^{(v)},\tilde{\mbox{\boldmath$m$}}_{-u_n}^{k(v-1)},
+\bar{\mbox{\boldmath$\xi$}}\}
+=\frac{
+\pi^k(\bar{y}_{u_n}^{k(v)}|m,\bar{\mbox{\boldmath$z$}}_{u_n}^k) \omega_{m,u_n}^k(\tilde{m}_{u_{n}-1}^{k(v)},\tilde{m}_{u_{n}+1}^{k(v-1)}) }{
+\sum_{m=\tilde{m}_{u_n-1}^{k(v)}}^{\tilde{m}_{u_n+1}^{k(v-1)}} \pi^k(\bar{y}_{u_n}^{k(v)}|m,\bar{\mbox{\boldmath$z$}}_{u_n}^k) \omega_{m,u_n}^k(\tilde{m}_{u_{n}-1}^{k(v)},\tilde{m}_{u_{n}+1}^{k(v-1)}) } 
+ \label{4hhu}
+\end{eqnarray}
+%
+%
+For every $k~(k=1,\cdots,K);n=1,\cdots,N$, the potential variable $\tilde{m}_{u_n}^{k(v)}~(u_n=1,\cdots,T_n)$ is obtained, from $u_n=1$.
+\subsubsection{e) Step 5: Decide to end algorithm}
+Here we record the updated value of parameter estimates $\mbox{\boldmath$\alpha$}^{(v)}$,$\mbox{\boldmath$\beta$}^{(v)}$, and the updated value of potential variable $\tilde{\mbox{\boldmath$m$}}^{(v)}$. If $v< \overline{v}$, then $v=v+1$, so we return to Step 2. If not, the algorithm ends. Moreover, the establishment of parameter initial values will have an influence on the early phases of the above algorithm. Therefore, one must assume the generation process of the parameter sample has not reached a stable process until the number of simulations $v$ is adequately large. These parameter samples should be deleted. Here, the minimum value of the number of simulations $v$, for which the results can be used for parameter samples, will be expressed as $\underline{v}$. In other words, the samples $\mbox{\boldmath$\alpha$}^{(v)},\mbox{\boldmath$\beta$}^{(v)}~(v=\underline{v}+1,\underline{v}+2,\cdots,\overline{v})$ obtained by Gibbs Sampling are considered samples of posterior pdf $\rho(\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}|\bar{\mbox{\boldmath$\xi$}})$. Therefore, we can calculate various statistics regarding posterior distribution of parameter vectors $\mbox{\boldmath$\alpha$},\mbox{\boldmath$\beta$}$. Moreover, the stationarity of Gibbs Sampling is judged with the Geweke statistic \citep{geweke}.
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Case Study}\label{casestudy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The POHIMA model proposed in this paper was applied to the maintenance of road pavement, targeting part of national roads A and B, in order to empirically investigate its validity. The sum length of the target roads are 77km of A and 46km of B. National roads A and B are in regions with snowfall, and the frequent occurrence of potholes, one of the administrator's serious issues, was considered in the selection. The road characteristics and environments of both roads are similar; therefore they will not be differentiated in the database created for the following model estimation.
+
+The targeted roads have data on past surface inspections and repairs, as well as daily road patrols. Timeline data on the pavement deterioration is necessary for estimating the Markov deterioration hazard model. For this case study, surface inspection data and repair data of year 2006 was used. Moreover, the provided data included surface inspection data for every 100m. In the MUSTEM model, it was assumed that the roads' damages were eliminated completed during repairs, therefore the change and transition of states from the most recent repair to the inspection points of 2006 were used for the case study (roads that had no repairs were used from the time they began operation). The surface inspection data at each 100m was applied to the entire road within that 100m stretch. 
+
+The Maintenance Control Index (MCI) was used as the measurement of surface condition; this is a measurement of damage by cracking, rutting and flatness, acquired during surface inspections. Table \ref{4def} shows the definition of state evaluation using MCI. States are evaluated in a scale of five, from 1 to 5. A state of over MCI 7, which can be recovered with minor repairs, was given as 1. During daily patrols, as a basic rule one road section was patrolled each day, surface abnormalities and obstacles were inspected visually, and when something was observed, the content, time and position was recorded. In this case, the information on potholes to be used in the study was acquired from the daily patrols, so the Poisson generation model will be estimated using this information. Moreover, we used information on road patrols of national road A from June 2007 to February 2010, and of B from April 2009 to March 2010.
+
+For these road sections, we created basic road sections of 200m each. As a result, we had a total of 279 basic sections that could be used for POHIMA model estimation (surface inspection, repair history, road patrol data). Also, 74 of these basic sections had been confirmed to include potholes, and there had been 145 repairs using pothole patching mixtures. Therefore, the arrival rate of potholes in the target road sections was $\mu=0.52 (145/279)$ (number of repairs/number of observed road sections), and the average generation rate in road sections in which at least pothole had developed was $1.96$$(=145/74)$ (number of repairs/number of road sections with a pothole). This is displayed in Table \ref{4inspection}, with potholes classified by states. In the table we can see that the the value of arrival rate $\mu$ tend to increase with the increase of state number. In another words, the occurrence of potholes parallel increases with the worser states.
+%
+%
+\begin{table}[t]
+\begin{center}
+\caption{Definition of condition states}
+\label{4def}
+{\footnotesize
+\begin{tabular}{c|c} \hline
+Condition states & MCI Range \\\hline
+1 & $7 \leq MCI \leq 10$   \\
+2 & $6 \leq MCI <7$   \\
+3 & $5 \leq MCI <6$   \\
+4 & $4 \leq MC5 <5$   \\
+5 & $0 \leq MCI <4$   \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{table}
+%
+%
+\begin{table}[t]
+\centering
+\caption{Generation of potholes}
+\label{4inspection}
+{\footnotesize
+\begin{tabular}{c|ccccc|c} \hline
+Condition states & 1 & 2 & 3 & 4 & 5 & Total \\\hline
+Number of observed road sections & 56 & 75 & 58 & 42 & 48 & 279 \\
+Number of road sections with a pothole & 11 & 18 & 15 & 10 & 20 & 74 \\
+Number of repairs & 21 & 30 & 23 & 20 & 51 & 145 \\
+Arrival rate ($\mu$) & 0.38  & 0.40  & 0.40  & 0.48  & 1.06  & 0.52  \\
+Average occurrence rate & 1.90 & 1.67 & 1.53 & 2.00 & 2.55 & 1.96 \\\hline
+\end{tabular}
+}
+\end{table}
+%
+\begin{table}[t]
+\begin{center}
+\caption{Estimation results (parameters of the MUSTEM model)}
+\label{4est1}
+{\footnotesize
+\begin{tabular}{l|l|l|l|l}
+\hline
+\multicolumn{1}{c|}{Condition} & \multicolumn{1}{c|}{Constant} & \multicolumn{1}{c|}{Traffic volume} & \multicolumn{1}{c|}{Average} & \multicolumn{1}{c}{Expected lifetime} \\ 
+\multicolumn{1}{c|}{states} & \multicolumn{1}{c|}{term} & \multicolumn{1}{c|}{(large-size vehicle)} & \multicolumn{1}{c|}{hazard rate} & \multicolumn{1}{c}{(years)} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{$\beta_i1$} & \multicolumn{1}{c|}{$\beta_i2$} & \multicolumn{1}{c|}{$E[\lambda(i)]$} & \multicolumn{1}{c}{$E[RMD]$} \\ 
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-2.650} & \multicolumn{1}{c|}{0.657} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{(-2.735,-2.557)} & \multicolumn{1}{c|}{(0.515,0.791)} & \multicolumn{1}{c|}{0.0944} & \multicolumn{1}{c}{10.590} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1.672} & \multicolumn{1}{c|}{1.018} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-2.210} & \multicolumn{1}{c|}{0.519} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{(-2.323,-2.116)} & \multicolumn{1}{c|}{(0.369,0.665)} & \multicolumn{1}{c|}{0.1379} & \multicolumn{1}{c}{7.250} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{1.745} & \multicolumn{1}{c|}{0.333} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-1.940} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{(-1,990,-1,774)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0.1437} & \multicolumn{1}{c}{6.959} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.816} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-2.440} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{(-2.564,-2.297)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0.0872} & \multicolumn{1}{c}{11.473} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.607} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+\hline
+\end{tabular}
+}\\
+\end{center}
+\small (Note) In each cell, the first line indicates the expected parameter values, the second line indicates the lower and upper limit of the 90\% credible interval of the parameter estimation, and the third line shows the Geweke statistics.
+\end{table}
+%
+\begin{figure*}[t]
+\vspace{5mm}
+\begin{center}
+\begin{minipage}{1.0\textwidth}
+\begin{center}
+   \begin{minipage}{0.45\textwidth}
+   \begin{center}
+   \includegraphics[width=8cm]{samp1.eps}\\
+   (a) $\beta_{11}$
+   \end{center}
+   \end{minipage}
+   \begin{minipage}{0.45\textwidth}
+   \begin{center}
+   \includegraphics[width=8cm]{samp2.eps}\\
+   (b) $\beta_{12}$
+   \end{center}
+   \end{minipage}
+\end{center}
+\end{minipage}
+\caption{Sampling results $\beta$}
+\label{4samp}
+\end{center}
+\vspace{-5mm}
+\end{figure*}
+%%
+\subsection{Bayesian estimation of the MUSTEM model}
+\label{4sec:markov}
+Table \ref{4est1} shows the results of Bayesian estimation on the MUSTEM model using states defined by MCI ratings (parameter expectation values and 90\% credible interval (Bayesian confident interval)). Furthermore, Geweke statistics are also shown. When Gibbs Sampling was conducted, the number $\underline{n}=3,000$ was established as an appropriate number of samples to reach a stable Markov chain. As shown in Table \ref{4est1}, Geweke statistics $Z-score$ are below 1.96, and we cannot eliminate the hypothesis with a 5\% significance level. For the following calculations, we use $\bar{n}=13,000$ samples and eliminate the first $\underline{n}=3,000$ as samples from the convergence process, and use the remaining 10,000. As an example, the probability distribution of unknown parameters $\beta_{11}$ and $\beta_{12}$ of the MUSTEM at state $i=1$ is shown in Fig. \ref{4samp}. 
+
+Under the above conditions, possible characteristic variables may include pavement type, pavement thickness and traffic volume of large-sized vehicles. These characteristic variables were decided based on coinciding conditions and Geweke statistics. As a result, only traffic volume of large-sized vehicles was selected to be used in this analysis. The traffic volume of large-sized vehicles in the target road sections is an average 2,784/day, minimum 1,204/day, and maximum 6,308/day. For estimation, these values were standardized so the maximum was 1. In the table, the impact of the traffic volume of large-sized vehicles is large at states 1 and 2, but not significant in later stages of the deterioration process (states 3 and 4). Table \ref{4est1} also highlights the values of expected hazard rate $E[\lambda_i]$ (Eq. (\ref{4(18)})) and the expected lifetime ($E[RMD]=1/\lambda_i$) of each state $i$ (RMD stands for remaining duration) \citep{kobayashitsuda}. From this we can see that the expected lifetime of states 2 and 3 are relatively short, and the expected cumulative lifetime from state 1 to 5 is approximately 36.2 years. 
+
+The m.t.p calculated using the average hazard rate $E[\lambda_i]$ is shown in Table \ref{4prob} (Eq. (\ref{4poi2})). The m.t.p is the probability of the transitioning state in one year. The diagonal transition probability is the biggest for all states. Also, there are some samples that drop two steps within one year, but this generation probability is extremely low. Using this m.t.p, the expected deterioration path was calculated (Fig. \ref{4path}). The expected deterioration path includes variance due to the traffic volume of large-sized vehicles. Road sections with the most traffic have an expected pavement lifetime of approximately 39.1 years, and those with the least traffic at approximately 31.2 years. There was no significant difference confirmed. Because repairs are often conducted on national roads at state 4, as defined in this study, the expected lifetime is an average of approximately 24.8 years, maximum approximately 27.7 years and minimum approximately 19.7 years. In addition, Fig. \ref{4dis} shows the condition distribution. This figure includes each state's occupation ratio and its relation with time. After approximately eight years of operation 50\% of the road sections move from state 1 to 2 or more, and in approximately 34 years 50\% have state 5.
+%
+\begin{table}[t]
+\begin{center}
+\caption{Transition probability matrix}
+\label{4prob}
+{\footnotesize
+\begin{tabular}{c|ccccc} \hline
+Prior & \multicolumn{5}{c}{Posterior condition states} \\\cline{2-6}
+condition states & 1 & 2 & 3 & 4 & 5 \\\hline
+1 & 0.910  & 0.084  & 0.006  & 0.000  & 0.000  \\
+2 & 0.0  & 0.871  & 0.120  & 0.009  & 0.000  \\
+3 & 0.0  & 0.0  & 0.866  & 0.128  & 0.006  \\
+4 & 0.0  & 0.0  & 0.0  & 0.917  & 0.083  \\
+5 & 0.0  & 0.0  & 0.0  & 0.0  & 1.0  \\ \hline
+\end{tabular}
+}
+\vskip 1em
+{\small (Note) The transition matrix indicates the transition probability of one year.}
+\end{center}
+\end{table}
+%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.6]{zu1}\\
+\caption{Expected deterioration path of road surface}
+\label{4path}
+\end{figure}
+%
+\begin{table}[t]
+\begin{center}
+\caption{Estimation results (Poisson parameters $\alpha$)}
+\label{4est2}
+{\footnotesize
+\begin{tabular}{l|l|l|l|l}
+\hline
+\multicolumn{1}{c|}{Condition} & \multicolumn{1}{c|}{Constant} & \multicolumn{1}{c|}{Peak travel} & \multicolumn{1}{c|}{Mix rate of large-sized} & \multicolumn{1}{c}{Average} \\ 
+\multicolumn{1}{c|}{states} & \multicolumn{1}{c|}{term} & \multicolumn{1}{c|}{speed} & \multicolumn{1}{c|}{vehicles on weekdays} & \multicolumn{1}{c}{arrival rate} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{$\alpha_i1$} & \multicolumn{1}{c|}{$\alpha_i2$} & \multicolumn{1}{c|}{$\alpha_i3$} & \multicolumn{1}{c}{$E[\mu(i)]$} \\ 
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-0.262} & \multicolumn{1}{c|}{0.608} & \multicolumn{1}{c|}{0.409} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{(-0.482,-0.045)} & \multicolumn{1}{c|}{(0.281,0.897)} & \multicolumn{1}{c|}{(0.181,0.657)} & \multicolumn{1}{c}{0.366} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-1.513} & \multicolumn{1}{c|}{0.825} & \multicolumn{1}{c|}{1.277} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-0.008} & \multicolumn{1}{c|}{0.428} & \multicolumn{1}{c|}{0.523} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{(-0.282,0.317)} & \multicolumn{1}{c|}{(-0.138,0.868)} & \multicolumn{1}{c|}{(0.221,0.860)} & \multicolumn{1}{c}{0.532} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.351} & \multicolumn{1}{c|}{-0.645} & \multicolumn{1}{c|}{0.410} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.449} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0.495} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{(0.268,0.647)} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{(0.139,0.860)} & \multicolumn{1}{c}{0.696} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-0.026} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{-0.602} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-0.252} & \multicolumn{1}{c|}{0.955} & \multicolumn{1}{c|}{0.681} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{(-0.652,0.169)} & \multicolumn{1}{c|}{(0.259,1.614)} & \multicolumn{1}{c|}{(0.276,1.146)} & \multicolumn{1}{c}{0.773} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-0.655} & \multicolumn{1}{c|}{0.326} & \multicolumn{1}{c|}{0.555} & \multicolumn{1}{c}{} \\ 
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{-0.366} & \multicolumn{1}{c|}{0.549} & \multicolumn{1}{c|}{1.801} & \multicolumn{1}{c}{} \\ 
+\multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{(-0.837,0.109)} & \multicolumn{1}{c|}{(-0.352,1.407)} & \multicolumn{1}{c|}{(1.283,2.351)} & \multicolumn{1}{c}{0.888} \\ 
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.320} & \multicolumn{1}{c|}{-0.599} & \multicolumn{1}{c|}{1.179} & \multicolumn{1}{c}{} \\ 
+\hline
+\end{tabular}
+}\\
+\end{center}
+\small (Note) For each state, the first line indicates the expected parameter values, the second line indicates the lower and upper limit of the 90\% credible interval of the parameter estimation, and the third line shows the Geweke statistics.
+\end{table}
+%
+
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.6]{zu2}\\
+\caption{Condition states distribution of road surface}
+\label{4dis}
+\end{figure}
+%%%%%%%%%5
+\subsection{Bayesian estimation of Poisson generation model}
+The results of Bayesian estimation on the Poisson generation model are shown in Table \ref{4est2}. In the Poisson generation function (Eq. (\ref{4poisson1})) of the POHIMA model, the characteristic variables defined in arrival rate function (Eq. (\ref{4(19)})) are peak travel speed and mix rate of large-sized vehicles on weekdays, respectively. The probability distributions of unknown parameters $\alpha_{11}$,$\alpha_{12}$,$\alpha_{13}$ (Eq. (\ref{4(19)})) of the MUSTEM model at state 1, are shown in Fig. \ref{jciz5}. In the target road sections, the peak travel speed was an average 34.5km/h, minimum 12.5km/h and maximum 48.4km/h. The average mix rate of large-sized vehicles on weekdays was 19.1\%, minimum 9.1\% and maximum 39.6\%. As with the MUSTEM model, these values were standardized to have a maximum of 1. As can be seen from the table, mixture Poisson generation models can be created for each state (in this case study, five Poisson generation models can be defined). In addition, the credible interval of each Bayesian estimation can be calculated (Table \ref{4est1}). As state increases (pavement deterioration progresses), the average arrival rate $\mu$ also increases. This indicates potholes occur more frequently in accordance to pavement deterioration (less durability of the pothole patching mixture).
+%
+
+\begin{figure*}[t]
+\vspace{5mm}
+\begin{center}
+\begin{minipage}{1.0\textwidth}
+\begin{center}
+   \begin{minipage}{0.3\textwidth}
+   \begin{center}
+   \includegraphics[width=4.5cm]{psamp1}\\
+   (a) $\alpha_{11}$
+   \end{center}
+   \end{minipage}
+   \begin{minipage}{0.3\textwidth}
+   \begin{center}
+   \includegraphics[width=4.5cm]{psamp2}\\
+   (b) $\alpha_{12}$
+   \end{center}
+   \end{minipage}
+   \begin{minipage}{0.3\textwidth}
+   \begin{center}
+   \includegraphics[width=4.5cm]{psamp3}\\
+   (c) $\alpha_{13}$
+   \end{center}
+   \end{minipage}
+\end{center}
+\end{minipage}
+\caption{Sampling results $\alpha$}
+\label{jciz5}
+\end{center}
+\vspace{-5mm}
+\end{figure*}
+%
+The Poisson distribution calculated using the estimation results is shown in Fig. \ref{4poi1}. This figure shows the relationship between the number of potholes generated and the generation probability, at the point of 200 days after emergency repairs using pothole patching mixtures, for each state. As for the Poisson distribution of  state 1, the probability that there will be 0 potholes is the highest at approximately 0.81, and similarly 1 is 0.17, while 2 or more is extremely low. As state increases, the probability of 0 potholes decreases, and the probability of 1 or more potholes increases. Moreover, the Poisson distribution in this figure was calculated using average values of peak travel speed and mix rate of large-sized vehicles on weekdays, and the variation in the Poisson distribution due to these differences can also be analyzed.
+%
+%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.6]{zu5}\\
+\caption{Poisson distribution of each condition state (after 200 days)}
+\label{4poi1}
+\end{figure}
+%%
+\section{Conclusion}\label{conclusion}
+In this paper, a POHIMA model was proposed for the expression of a composite deterioration process, composed of localized damages that occur relatively frequently and surface deterioration process that changes relatively slowly. The occurrence of localized damages is modeled with Poisson generation model and the deterioration of surface structure is modeled with multi-stage exponential Markov model. The proposed model is formulated based on the formulation of statistical dependency between the two deterioration processes. The interactive relation was empirically evaluated using actual road patrol and surface inspection data. As a result, it was confirmed that as road surface condition deteriorates, the probability of the occurrence of potholes tends to increase (arrival rate of Poisson distribution). In the target road sections, the generation ratio of potholes in state 5 was approximately 2.5 times that of state 1. Also, the risk management indicators that focus on the number of potholes show that in some cases it may be difficult to ensure adequate durability with emergency repairs using pothole patching mixture, depending on the states.
+%
+%The following issues are those that should be further studied. The first is that the information obtained through this study is only applicable to the target road sections. In order to acquire universal knowledge on snowy regions or regular roads, empirical analysis on a wider range of road sections must be conducted. The second is that it is important to establish a life cycle cost evaluation method that corresponds to the Poisson hidden Markov deterioration model. In practical use, an asset management methodology should be developed, which indicate the timing of large-scale repairs, such as overlays and repaving, based on the frequency of potholes. The third concerns further development of the hidden Markov deterioration model and application to other deterioration phenomena. This paper involved a composite deterioration process in which the generation process of potholes expressed by the Poisson generation model is dependent on surface condition expressed by the Markov model, therefore a Poisson hidden Markov deterioration model was proposed. However, theoretically it is possible to alternatively use a Poisson generation model, Markov model or other hazard model. In fact, if modeling a mixture deterioration process that involved deterioration processes that can both be expressed by a Markov model, such as surface condition and pavement load capacity, a hierarchical hidden Markov deterioration model will be necessary.
+%
+%
+\bibliographystyle{ascelike}
+\bibliography{reference}
+\end{document}
+
