@@ -1,0 +1,25 @@
+data;
+set nodes := N1  N2 N3  N4 N5 N6 N7 N8 N9 N10 ;
+set links := (N1,N2) (N1,N3) (N1,N4) (N1,N5)  (N2,N6) (N2,N7)   (N3,N2) (N3,N7)   (N4,N3) (N4,N5) (N4,N7) 
+			 (N5,N9) 	 (N6,N8) 	 (N7,N8)  (N7,N9) (N7,N10)  (N8,N10)(N9,N10);
+param s  default 0 := N1 700 ; # ton
+param d  default 0 := N10 700;
+param:     			c  			Q  :=
+N1 			N2   	5   		250
+N1 			N3		2			300
+N1 			N4		1			80
+N1 			N5		4			150	
+N2 			N6		2			250		
+N2 			N7		1			320 
+N3 			N2		2			150
+N3 			N7		3			130
+N4 			N3		2			90
+N4 			N5		2			200
+N4 			N7		6			180
+N5 			N9		12			200
+N6 			N8		1			255
+N7 			N8		4			350
+N7 			N9		8			240
+N7 			N10		7			250
+N8			N10		6			300
+N9 			N10 	4			250;

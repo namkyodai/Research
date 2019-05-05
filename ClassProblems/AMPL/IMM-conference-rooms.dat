@@ -1,0 +1,22 @@
+data;
+set ROOM := small medium large;
+set OUTCOME := area expenditure;
+set DEVIATION := over under;
+
+param N :=  small 5	medium 10	large 15;
+param M :=  area 9000	expenditure 3000000;
+
+param w1 :=
+	[*,*]:  			over 		under:=
+			small		0			1
+			medium		0			1
+			large		0			1; 
+param w2 :=
+	[*,*]:  				over 		under	:=
+			area			1			1			
+			expenditure		100			1; 		
+param c :=
+	[*,*]:  			area 		expenditure:=
+			small		125			60000
+			medium		250			100000
+			large		350			151900; 

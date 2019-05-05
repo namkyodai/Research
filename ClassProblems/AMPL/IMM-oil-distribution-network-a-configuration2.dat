@@ -1,0 +1,10 @@
+data;
+set INTER := I S1 S2  S3 S4 S5 O;
+param entr := I; #oil field
+param exit := O; #refinery
+param: STATION: cap :=
+I S1 5, I S2 5 
+S1 S3 5, S1 S4 5
+S2 S3 5, S2 S4 5
+S3 O 5
+S4 O 5;

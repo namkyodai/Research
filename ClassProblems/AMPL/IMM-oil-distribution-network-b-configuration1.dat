@@ -1,0 +1,15 @@
+data;
+set INTER := I S1 S2  S3 S4 S5 O;
+param entr := I; #oil field
+param exit := O; #refinery
+param: STATION: cap percent	:=
+I 	S1  		6   0.85
+I 	S2			4	0.9
+S1 	S3			3	0.925
+S1 	S4			2	0.95	
+S2 	S3			2	0.95	
+S2 	S4			5	0.875
+S3 	O			6	0.85
+S4 	O			4	0.9;
+
+

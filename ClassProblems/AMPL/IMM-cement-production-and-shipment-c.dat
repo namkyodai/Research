@@ -1,0 +1,14 @@
+data;
+set INTER := N1  N2 N3  N4 N5 N6 N7 N8 N9 N10 ;
+param entr := N1 ;
+param exit := N10 ;
+param: ROADS: cap :=
+N1 N2 250, N1 N3 300, N1 N4 80, N1 N5 150
+N2 N6 250, N2 N7 320
+N3 N2 150, N3 N7 130
+N4 N3 90, N4 N5 200, N4 N7 180
+N5 N9 200
+N6 N8 255
+N7 N8 350, N7 N9 240, N7 N10 250
+N8 N10 300
+N9 N10 250;

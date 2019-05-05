@@ -1,0 +1,32 @@
+
+set plant := A B C ;
+set customer := c1 c2 c3 c4 c5 c6 ;
+set material := cement steel ;
+
+param Q :=  A 20  B 15  C 20 ; #hours
+
+param D (tr):
+					c1   c2   c3   c4   c5   c6 :=
+    cement    	500  750 400  250  	950  850 
+	steel   	 	100  100  0   50   	200  100;
+
+param r (tr):  			A   B   C :=
+           cement    140 130 160
+			steel      160 160 170;
+
+param c (tr):
+                  A   B   C :=
+		cement  170 170 180
+        steel    180  185 185;
+
+param v :=
+
+ [*,*,cement]:  	c1  c2  c3  c4  c5  c6 :=
+        A   		35  12  9   30  13  42   
+        B  			27  9   12  9   26  95   
+        C    		26  7   9   12  11  23   
+
+ [*,*,steel]:  		c1  c2  c3  c4  c5  c6 :=
+        A    		45  22  20  37  26  54    
+        B 			29  9   13  9  	28  99   
+        C    		41  14  17  13  31  104;
