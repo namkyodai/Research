@@ -136,22 +136,22 @@ T_optimalsa[u]<-which.min(C)/d
 plot.new()
 par(mar=c(5, 4, 4, 6) + 0.1)
 plot(ccisa, Min_Csa, pch=2, axes=FALSE, ylim=c(0,25), xlab="", ylab="", 
-     type="b",col="blueviolet", lwd=2)
+     type="b",col="blueviolet", lwd=1)
 axis(2, ylim=c(0,20),col="black",las=1)  ## las=1 makes horizontal labels
-mtext(expression(paste("Annual impacts  (",, "mus)")),side=2,col="black",line=2.5)
+mtext(expression(paste("Total impacts  (",, "mus)")),side=2,col="black",line=2.5)
 axis(1,pretty(range(ccisa),20))
 box()
 
 par(new=TRUE)
-
+library(latex2exp)
 ## Plot the second plot and put axis scale on right
 plot(ccisa, T_optimalsa, pch=4,  xlab="", ylab="", ylim=c(1,40), 
-     axes=FALSE, type="b", col="coral1",lwd=2,lty=2)
+     axes=FALSE, type="b", col="coral1",lwd=1,lty=2)
 ## a little farther out (line=4) to make room for labels
-mtext("OTE (years)",side=4,col="black",line=2.3) 
+mtext("ORT (years)",side=4,col="black",line=2.3) 
 axis(4, ylim=c(0,20), col="black",col.axis="black",las=1)
-mtext(expression(paste("Ratio ", CI/PI, "-(snow barriers system)")),side=1,col="black",line=2.5)  
+mtext(TeX('$c_2$'),side=1,col="black",line=2.5)  
 grid(10, 10, col = "lightgray", lty = "dotted",lwd = par("lwd"), equilogs = TRUE)
-legend("topright",inset=.08,legend=c("Annual impacts","OTE"),
-       text.col=c("black"),pch=c(2,4),col=c("blueviolet","coral1"),horiz=F,cex=1.2,box.col = "white")
+legend("topright",inset=.08,legend=c("Total impacts","ORT"),
+       text.col=c("black"),pch=c(2,4),col=c("blueviolet","coral1"),horiz=F,cex=1,box.col = "white")
 

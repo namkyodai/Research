@@ -1,4 +1,5 @@
 #Sensitivity analysis
+library(latex2exp)
 yvalue = 30
 alpha<-c(0.353,0.360,0.371,0.389,0.391)
 gamma<-c(5.652,5.581,5.575,5.498,5.367)
@@ -136,23 +137,21 @@ T_optimalsa[u]<-which.min(C)/d
 #drawing
 plot.new()
 par(mar=c(5, 4, 4, 6) + 0.1)
-plot(CIimpactsa, Min_Csa, pch=2, axes=FALSE, ylim=c(6,8), xlab="", ylab="", 
-     type="l",col="blueviolet", lwd=5)
+plot(CIimpactsa, Min_Csa, pch=2, axes=FALSE, ylim=c(6,8), xlab="", ylab="",  type="l",col="blueviolet", lwd=5)
 axis(2, ylim=c(0,20),col="black",las=1)  ## las=1 makes horizontal labels
-mtext(expression(paste("Annual impacts  (",, "mus)")),side=2,col="black",line=2.5)
+mtext(expression(paste("Total impacts  (",, "mus)")),side=2,col="black",line=2.5)
 axis(1,pretty(range(CIimpactsa),20))
 box()
 
 par(new=TRUE)
 
 ## Plot the second plot and put axis scale on right
-plot(CIimpactsa, T_optimalsa, pch=4,  xlab="", ylab="", ylim=c(10,20), 
-     axes=FALSE, type="l", col="coral1",lwd=5,lty=2)
+plot(CIimpactsa, T_optimalsa, pch=4,  xlab="", ylab="", ylim=c(10,20),  axes=FALSE, type="l", col="coral1",lwd=5,lty=2)
 ## a little farther out (line=4) to make room for labels
-mtext("OTE (years)",side=4,col="black",line=2.3) 
+mtext("ORT (years)",side=4,col="black",line=2.3) 
 axis(4, ylim=c(0,20), col="black",col.axis="black",las=1)
-mtext(expression(paste("Ratio ", CI/PI, "- (bridge)")),side=1,col="black",line=2.5)  
+mtext(TeX('$w$'),side=1,col="black",line=2.5)  
 grid(10, 10, col = "lightgray", lty = "dotted",lwd = par("lwd"), equilogs = TRUE)
-legend("topright",inset=.08,legend=c("Annual impacts","OTE"),
+legend("topright",inset=.08,legend=c("Total impacts","ORT"),
        text.col=c("black"),lty=c(1,2),lwd=c(5,5),col=c("blueviolet","coral1"),horiz=F,cex=1.2,box.col = "white")
 

@@ -12,6 +12,7 @@ cat("Expected IMPACT for CI of the bridge at time t \n")
 
 #..............................................
 
+
 #         MAIN PROGRAM
 
 f1=function(x){
@@ -37,7 +38,4 @@ for (i in 1:length(T)){
   v2=integrate(f2,lower=0,upper=T[i])
   C[i]=(exp(-rho*T[i])*(cs+ca)+(k0/rho)*(1-exp(-rho*T[i]))+(cm+CItime[T[i]])*v1$value*v2$value)/(1-exp(-rho*T[i]))
 }
-
-
-
 

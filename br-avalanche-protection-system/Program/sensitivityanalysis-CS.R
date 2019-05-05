@@ -152,7 +152,7 @@ par(mar=c(5, 4, 4, 6) + 0.1)
 plot(step, Min_Csa, pch=2, axes=FALSE, ylim=c(6.5,7), xlab="", ylab="", 
      type="l",col="blueviolet", lwd=5)
 axis(2, ylim=c(0,20),col="black",las=1)  ## las=1 makes horizontal labels
-mtext(expression(paste("Annual impacts  (",, "mus)")),side=2,col="black",line=2.5)
+mtext(expression(paste("Total impacts  (",, "mus)")),side=2,col="black",line=2.5)
 axis(1,pretty(range(step),5))
 box()
 
@@ -162,10 +162,10 @@ par(new=TRUE)
 plot(step, T_optimalsa, pch=4,  xlab="", ylab="", ylim=c(16,19), 
      axes=FALSE, type="l", col="coral1",lwd=5,lty=2)
 ## a little farther out (line=4) to make room for labels
-mtext("OTE (years)",side=4,col="black",line=2.8) 
+mtext("ORT (years)",side=4,col="black",line=3.5) 
 axis(4, ylim=c(0,20), col="black",col.axis="black",las=1)
 mtext(expression(paste("Condition state of the bridge ", )),side=1,col="black",line=2.5)  
 grid(10, 10, col = "lightgray", lty = "dotted",lwd = par("lwd"), equilogs = TRUE)
-legend("topright",inset=.08,legend=c("Annual impacts","OTE"),
+legend("topright",inset=.08,legend=c("Total impacts","ORT"),
        text.col=c("black"),lty=c(1,2),lwd=c(5,5),col=c("blueviolet","coral1"),horiz=F,cex=1.2,box.col = "white")
 
