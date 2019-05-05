@@ -1,0 +1,14 @@
+#data 
+set OBJ := bridge retainingwall ; #
+#cost ()
+param c:=
+	bridge 1 retainingwall 3;
+
+param t:=
+	bridge 2.5 retainingwall 1;
+	
+param b:=
+	bridge 2 retainingwall 3;
+
+param B:= 8.25;
+param TIME:=8.75;
