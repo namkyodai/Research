@@ -1,0 +1,7 @@
+data;
+set city := A B C D;
+
+param X :=  A 5   B 12  C 17 D 52;
+param Y :=  A 45  B 21  C 5 D 21;
+param D :=  A 60  B 60  C 60 D 60;
+			

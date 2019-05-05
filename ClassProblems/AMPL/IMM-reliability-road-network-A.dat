@@ -1,0 +1,26 @@
+data;
+
+set nodes := N1  N2 N3  N4 N5 N6 N7 N8 N9 N10;
+
+param entr := N1 ;
+param exit := N10 ;
+
+param:     links:	p   :=
+	N1 		N2   	0.003
+	N1 		N3		0.004
+	N1 		N4		0.002
+	N2 		N4		0.01
+	N2 		N6		0.006
+	N3 		N4		0.002
+	N3 		N5		0.01
+	N4 		N5		0.002
+	N4 		N6		0.006
+	N4 		N8		0.009
+	N5 		N7		0.003
+	N6 		N7		0.01
+	N6 		N8		0.001
+	N7 		N8		0.004
+	N7 		N9		0.003
+	N7 		N10		0.005
+	N8 		N10		0.001
+	N9 		N10		0.006;

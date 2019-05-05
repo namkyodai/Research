@@ -1,0 +1,5 @@
+data;
+param v := 10000; #setup cost
+param d := 2; #deterioration rate
+param c := 20000; #intervention cost
+param i := 0.2; #penalty cost
